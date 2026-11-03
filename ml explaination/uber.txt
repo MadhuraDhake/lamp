@@ -1,0 +1,2011 @@
+ML Practical 8 – Uber Fare Prediction using Linear Regression and Random Forest Regression
+I'll explain this practical from the absolute basics, assuming you're learning Machine Learning for the first time.
+
+We'll understand every code block, every line, every library, every concept, why we use it, how it works, and examples. I'll also explain the dataset, algorithms, output, evaluation metrics, and questions your examiner might ask in the practical exam.
+1. First, understand what this practical does
+Main concept: Regression
+Aim: To predict the fare amount of an Uber ride using its pickup location, drop-off location, and passenger count. We use two Machine Learning algorithms:
+1. Linear Regression
+2. Random Forest Regression
+We then compare their performance using evaluation metrics.
+What exactly are we trying to predict?
+Imagine you book an Uber.
+
+You provide the following information:
+- Pickup location: Your starting point.
+- Drop-off location: Your destination.
+- Passenger count: Number of passengers.
+Based on this information, our Machine Learning model tries to predict the fare.
+Example of Uber fare prediction
+Pickup location
+
+Latitude and longitude of starting point
+
+
+Drop-off location
+
+Latitude and longitude of destination
+
+
+Passenger count
+
+Number of passengers
+
+
+
+Machine Learning Model
+₹250
+
+Illustrative predicted fare, not an actual result from your notebook.
+
+The model learns patterns from previously recorded Uber rides and uses those patterns to predict the fare of a new ride.
+Why is this Regression and not Classification?
+This is a very important viva question.
+Regression	Classification
+Predicts numerical values	Predicts categories
+Output is continuous	Output is a class/label
+Example: Predict fare ₹250	Example: Spam or Not Spam
+Linear Regression	Logistic Regression
+
+Here, fare_amount can be 5.5, 10.25, 25.75, 100, etc.
+
+Since we predict a numerical value, this is a Regression problem.
+
+2. Understand the dataset – uber.csv
+Your uploaded CSV dataset contains:
+- 200,000 rows
+- 9 columns
+Each row represents one Uber ride.
+
+Let's understand all nine columns.
+Column	Meaning
+Unnamed: 0	Index/serial number from the original dataset
+key	Unique identifier of the ride
+fare_amount	Actual Uber fare
+pickup_datetime	Date and time of pickup
+pickup_longitude	Longitude of pickup
+pickup_latitude	Latitude of pickup
+dropoff_longitude	Longitude of drop-off
+dropoff_latitude	Latitude of drop-off
+passenger_count	Number of passengers
+
+What are latitude and longitude?
+These are geographical coordinates used to identify a location on Earth.
+
+
+
+
+
+
+
+socialsci.libretexts.org
+
+
+- Latitude: Tells us how far north or south a location is.
+- Longitude: Tells us how far east or west a location is.
+For example:
+pickup_longitude = -73.999817pickup_latitude = 40.738354
+
+
+
+These two values together identify the pickup location.
+
+Similarly, drop-off latitude and longitude identify the destination.
+
+Why do we need these values?
+
+Because the distance between pickup and drop-off locations is related to the fare. Our model can learn geographical patterns from these coordinates.
+What are input and output variables?
+This is another important Machine Learning concept.
+- Input variables (Features): Information given to the model.
+- Output variable (Target): What we want the model to predict.
+For our practical:
+Input features (X)	Output (y)
+Pickup longitude	
+Pickup latitude	
+Drop-off longitude	
+Drop-off latitude	
+Passenger count	Fare amount
+
+The model uses five input features to predict one output: fare_amount.
+
+3. Overall flow of the practical
+Before understanding the code, remember this workflow:
+1. Import Libraries
+
+Load the required Python and ML tools
+
+2. Load Dataset
+
+Read Uber CSV data
+
+3. Data Preprocessing
+
+Remove unwanted and invalid records
+
+4. Select X and y
+
+Separate input features and target
+
+5. Train-Test Split
+
+Divide data into training and testing sets
+
+6A. Linear Regression
+
+Train and predict
+
+
+6B. Random Forest
+
+Train and predict
+
+
+
+7. Model Evaluation
+
+Calculate R², RMSE and MAE
+
+8. Model Comparison
+
+Compare both algorithms
+
+
+Now let's understand the actual code.
+
+4. Code explanation – Block 1: Import Libraries
+Original code
+# 1. Import librariesimport numpy as npimport pandas as pdimport matplotlib.pyplot as pltfrom sklearn.model_selection import train_test_splitfrom sklearn.linear_model import LinearRegressionfrom sklearn.ensemble import RandomForestRegressorfrom sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+
+
+
+What is a library?
+A library is a collection of pre-written Python functions and tools that we can use instead of writing everything ourselves.
+
+For example, imagine you want to calculate the average of 1000 numbers.
+
+You could write the logic yourself, or use an existing library function.
+
+That's why we use libraries in Machine Learning.
+
+Let's understand each import.
+Line 1: NumPy
+import numpy as np
+
+
+
+What is NumPy?
+
+NumPy stands for Numerical Python.
+
+It is a Python library used for numerical calculations and mathematical operations.
+
+It works efficiently with arrays and matrices.
+
+Why do we use it here?
+
+In our practical, we use NumPy to calculate the square root of Mean Squared Error.
+
+For example:
+np.sqrt(25)
+
+
+
+Output:
+5.0
+
+
+Here:
+- np is the alias (short name) given to NumPy.
+- sqrt() calculates the square root.
+We use np.sqrt() later to calculate RMSE.
+Line 2: Pandas
+import pandas as pd
+
+
+
+What is Pandas?
+
+Pandas is a Python library used for data manipulation and analysis.
+
+It helps us read, display, filter, clean and organize datasets.
+
+Why do we use it here?
+
+Our dataset is a CSV file containing 200,000 records.
+
+Pandas helps us load and manipulate this data easily.
+
+For example:
+df = pd.read_csv('uber.csv')
+
+
+
+This reads the CSV file and stores its contents in a DataFrame.
+
+What is a DataFrame?
+
+A DataFrame is a two-dimensional tabular data structure consisting of rows and columns.
+
+Think of it like an Excel sheet.
+
+
+
+
+
+
+
+vizuaranewsletter.com
+
+
+For example:
+Name	Age	City
+Rahul	21	Pune
+Priya	22	Mumbai
+Aman	20	Nashik
+
+Here, the entire table is a DataFrame.
+
+pd is simply the short name used for Pandas.
+Line 3: Matplotlib
+import matplotlib.pyplot as plt
+
+
+
+What is Matplotlib?
+
+Matplotlib is a Python library used for data visualization.
+
+It helps us create:
+- Line graphs
+- Bar graphs
+- Pie charts
+- Histograms
+- Scatter plots
+Why is it used here?
+
+It can be used to visualize the dataset and understand patterns.
+
+However, an important observation: your current notebook imports Matplotlib but does not actually use it in any later code block.
+
+plt is the short name given to matplotlib.pyplot.
+Line 4: Train-test split
+from sklearn.model_selection import train_test_split
+
+
+
+What is Scikit-learn?
+
+Scikit-learn is a popular Python Machine Learning library.
+
+It provides ready-made algorithms and functions for:
+- Regression
+- Classification
+- Clustering
+- Model evaluation
+- Data preprocessing
+Here:
+- sklearn is Scikit-learn.
+- model_selection is a module inside Scikit-learn.
+- train_test_split is a function inside that module.
+Why do we use it?
+
+To divide our dataset into two parts:
+1. Training data – used to teach the model.
+2. Testing data – used to check how well the model performs on unseen data.
+We will understand this in detail in Block 4.
+Line 5: Linear Regression
+from sklearn.linear_model import LinearRegression
+
+
+
+This imports the Linear Regression algorithm.
+
+What is Linear Regression?
+
+Linear Regression is a supervised Machine Learning algorithm used to predict continuous numerical values.
+
+It finds a mathematical relationship between input variables and the output variable.
+
+Example:
+
+Suppose we have this data:
+Distance (km)	Fare (₹)
+1	50
+2	70
+3	90
+4	110
+
+We can observe that as distance increases, fare increases.
+
+Linear Regression learns this relationship and predicts the fare for a new distance.
+
+Its basic equation is:
+\[
+y = mx+c
+\]
+
+Where:
+- y = Predicted output.
+- x = Input.
+- m = Slope or coefficient.
+- c = Intercept.
+In our Uber practical, there are five input features, so the model uses a multiple-variable version of this equation.
+
+We'll understand it in more detail when we reach Block 5.
+Line 6: Random Forest Regression
+from sklearn.ensemble import RandomForestRegressor
+
+
+
+This imports the Random Forest Regression algorithm.
+
+What is Random Forest?
+
+Random Forest is an ensemble Machine Learning algorithm that combines multiple Decision Trees to make a prediction.
+
+Let's understand the two concepts.
+
+Decision Tree: A tree-like model that makes decisions using conditions.
+
+Example:
+- Is the ride distance short?
+- Is the passenger count greater than 2?
+- What fare should be predicted?
+
+
+
+
+
+
+
+nature.com
+
+
+Random Forest: Instead of depending on just one decision tree, it creates many decision trees and combines their predictions.
+
+For regression, it generally takes the average of the predictions.
+
+Example:
+
+Suppose five trees predict these fares:
+Decision tree	Predicted fare
+Tree 1	₹100
+Tree 2	₹120
+Tree 3	₹110
+Tree 4	₹130
+Tree 5	₹115
+
+Random Forest prediction:
+\[
+\frac{100+120+110+130+115}{5}=115
+\]
+
+So the final prediction is ₹115.
+
+This is why it is called Random Forest: it combines many decision trees.
+Line 7: Evaluation metrics
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+
+
+
+These are functions used to evaluate how accurately our models predict Uber fares.
+
+We import three metrics:
+1. r2_score – R² score.
+2. mean_squared_error – MSE.
+3. mean_absolute_error – MAE.
+We'll understand each one deeply in Block 7.
+
+Quick revision of Block 1
+Library/function	Purpose
+NumPy	Numerical calculations
+Pandas	Data handling
+Matplotlib	Graphs and visualization
+train_test_split	Divide training and testing data
+LinearRegression	Linear regression algorithm
+RandomForestRegressor	Random Forest algorithm
+r2_score	Calculate R²
+mean_squared_error	Calculate MSE
+mean_absolute_error	Calculate MAE
+
+
+5. Code explanation – Block 2: Load Dataset
+Original code
+# 2. Load datasetdf = pd.read_csv('uber.csv')print(df.head())print(df.info())
+
+
+
+Let's understand each line.
+Line 1
+df = pd.read_csv('uber.csv')
+
+
+
+This line loads our Uber dataset.
+
+Let's break it down:
+- pd – Pandas library.
+- read_csv() – Function used to read a CSV file.
+- 'uber.csv' – Name of the dataset file.
+- df – Variable in which we store the dataset.
+What is CSV?
+
+CSV stands for Comma-Separated Values.
+
+It is a file format used to store tabular data. Values are generally separated by commas.
+
+Example:
+Name,Age,City
+Rahul,21,Pune
+Priya,22,Mumbai
+Aman,20,Nashik
+
+
+Pandas reads this file and converts it into a DataFrame.
+
+Why do we store it in df?
+
+Because we need to perform operations such as removing missing values, filtering records and selecting columns.
+
+df is just a variable name. We could also write:
+uber_data = pd.read_csv('uber.csv')
+
+
+
+Both are correct.
+
+Important for running your uploaded files:
+
+Your uploaded dataset is named uber(1).csv, whereas your notebook expects uber.csv. Either rename the CSV to uber.csv or change the line to:
+df = pd.read_csv('uber(1).csv')
+
+
+
+The CSV must be in the notebook's working directory.
+Line 2
+print(df.head())
+
+
+
+What is head()?
+
+head() is a Pandas function used to display the first five rows of a DataFrame by default.
+
+Why do we use it?
+
+When we load a dataset containing 200,000 records, displaying every row is not practical.
+
+Instead, we display a few initial rows to understand the structure of the dataset.
+
+Example:
+print(df.head())
+
+
+
+Output will look similar to:
+fare_amount	pickup_longitude	passenger_count
+7.5	-73.999817	1
+7.7	-73.994355	1
+12.9	-74.005043	2
+5.3	-73.976124	3
+16.0	-73.925023	5
+
+These are illustrative selected columns from your dataset.
+
+Can we display more than five rows?
+
+Yes!
+df.head(10)
+
+
+
+Displays the first 10 rows.
+df.tail()
+
+
+
+Displays the last five rows.
+df.sample(5)
+
+
+
+Displays five randomly selected rows.
+Line 3
+print(df.info())
+
+
+
+What is info()?
+
+info() gives us a summary of the DataFrame.
+
+It tells us:
+- Number of rows.
+- Number of columns.
+- Column names.
+- Data types.
+- Number of non-null values.
+- Memory usage.
+For example, our dataset initially contains:
+RangeIndex: 200000 entries
+Data columns (total 9 columns)
+
+
+It also tells us whether columns contain missing values.
+
+What are data types?
+
+Data types tell Python what kind of information a column contains.
+
+Some common types:
+Data type	Meaning	Example
+int64	Integer	10, 20, 30
+float64	Decimal number	7.5, 12.9
+object	Usually text/string	Name, date string
+bool	True or False	True
+
+For our dataset:
+- fare_amount is float64.
+- passenger_count is int64.
+- pickup_datetime is object.
+Why is info() important?
+
+Suppose a dataset contains missing values or incorrect data types.
+
+Before training a model, we should understand what we are working with.
+
+That is why we use info().
+
+6. Code explanation – Block 3: Data Preprocessing
+Original code
+# 3. Preprocess datasetdf = df.drop(columns=['Unnamed: 0', 'key'], errors='ignore')df = df.dropna()df = df.drop_duplicates()
+
+
+
+Very important ML concept
+First, what is Data Preprocessing?
+Data preprocessing means cleaning and preparing raw data before giving it to a Machine Learning algorithm.
+
+Real-world datasets are not always perfect.
+
+They may contain:
+- Missing values.
+- Duplicate records.
+- Incorrect values.
+- Unnecessary columns.
+- Invalid entries.
+A model trained on poor-quality data may give inaccurate predictions.
+
+Therefore, we clean the dataset first.
+
+Let's understand each line.
+Line 1: Remove unnecessary columns
+df = df.drop(columns=['Unnamed: 0', 'key'], errors='ignore')
+
+
+
+What is drop()?
+
+drop() is a Pandas function used to remove rows or columns from a DataFrame.
+
+Here we want to remove two columns:
+1. Unnamed: 0
+2. key
+Why remove Unnamed: 0?
+
+This is generally an index column that was saved along with the original CSV.
+
+It does not provide useful information for predicting the fare.
+
+For example:
+Unnamed: 0	Fare
+1	100
+2	150
+3	200
+
+The first column is just a record identifier, not a meaningful fare-prediction feature.
+
+Why remove key?
+
+The key column contains a unique identifier associated with each ride.
+
+Example:
+2015-05-07 19:52:06.0000003
+
+
+It identifies the ride but is not being used as an input feature in our model.
+
+So we remove it.
+
+What does columns mean?
+columns=['Unnamed: 0', 'key']
+
+
+
+It tells Pandas that we want to remove columns with these names.
+
+What does errors='ignore' mean?
+
+Normally, if we try to remove a column that doesn't exist, Pandas can produce an error.
+
+For example:
+df.drop(columns=['wrong_column'])
+
+
+
+This may produce a KeyError.
+
+But:
+df.drop(columns=['wrong_column'], errors='ignore')
+
+
+
+does not produce an error for that missing column.
+
+It simply ignores it.
+
+Why do we write df = again?
+
+Because drop() returns a modified DataFrame rather than automatically changing the original one by default.
+
+So we store the returned DataFrame back into df.
+Line 2: Remove missing values
+df = df.dropna()
+
+
+
+What are missing values?
+
+Missing values are values that are not available in a dataset.
+
+For example:
+Pickup latitude	Pickup longitude	Fare
+18.52	73.85	100
+19.07	NaN	150
+NaN	72.87	200
+18.60	73.90	120
+
+Here, NaN means Not a Number. In Pandas, it is commonly used to represent missing numerical data.
+
+Why are missing values a problem?
+
+Imagine we want to predict fare, but a particular record does not have a pickup latitude.
+
+The model does not have complete information for that record.
+
+Many Scikit-learn algorithms, including the models used here, do not directly accept NaN values in their input features.
+
+Therefore, we need to handle them.
+
+What does dropna() do?
+
+It removes rows containing missing values.
+
+Before:
+Latitude	Fare
+18.5	100
+NaN	150
+19.2	200
+
+After:
+Latitude	Fare
+18.5	100
+19.2	200
+
+The row containing NaN is removed.
+
+Important: dropna() removes rows by default, not entire columns.
+
+There are other ways to handle missing values, such as filling them with the mean, median or mode. But our practical uses dropna().
+Line 3: Remove duplicate records
+df = df.drop_duplicates()
+
+
+
+What are duplicate records?
+
+Duplicate records are repeated rows in a dataset.
+
+Example:
+Name	Fare
+Rahul	100
+Priya	150
+Rahul	100
+Aman	200
+
+Here, the Rahul record is repeated.
+
+Why remove duplicates?
+
+Because repeated records can unnecessarily give certain observations more influence during training.
+
+We want the dataset to contain unique records.
+
+What does drop_duplicates() do?
+
+It removes duplicate rows.
+
+After removing duplicates:
+Name	Fare
+Rahul	100
+Priya	150
+Aman	200
+
+By default, it considers all columns when checking whether rows are duplicates.
+Quick revision of preprocessing
+Function	Work
+drop()	Removes unwanted columns or rows
+dropna()	Removes rows with missing values
+drop_duplicates()	Removes duplicate rows
+errors='ignore'	Ignores missing column names during removal
+
+Viva question: Why is preprocessing necessary?
+
+Answer: Data preprocessing is necessary to clean raw data by handling missing values, duplicate records, invalid values and unnecessary columns so that the Machine Learning model can train on good-quality data.
+
+7. Code explanation – Block 4: Remove Invalid Records
+Original code
+# Remove invalid fare and passenger recordsdf = df[(df['fare_amount'] > 0) & (df['passenger_count'] > 0)]
+
+
+
+This block is also part of data preprocessing.
+
+Let's understand it carefully.
+First, what are invalid records?
+Invalid records are records containing values that do not make sense for the problem.
+
+For example:
+Fare amount	Passenger count
+100	2
+150	3
+-50	1
+200	0
+250	-1
+
+Consider these records:
+- Fare of -50: Invalid for a normal Uber fare.
+- Passenger count of 0: Invalid for a ride.
+- Passenger count of -1: Invalid.
+We should remove such records.
+Understanding the code
+Let's break it into smaller parts.
+
+Part 1
+df['fare_amount'] > 0
+
+
+
+This checks whether the fare amount is greater than zero.
+
+For example:
+Fare	Condition	Result
+100	100 > 0	True
+150	150 > 0	True
+-50	-50 > 0	False
+0	0 > 0	False
+
+It creates a Boolean condition for every row.
+
+What is Boolean?
+
+Boolean means a value that can be either:
+- True
+- False
+Part 2
+df['passenger_count'] > 0
+
+
+
+This checks whether the passenger count is greater than zero.
+
+Example:
+Passenger count	Condition	Result
+1	1 > 0	True
+2	2 > 0	True
+0	0 > 0	False
+-1	-1 > 0	False
+
+Part 3: The AND operator
+&
+
+
+
+This is the element-wise AND operator in Pandas.
+
+It checks whether both conditions are True.
+
+Remember:
+Condition 1	Condition 2	AND result
+True	True	True
+True	False	False
+False	True	False
+False	False	False
+
+For a row to be retained, both conditions must be satisfied.
+
+Part 4: Filtering the DataFrame
+df[condition]
+
+
+
+This is called Boolean indexing or Boolean filtering.
+
+It selects only the rows for which the condition is True.
+
+So our complete code:
+df = df[    (df['fare_amount'] > 0) &    (df['passenger_count'] > 0)]
+
+
+
+means:
+
+"Keep only those Uber records where fare amount is greater than zero AND passenger count is greater than zero."
+Example
+Before filtering:
+Fare	Passengers
+100	2
+-50	1
+150	0
+200	3
+
+After filtering:
+Fare	Passengers
+100	2
+200	3
+
+Only valid records remain.
+
+Important observation: Your code checks positive fare and passenger count, but it does not check whether latitude and longitude are geographically valid. It also does not remove unusually high fares or extreme coordinates.
+
+8. Code explanation – Block 5: Select Input and Output Variables
+Original code
+# Select input and output variablesX = df[['pickup_longitude', 'pickup_latitude',        'dropoff_longitude', 'dropoff_latitude',        'passenger_count']]y = df['fare_amount']
+
+
+
+Important Machine Learning concept
+Before training any supervised Machine Learning model, we need to separate the inputs and outputs.
+
+Let's understand this.
+What is X?
+X = df[['pickup_longitude', 'pickup_latitude',        'dropoff_longitude', 'dropoff_latitude',        'passenger_count']]
+
+
+
+X contains all the input features used by the model to make predictions.
+
+In Machine Learning, we conventionally use uppercase X for input features.
+
+Our X contains five columns:
+1. Pickup longitude.
+2. Pickup latitude.
+3. Drop-off longitude.
+4. Drop-off latitude.
+5. Passenger count.
+Why do we use double square brackets?
+df[['pickup_longitude', 'pickup_latitude']]
+
+
+
+Because we are selecting multiple columns.
+
+Compare:
+df['fare_amount']
+
+
+
+This selects one column and generally returns a Pandas Series.
+
+But:
+df[['fare_amount']]
+
+
+
+This selects one column as a DataFrame.
+
+For our X, we need multiple columns, so we use double square brackets.
+What is y?
+y = df['fare_amount']
+
+
+
+y contains the output that we want the model to predict.
+
+In our practical, that output is fare_amount.
+
+We conventionally use lowercase y for the target variable.
+Understand using a real example
+Suppose our dataset contains:
+Pickup longitude	Pickup latitude	Drop longitude	Drop latitude	Passengers	Fare
+-73.99	40.73	-73.98	40.75	1	100
+-73.95	40.70	-73.92	40.74	2	150
+-73.91	40.72	-73.90	40.73	3	80
+
+The model receives:
+
+X:
+[[-73.99, 40.73, -73.98, 40.75, 1],
+ [-73.95, 40.70, -73.92, 40.74, 2],
+ [-73.91, 40.72, -73.90, 40.73, 3]]
+
+
+y:
+[100, 150, 80]
+
+
+The model learns the relationship between X and y.
+
+After training, we can give it a new X value and ask it to predict the fare.
+What is supervised learning?
+Our practical uses Supervised Learning.
+
+Supervised Learning means training a Machine Learning model using data that already contains both inputs and their correct outputs.
+
+Example:
+Input: Hours studied	Output: Marks
+1	30
+2	40
+3	50
+4	60
+
+The model learns from these input-output pairs.
+
+Similarly, our Uber model learns from previous ride details and their actual fare amounts.
+
+Viva question: What is the target variable in your practical?
+
+Answer: fare_amount is the target variable because it is the value we want to predict.
+
+Viva question: How many input features are used?
+
+Answer: Five input features are used.
+
+9. Code explanation – Block 6: Train-Test Split
+Original code
+# 4. Split datasetX_train, X_test, y_train, y_test = train_test_split(    X, y, test_size=0.2, random_state=42)
+
+
+
+This is one of the most important steps in Machine Learning.
+Why do we split the dataset?
+Imagine you are preparing for an exam.
+
+You study using practice questions and then solve a separate question paper to check how much you have learned.
+
+You should not judge your preparation only using questions you have already practised.
+
+The same concept applies to Machine Learning.
+
+We divide our dataset into:
+1. Training dataset.
+2. Testing dataset.
+
+
+
+
+
+
+
+medium.com
+
+
+What is training data?
+Training data is the portion of the dataset used to teach the Machine Learning model.
+
+The model learns patterns and relationships from this data.
+What is testing data?
+Testing data is the portion of the dataset kept separate during training.
+
+After training, we use it to check whether the model can make accurate predictions on unseen records.
+Now understand the code line by line.
+Part 1
+train_test_split(X, y, ...)
+
+
+
+This function divides both the input features and target variable into training and testing portions.
+
+We pass:
+- X – Input features.
+- y – Target variable.
+Part 2
+X_train
+
+
+
+Contains the input features used for training.
+
+Part 3
+X_test
+
+
+
+Contains the input features used for testing.
+
+Part 4
+y_train
+
+
+
+Contains the actual target values corresponding to the training data.
+
+Part 5
+y_test
+
+
+
+Contains the actual target values corresponding to the testing data.
+
+Why do we need both X and y in training and testing?
+
+Because the model learns using input-output pairs.
+
+During evaluation, we compare the model's predicted fare with the actual fare in y_test.
+What does test_size=0.2 mean?
+test_size=0.2
+
+
+
+It means 20% of the dataset will be used for testing.
+
+The remaining 80% will be used for training.
+
+For our original 200,000 records, before preprocessing:
+Dataset	Percentage	Number of records
+Training	80%	160,000
+Testing	20%	40,000
+Total	100%	200,000
+
+Remember: These are the counts before preprocessing. The actual number of rows after removing invalid records, missing values and duplicates will be lower.
+
+Can we use another test size?
+
+Yes.
+test_size=0.3
+
+
+
+Means 70% training and 30% testing.
+test_size=0.1
+
+
+
+Means 90% training and 10% testing.
+What does random_state=42 mean?
+This is a frequently asked viva question.
+random_state=42
+
+
+
+It controls the random splitting process.
+
+The dataset is shuffled and divided randomly.
+
+If we run the code multiple times without specifying a fixed random state, we may get different training and testing records.
+
+By specifying:
+random_state=42
+
+
+
+we get the same split each time, provided the input data and other settings remain unchanged.
+
+Why 42?
+
+There is nothing special about the number 42.
+
+We can also write:
+random_state=10
+
+
+
+or:
+random_state=100
+
+
+
+The important thing is that we use a fixed number to make the experiment reproducible.
+Remember these four variables
+Variable	Contains
+X_train	Training inputs
+X_test	Testing inputs
+y_train	Actual training outputs
+y_test	Actual testing outputs
+
+
+10. Code explanation – Block 7: Linear Regression
+Original code
+# 5. Linear Regressionlr = LinearRegression()lr.fit(X_train, y_train)lr_pred = lr.predict(X_test)
+
+
+
+Now we have cleaned the dataset, selected our inputs and outputs, and divided the dataset into training and testing portions.
+
+Now it's time to train our first Machine Learning algorithm.
+First, understand Linear Regression deeply.
+What is Linear Regression?
+
+Linear Regression is a Supervised Machine Learning algorithm used to predict continuous numerical values.
+
+It tries to find a relationship between independent variables (inputs) and a dependent variable (output).
+
+For example:
+
+Suppose we have information about the distance travelled by a cab and its fare.
+Distance	Fare
+1 km	₹50
+2 km	₹100
+3 km	₹150
+4 km	₹200
+
+We can observe that as distance increases, the fare increases.
+
+Linear Regression learns this relationship.
+
+It can then predict the fare for a new distance.
+
+
+
+
+
+
+
+open.ocolearnok.org
+
+
+Mathematical formula
+The basic Linear Regression equation is:
+\[
+y=mx+c
+\]
+
+Where:
+Symbol	Meaning
+y	Predicted output
+x	Input variable
+m	Slope/coefficient
+c	Intercept
+
+In our Uber practical, we have five input features, so we use Multiple Linear Regression.
+
+Its equation is:
+\[
+\begin{aligned}
+Fare =\ &b_0+b_1(PickupLong)\\
+&+b_2(PickupLat)\\
+&+b_3(DropLong)\\
+&+b_4(DropLat)\\
+&+b_5(Passengers)
+\end{aligned}
+\]
+
+Here:
+- \(b_0\) is the intercept.
+- \(b_1,b_2,b_3,b_4,b_5\) are coefficients.
+- The five values are our input features.
+The algorithm learns these coefficients from the training data.
+
+Now let's understand the actual code.
+Line 1: Create the model
+lr = LinearRegression()
+
+
+
+Here:
+- lr is the variable in which we store our model.
+- LinearRegression() creates an instance of the Linear Regression algorithm.
+What is an instance?
+
+An instance is an object created from a class.
+
+Think of a class as a blueprint and an object as something created using that blueprint.
+
+For example:
+class Student:    passs1 = Student()
+
+
+
+Here, Student is a class and s1 is an object.
+
+Similarly:
+lr = LinearRegression()
+
+
+
+creates a Linear Regression model object.
+
+Why do we write lr?
+
+It is simply a variable name.
+
+We could also write:
+model = LinearRegression()
+
+
+
+Both are correct.
+Line 2: Train the model
+lr.fit(X_train, y_train)
+
+
+
+This is one of the most important lines in the entire practical.
+
+What is fit()?
+
+fit() is a method used to train a Machine Learning model.
+
+It allows the algorithm to learn patterns from the training dataset.
+
+We provide two things:
+- X_train: Input features.
+- y_train: Correct output values.
+Let's understand using a simple example.
+
+Suppose the training dataset is:
+Distance	Actual fare
+1 km	₹50
+2 km	₹100
+3 km	₹150
+4 km	₹200
+
+The model observes these examples and learns the relationship.
+
+After training, it can predict the fare for a new distance.
+
+For example:
+
+Input: 5 km.
+
+Predicted fare: ₹250.
+
+This is just an illustrative example.
+
+What exactly happens inside fit()?
+1. The model receives the training inputs.
+2. It receives the corresponding actual fare values.
+3. It identifies mathematical relationships between inputs and outputs.
+4. It learns suitable coefficients and an intercept.
+5. It creates a trained model.
+For Linear Regression, the coefficients are estimated by minimizing the sum of squared prediction errors.
+
+The fitting method used by Scikit-learn is based on least squares.
+Line 3: Make predictions
+lr_pred = lr.predict(X_test)
+
+
+
+What is predict()?
+
+predict() is a method used to generate predictions using a trained Machine Learning model.
+
+Here:
+- lr is our trained Linear Regression model.
+- X_test contains unseen input data.
+- predict() calculates the predicted fares.
+- lr_pred stores the predicted values.
+Example:
+
+Suppose our testing inputs are:
+Distance	Actual fare
+5 km	₹250
+6 km	₹300
+7 km	₹350
+
+The model might predict:
+[245, 310, 345]
+
+
+These are illustrative values.
+
+The actual values and predicted values can now be compared.
+Difference between fit() and predict()
+fit()	predict()
+Trains the model	Makes predictions
+Learns patterns	Uses learned patterns
+Uses training data	Uses testing/new input data
+Example: lr.fit()	Example: lr.predict()
+
+Viva question: Why do we use Linear Regression?
+
+Answer: We use Linear Regression to predict continuous numerical values by learning the relationship between input features and the target variable.
+
+11. Code explanation – Block 8: Random Forest Regression
+Original code
+# 6. Random Forest Regressionrf = RandomForestRegressor(n_estimators=100, random_state=42)rf.fit(X_train, y_train)rf_pred = rf.predict(X_test)
+
+
+
+Now we train our second Machine Learning algorithm.
+First, understand Random Forest Regression.
+What is Random Forest?
+
+Random Forest is a Supervised Machine Learning algorithm based on an ensemble of Decision Trees.
+
+It is used for both classification and regression problems.
+
+Our practical uses Random Forest Regression because we want to predict a numerical fare amount.
+First understand Decision Tree.
+A Decision Tree is a Machine Learning algorithm that makes decisions using a tree-like structure.
+
+It works using conditions.
+
+For example, imagine we want to predict cab fares.
+
+A simplified decision tree might ask:
+- Is the journey short?
+- Is the journey medium or long?
+- How many passengers are travelling?
+Based on the conditions, it produces a prediction.
+
+
+
+
+
+
+
+datascience.joelmarbet.com
+
+
+Now what is Random Forest?
+Imagine we ask one person to predict the fare.
+
+They may predict ₹100.
+
+Now imagine asking 100 people independently to estimate the same fare.
+
+Their predictions might be:
+Tree 1: ₹100
+Tree 2: ₹110
+Tree 3: ₹105
+Tree 4: ₹120
+Tree 5: ₹115
+
+
+We combine their predictions.
+
+For regression, Random Forest generally takes their average.
+\[
+Prediction = \frac{\text{Sum of predictions}}{\text{Number of trees}}
+\]
+
+This is the basic idea behind Random Forest Regression.
+
+
+
+
+
+
+
+keboola.com
+
+
+Why do we use Random Forest?
+- It combines multiple decision trees.
+- It can learn complex relationships.
+- It can model nonlinear patterns.
+- It often performs well on structured datasets.
+- Combining trees can reduce the instability of an individual decision tree.
+Now let's understand the code.
+Line 1: Create the Random Forest model
+rf = RandomForestRegressor(n_estimators=100, random_state=42)
+
+
+
+Let's break this into parts.
+
+Part 1
+rf
+
+
+
+This is the variable used to store our Random Forest model.
+
+Part 2
+RandomForestRegressor()
+
+
+
+This creates a Random Forest Regression model.
+
+Notice that we use Regressor, not Classifier.
+
+Why?
+
+Because we want to predict fare amounts, which are numerical values.
+
+Part 3: What is n_estimators?
+n_estimators=100
+
+
+
+This specifies the number of decision trees in the Random Forest.
+
+Here, we are creating 100 decision trees.
+
+Why multiple trees?
+
+Because instead of depending on one tree, the algorithm combines predictions from multiple trees.
+
+Example:
+n_estimators=10
+
+
+
+Creates 10 trees.
+n_estimators=50
+
+
+
+Creates 50 trees.
+n_estimators=100
+
+
+
+Creates 100 trees.
+
+Generally, increasing the number of trees can improve prediction stability, but it also increases computation time.
+
+Part 4: random_state
+random_state=42
+
+
+
+This controls the randomness involved in building the forest.
+
+It helps produce reproducible results when the data and other settings are unchanged.
+Line 2: Train Random Forest
+rf.fit(X_train, y_train)
+
+
+
+This trains the Random Forest model.
+
+Remember:
+- X_train = Training input features.
+- y_train = Actual training fare amounts.
+- fit() = Train the model.
+What happens?
+1. The algorithm creates multiple decision trees.
+2. Each tree learns patterns from the training data.
+3. The trees learn relationships between the input features and fare amounts.
+4. The forest becomes ready to predict fares.
+One important concept: Random Forest uses bootstrap sampling and random subsets of features while constructing its trees. This helps make the trees diverse.
+Line 3: Predict fare amounts
+rf_pred = rf.predict(X_test)
+
+
+
+This uses the trained Random Forest model to predict fare amounts for the testing dataset.
+
+For example:
+
+Suppose the model predicts:
+[105, 150, 200, 95, 250]
+
+
+These are illustrative predictions.
+
+The results are stored in:
+rf_pred
+
+
+
+We can now compare them with the actual values in y_test.
+Difference between Linear Regression and Random Forest Regression
+Linear Regression	Random Forest Regression
+Uses a mathematical linear relationship	Uses multiple decision trees
+Learns coefficients	Learns decision rules and patterns
+Fits a linear model	Can learn nonlinear relationships
+Usually simpler and faster to train	Can require more computation
+One regression model	Ensemble of many trees
+
+Viva question: What is the difference between Random Forest and Decision Tree?
+
+Answer:
+
+A Decision Tree uses a single tree to make predictions, whereas Random Forest combines multiple decision trees and averages their predictions for regression. Random Forest generally provides more stable predictions.
+
+12. Code explanation – Block 9: Model Evaluation
+Original code
+# 7. Evaluate modelsprint("Linear Regression:")print("R2 Score:", r2_score(y_test, lr_pred))print("RMSE:", np.sqrt(mean_squared_error(y_test, lr_pred)))print("MAE:", mean_absolute_error(y_test, lr_pred))print("\nRandom Forest Regression:")print("R2 Score:", r2_score(y_test, rf_pred))print("RMSE:", np.sqrt(mean_squared_error(y_test, rf_pred)))print("MAE:", mean_absolute_error(y_test, rf_pred))
+
+
+
+Extremely important for viva
+First, what is Model Evaluation?
+After training a Machine Learning model, we need to check how well it performs.
+
+Just because a model has been trained does not mean it will make accurate predictions.
+
+For that, we use evaluation metrics.
+
+Our practical uses three metrics:
+1. R² Score.
+2. RMSE.
+3. MAE.
+Let's understand each one using a simple example.
+
+Suppose the actual Uber fares are:
+Ride	Actual fare	Predicted fare
+1	₹100	₹110
+2	₹200	₹190
+3	₹300	₹280
+
+We want to understand how far the predicted values are from the actual values.
+A. R² Score (Coefficient of Determination)
+What is R² Score?
+R² Score tells us how well the model explains the variation in the target variable.
+
+In simple words, it gives us an indication of how well the model fits the actual data.
+
+Its value is generally interpreted as follows:
+R² value	Interpretation
+1	Perfect predictions
+0.9	Very strong fit
+0.7	Good fit in many contexts
+0	No improvement over predicting the target mean
+Negative	Worse than predicting the target mean
+
+These are general interpretations, not universal quality thresholds.
+Formula
+\[
+R^2=1-\frac{SS_{res}}{SS_{tot}}
+\]
+
+Where:
+- \(SS_{res}\) = Sum of squared prediction errors.
+- \(SS_{tot}\) = Total sum of squares.
+You don't need to manually calculate this in our practical because Scikit-learn calculates it for us.
+Code
+r2_score(y_test, lr_pred)
+
+
+
+Let's understand:
+- r2_score() calculates the R² value.
+- y_test contains actual fare values.
+- lr_pred contains predicted fare values.
+It compares actual and predicted values and returns the R² score.
+
+For Random Forest:
+r2_score(y_test, rf_pred)
+
+
+
+The same function is used, but now we pass Random Forest predictions.
+
+Which R² score is better?
+
+Generally, a higher R² score is better.
+
+For example:
+- Model A: 0.65
+- Model B: 0.90
+Model B explains more of the variation in the target data.
+
+However, a high R² does not automatically guarantee that a model is suitable for every purpose.
+B. MSE – Mean Squared Error
+What is MSE?
+MSE stands for Mean Squared Error.
+
+It calculates the average of the squared differences between actual and predicted values.
+
+Let's use our example:
+Actual	Predicted	Error
+100	110	-10
+200	190	10
+300	280	20
+
+The error is the difference between actual and predicted values.
+\[
+Error=Actual-Predicted
+\]
+
+MSE squares each error and then calculates their average.
+\[
+MSE=\frac{\sum(Actual-Predicted)^2}{n}
+\]
+
+For our example:
+\[
+MSE=\frac{(-10)^2+(10)^2+(20)^2}{3}
+\]
+
+\[
+=\frac{100+100+400}{3}
+\]
+
+\[
+MSE=200
+\]
+
+Code
+mean_squared_error(y_test, lr_pred)
+
+
+
+This calculates the Mean Squared Error for Linear Regression.
+
+Why square the errors?
+
+There are two important reasons:
+1. Negative and positive errors do not cancel each other out.
+2. Larger errors receive greater penalties.
+For example:
+- Error of 2 becomes 4.
+- Error of 10 becomes 100.
+- Error of 20 becomes 400.
+Is lower MSE better?
+
+Yes. Lower MSE indicates smaller squared prediction errors.
+
+But MSE is not directly printed in your practical.
+
+Your practical uses it to calculate RMSE.
+C. RMSE – Root Mean Squared Error
+What is RMSE?
+RMSE stands for Root Mean Squared Error.
+
+It is the square root of MSE.
+\[
+RMSE=\sqrt{MSE}
+\]
+
+From our previous example:
+\[
+RMSE=\sqrt{200}
+\]
+
+\[
+RMSE\approx14.14
+\]
+
+It tells us the typical scale of prediction error in the same unit as the target variable.
+
+In our practical, the unit is the fare currency unit in the dataset.
+Understand the actual code
+np.sqrt(mean_squared_error(y_test, lr_pred))
+
+
+
+Let's break it down.
+
+First part:
+mean_squared_error(y_test, lr_pred)
+
+
+
+Calculates MSE.
+
+Second part:
+np.sqrt()
+
+
+
+Calculates the square root.
+
+Complete expression:
+np.sqrt(mean_squared_error(y_test, lr_pred))
+
+
+
+First, MSE is calculated.
+
+Then its square root is calculated.
+
+The final result is RMSE.
+
+For Random Forest:
+np.sqrt(mean_squared_error(y_test, rf_pred))
+
+
+
+The same calculation is performed using Random Forest predictions.
+
+Which RMSE is better?
+
+Lower RMSE is generally better.
+
+For example:
+- Linear Regression RMSE = 10
+- Random Forest RMSE = 5
+Random Forest has smaller prediction errors according to this metric.
+D. MAE – Mean Absolute Error
+What is MAE?
+MAE stands for Mean Absolute Error.
+
+It calculates the average absolute difference between actual and predicted values.
+
+Let's use our previous example:
+Actual	Predicted	Absolute error
+100	110	10
+200	190	10
+300	280	20
+
+Absolute error means we ignore the negative sign.
+\[
+MAE=\frac{\sum|Actual-Predicted|}{n}
+\]
+
+Therefore:
+\[
+MAE=\frac{10+10+20}{3}
+\]
+
+\[
+MAE=13.33
+\]
+
+Code
+mean_absolute_error(y_test, lr_pred)
+
+
+
+This calculates the MAE of Linear Regression.
+
+For Random Forest:
+mean_absolute_error(y_test, rf_pred)
+
+
+
+This calculates the MAE of Random Forest Regression.
+
+Which MAE is better?
+
+Lower MAE is better.
+
+For example:
+- Model A: MAE = 15
+- Model B: MAE = 8
+Model B has a lower average absolute prediction error.
+Difference between R², RMSE and MAE
+Metric	What does it measure?	Better value
+R² Score	How well the model explains variation	Higher
+RMSE	Square-root of average squared errors	Lower
+MAE	Average absolute prediction error	Lower
+
+Why do we use three different metrics?
+Because each metric tells us something different.
+- R² tells us about the model's explanatory fit.
+- RMSE penalizes large errors more strongly.
+- MAE tells us the average absolute prediction error in the original unit.
+Using all three gives us a more complete picture of model performance.
+
+13. Code explanation – Block 10: Compare Both Models
+Original code
+# 8. Compare modelsresults = pd.DataFrame({    'Model': ['Linear Regression', 'Random Forest'],    'R2 Score': [        r2_score(y_test, lr_pred),        r2_score(y_test, rf_pred)    ],    'RMSE': [        np.sqrt(mean_squared_error(y_test, lr_pred)),        np.sqrt(mean_squared_error(y_test, rf_pred))    ],    'MAE': [        mean_absolute_error(y_test, lr_pred),        mean_absolute_error(y_test, rf_pred)    ]})print("\nModel Comparison:")print(results)
+
+
+
+Now we have trained both models and evaluated them separately.
+
+The final step is to compare their performance in a single table.
+Line 1
+results = pd.DataFrame({
+
+
+
+Here, we create a new Pandas DataFrame called results.
+
+We use it to store the performance metrics of both models.
+Line 2
+'Model': ['Linear Regression', 'Random Forest'],
+
+
+
+This creates a column called Model.
+
+It contains the names of the two algorithms.
+
+Our two models are:
+1. Linear Regression.
+2. Random Forest.
+Line 3: R² Score
+'R2 Score': [    r2_score(y_test, lr_pred),    r2_score(y_test, rf_pred)],
+
+
+
+This creates an R² Score column.
+
+The first value:
+r2_score(y_test, lr_pred)
+
+
+
+Calculates the R² score for Linear Regression.
+
+The second value:
+r2_score(y_test, rf_pred)
+
+
+
+Calculates the R² score for Random Forest.
+Line 4: RMSE
+'RMSE': [    np.sqrt(mean_squared_error(y_test, lr_pred)),    np.sqrt(mean_squared_error(y_test, rf_pred))],
+
+
+
+This creates an RMSE column.
+
+The first value calculates RMSE for Linear Regression.
+
+The second value calculates RMSE for Random Forest.
+Line 5: MAE
+'MAE': [    mean_absolute_error(y_test, lr_pred),    mean_absolute_error(y_test, rf_pred)]
+
+
+
+This creates an MAE column.
+
+Again, the first value belongs to Linear Regression and the second belongs to Random Forest.
+Closing the DataFrame
+})
+
+
+
+This completes the DataFrame creation.
+Print the comparison
+print("\nModel Comparison:")
+
+
+
+Prints the heading.
+
+What is \n?
+
+It represents a new line.
+
+For example:
+print("Hello\nWorld")
+
+
+
+Output:
+Hello
+World
+
+
+Last line
+print(results)
+
+
+
+Displays the comparison table.
+
+Your output will have this structure:
+Model	R2 Score	RMSE	MAE
+Linear Regression	Calculated value	Calculated value	Calculated value
+Random Forest	Calculated value	Calculated value	Calculated value
+
+Note: These are the output columns, not actual measured results. Your notebook's displayed output was not available in the saved cells, so I am not inventing the scores.
+How do we decide which model is better?
+Suppose your output looks like this (illustrative only):
+Model	R² Score	RMSE	MAE
+Linear Regression	0.60	8.5	5.2
+Random Forest	0.90	3.5	2.1
+
+Here, Random Forest is better according to all three metrics because:
+- Its R² score is higher.
+- Its RMSE is lower.
+- Its MAE is lower.
+Therefore, we would select Random Forest for this comparison.
+
+However, always decide using your actual output.
+
+14. Complete practical in one place
+Now that you understand every block, let's see how the entire code works together.
+
+This is your original practical, with the dataset filename adjusted to match the uploaded file. If you rename the file to uber.csv, use the original filename instead.
+# 1. Import librariesimport numpy as npimport pandas as pdimport matplotlib.pyplot as pltfrom sklearn.model_selection import train_test_splitfrom sklearn.linear_model import LinearRegressionfrom sklearn.ensemble import RandomForestRegressorfrom sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error# 2. Load datasetdf = pd.read_csv('uber(1).csv')print(df.head())print(df.info())# 3. Preprocess datasetdf = df.drop(columns=['Unnamed: 0', 'key'], errors='ignore')df = df.dropna()df = df.drop_duplicates()# Remove invalid fare and passenger recordsdf = df[(df['fare_amount'] > 0) & (df['passenger_count'] > 0)]# Select input and output variables
+
+
+
+15. Important concepts you must know for the practical exam
+Here is a revision of the concepts used throughout your code.
+Concept	Meaning
+Machine Learning	Teaching computers to learn patterns from data
+Supervised Learning	Learning using inputs and known outputs
+Regression	Predicting continuous numerical values
+Dataset	Collection of data
+CSV	Comma-Separated Values file
+DataFrame	Rows and columns of data in Pandas
+NumPy	Numerical calculations
+Pandas	Data manipulation
+Matplotlib	Data visualization
+Scikit-learn	Machine Learning library
+Preprocessing	Cleaning and preparing data
+Missing values	Values that are not available
+Duplicate records	Repeated records
+Features	Input variables
+Target	Output variable
+Training data	Data used to train the model
+Testing data	Data used to evaluate the model
+fit()	Trains the model
+predict()	Makes predictions
+Linear Regression	Predicts using a linear mathematical relationship
+Decision Tree	Makes predictions using decision rules
+Random Forest	Combines multiple decision trees
+R²	Measures explanatory fit
+MSE	Average squared prediction error
+RMSE	Square root of MSE
+MAE	Average absolute prediction error
+
+16. Important differences for viva
+1. Supervised vs Unsupervised Learning
+Supervised	Unsupervised
+Uses labelled data	Uses unlabelled data
+Inputs and outputs are known	Correct outputs are not provided
+Learns input-output relationships	Finds hidden patterns
+Regression and classification	Clustering
+Example: Uber fare prediction	Example: Customer segmentation
+
+2. Regression vs Classification
+Regression	Classification
+Predicts numerical values	Predicts categories
+Continuous output	Discrete output
+Linear Regression	Logistic Regression
+Predicting Uber fare	Predicting spam/not spam
+
+3. Linear Regression vs Random Forest
+Linear Regression	Random Forest
+Linear mathematical model	Ensemble of decision trees
+Learns coefficients	Learns decision rules
+Captures linear relationships	Captures nonlinear relationships
+Simpler model	More complex model
+
+4. Training vs Testing
+Training	Testing
+Teaches the model	Checks model performance
+Uses X_train and y_train	Uses X_test and y_test
+Model learns from it	Model makes predictions on it
+
+5. MAE vs RMSE
+MAE	RMSE
+Uses absolute errors	Uses squared errors before square root
+Less sensitive to large errors	More sensitive to large errors
+Easy to interpret	Penalizes large errors more strongly
+Lower is better	Lower is better
+
+
+1. pickup_datetime is not used.
+
+Your dataset contains pickup date and time, but the code does not include it in X. Therefore, the model does not directly learn time-related patterns such as peak-hour fares.
+
+2. Distance is not explicitly calculated.
+
+Your code uses pickup and drop-off coordinates as separate features. It does not calculate the actual geographical distance between the two points.
+
+3. The code does not perform complete geographical cleaning.
+
+It removes missing values and invalid fare/passenger records, but it does not explicitly remove impossible latitude/longitude values or extreme fare outliers.
+
+4. Matplotlib is imported but unused.
+
+Your current notebook does not generate any graphs.
+
+These observations do not change the basic objective of the practical, but they are useful if your examiner asks about possible improvements.
+
+19. Final revision – What should you say if the examiner asks you to explain your practical?
+You can explain it in this order:
+1. My practical is about predicting Uber ride fares using Machine Learning.
+2. It is a Supervised Learning Regression problem.
+3. I use NumPy, Pandas and Scikit-learn libraries.
+4. I load the Uber CSV dataset using Pandas.
+5. I perform preprocessing by removing unnecessary columns, missing values, duplicates and invalid fare/passenger records.
+6. I select five input features: pickup longitude, pickup latitude, drop-off longitude, drop-off latitude and passenger count.
+7. The target variable is fare_amount.
+8. I split the dataset into 80% training and 20% testing.
+9. I train two algorithms: Linear Regression and Random Forest Regression.
+10. I use fit() for training and predict() for predictions.
+11. I evaluate both models using R² Score, RMSE and MAE.
+12. Finally, I compare both models and identify which performs better.
+The most important five things to remember:
+- X = Input features.
+- y = Target variable.
+- fit() = Training.
+- predict() = Prediction.
+- R², RMSE, MAE = Evaluation metrics.
+If you understand these five things and the purpose of each code block, you will understand the entire practical rather than just memorizing the code.

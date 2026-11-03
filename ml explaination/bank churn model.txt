@@ -1,0 +1,5706 @@
+
+Churn_Modelling - Churn_Modelling(1).csv – The dataset used by the practical.
+
+Your practical is about Artificial Neural Networks (ANN) for Bank Customer Churn Prediction, using Python, TensorFlow and Keras.
+
+I'll explain it from absolute basics, assuming you're seeing these concepts for the first time. I'll follow your actual notebook, not replace it with a different implementation.
+
+For every code block, we'll cover:
+
+The complete code.
+
+Each line and keyword: what it means, why we use it and how it works.
+
+The concepts behind the code.
+
+Simple real-life examples.
+
+What happens internally.
+
+Expected output and interpretation.
+
+Important practical exam and viva questions.
+
+1. First understand the practical
+What are we actually trying to do?
+Imagine you own a bank.
+
+The bank has 10,000 customers. Some customers continue using the bank, while others close their accounts and leave.
+
+The bank wants to predict:
+
+Will a particular customer leave the bank or stay with it?
+
+This problem is called Customer Churn Prediction.
+
+Customer Churn Prediction | Learn Python Free - SkillsetMaster | Learn Data Analytics Free - SkillsetMaster
+
+What is customer churn?
+Customer churn means customers stop using a company's products or services.
+
+Examples:
+
+A bank customer closes their account.
+
+A Netflix subscriber cancels their subscription.
+
+A mobile customer switches to another network.
+
+A customer stops purchasing from an online shopping website.
+
+In your practical:
+
+Value
+
+Meaning
+
+0
+
+Customer stays with the bank
+
+1
+
+Customer leaves the bank
+
+This is important because our model needs to predict one of these two outcomes.
+
+What is ANN?
+ANN stands for Artificial Neural Network.
+
+It is a machine learning model inspired by the way neurons in the human brain are interconnected.
+
+It learns patterns from previously available data and uses those patterns to make predictions.
+
+For example:
+
+Suppose the bank has historical customer information:
+
+Age
+
+Balance
+
+Active member
+
+Exited
+
+42
+
+0
+
+1
+
+1
+
+41
+
+83807
+
+1
+
+0
+
+42
+
+159660
+
+0
+
+1
+
+35
+
+50000
+
+1
+
+0
+
+The ANN studies relationships between customer details and whether they left.
+
+After training, when we provide a new customer's details, it predicts the probability that the customer will leave.
+
+Important: The model learns patterns from the data. It does not follow manually written rules like "if age is above 40, the customer will leave."
+
+What type of machine learning is this?
+Your practical uses:
+
+Supervised Learning: Because the dataset already contains the correct answers (Exited).
+
+Binary Classification: Because there are only two possible classes, 0 and 1.
+
+Deep Learning: Because we use a neural network containing multiple layers.
+
+Understand the complete workflow
+ANN practical workflow
+Import libraries
+
+Load Python libraries required for data handling, preprocessing, graphs and ANN.
+
+Load dataset
+
+Read the bank customer CSV file using Pandas.
+
+Data preprocessing
+
+Remove unnecessary columns, identify numerical and categorical features, scale numerical data and encode categorical data.
+
+Split dataset
+
+Divide data into training and testing datasets.
+
+Build ANN
+
+Create input, hidden and output layers.
+
+Compile ANN
+
+Configure optimizer, loss function and evaluation metrics.
+
+Train ANN
+
+Train the network using training data.
+
+Visualize performance
+
+Draw accuracy and loss graphs.
+
+Evaluate model
+
+Calculate accuracy, confusion matrix, precision, recall and F1-score.
+
+Now let's understand each part of your actual code.
+
+2. Block 1 – Importing libraries
+This is the first meaningful code cell in your notebook.
+
+Complete code
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+import pandas as pd
+
+Let's understand every line.
+
+Line 1
+import numpy as np
+
+What is NumPy?
+
+NumPy stands for Numerical Python.
+
+It is a Python library used to perform mathematical and numerical operations.
+
+It works with:
+
+Arrays
+
+Matrices
+
+Mathematical calculations
+
+Statistical operations
+
+Numerical data
+
+What does import mean?
+
+import is a Python keyword used to bring an external library into our program so that we can use its functionality.
+
+What does as np mean?
+
+It gives the library a short name or alias.
+
+Instead of writing:
+
+numpy.array([1, 2, 3])
+
+We can write:
+
+np.array([1, 2, 3])
+
+Here, np is simply a nickname for NumPy.
+
+Simple example:
+
+import numpy as np
+
+numbers = np.array([10, 20, 30])
+
+print(numbers)
+print(numbers.mean())
+
+Output:
+
+[10 20 30]
+20.0
+Why do we use NumPy in ML?
+
+Machine Learning involves mathematical calculations, numerical arrays, matrices and vectors. NumPy provides efficient ways to handle them.
+
+Your notebook doesn't explicitly call np later, but it is imported as a commonly used numerical library.
+
+Line 2
+import pandas as pd
+
+What is Pandas?
+
+Pandas is a Python library used for data manipulation and analysis.
+
+It helps us:
+
+Read CSV files.
+
+Read Excel files.
+
+Display datasets.
+
+Remove columns.
+
+Select particular columns.
+
+Handle missing values.
+
+Filter rows.
+
+Analyse data.
+
+What does pd mean?
+
+It is the short name given to Pandas.
+
+For example:
+
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+
+Here:
+
+pd refers to Pandas.
+
+read_csv() is a Pandas function.
+
+df stores the dataset.
+
+What is a DataFrame?
+
+A DataFrame is a two-dimensional tabular data structure consisting of rows and columns.
+
+Think of an Excel spreadsheet.
+
+Name
+
+Age
+
+Salary
+
+A
+
+20
+
+25000
+
+B
+
+21
+
+30000
+
+C
+
+22
+
+35000
+
+This is how a Pandas DataFrame looks conceptually.
+
+In your practical, we use a DataFrame to store bank customer information.
+
+Line 3
+import matplotlib.pyplot as plt
+
+What is Matplotlib?
+
+Matplotlib is a Python library used for data visualization.
+
+It helps us create:
+
+Line graphs
+
+Bar graphs
+
+Pie charts
+
+Histograms
+
+Scatter plots
+
+What is pyplot?
+
+pyplot is a module inside Matplotlib that provides functions for drawing graphs.
+
+What does plt mean?
+
+It is the alias given to matplotlib.pyplot.
+
+Example:
+
+import matplotlib.pyplot as plt
+
+plt.plot([1, 2, 3], [10, 20, 30])
+plt.show()
+
+This creates a line graph.
+
+Why do we need it in your practical?
+
+We use it to visualize:
+
+Training accuracy versus validation accuracy.
+
+Training loss versus validation loss.
+
+We'll understand those graphs later.
+
+Line 4
+from sklearn.model_selection import train_test_split
+
+What is Scikit-learn?
+
+Scikit-learn is a Python Machine Learning library.
+
+It provides functions for:
+
+Data preprocessing
+
+Classification
+
+Regression
+
+Clustering
+
+Model evaluation
+
+Splitting datasets
+
+sklearn is the package name used when importing Scikit-learn.
+
+What does from mean?
+
+It allows us to import a specific function or class from a particular module.
+
+Here:
+
+sklearn = Scikit-learn library.
+
+model_selection = Module used for model selection and dataset splitting.
+
+train_test_split = Function used to divide a dataset into training and testing portions.
+
+We'll use this function later.
+
+Why split a dataset?
+
+Suppose we have 1000 customer records.
+
+We give 800 records to the model to learn patterns.
+
+Then we give the remaining 200 records to check whether it can predict correctly on data it hasn't trained on.
+
+This is the purpose of training and testing.
+
+Line 5
+from sklearn.compose import ColumnTransformer
+
+What is ColumnTransformer?
+
+It is a Scikit-learn class that allows us to apply different preprocessing operations to different columns of a dataset.
+
+Why do we need it?
+
+Because our bank dataset contains different types of information.
+
+For example:
+
+CreditScore
+
+Age
+
+Geography
+
+Gender
+
+619
+
+42
+
+France
+
+Female
+
+608
+
+41
+
+Spain
+
+Female
+
+Notice:
+
+CreditScore and Age are numerical.
+
+Geography and Gender are categorical.
+
+We cannot process all these columns in exactly the same way.
+
+We need:
+
+StandardScaler for numerical columns.
+
+OneHotEncoder for categorical columns.
+
+ColumnTransformer helps us apply both operations together.
+
+We'll use it in Block 3.
+
+Line 6
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+Here, we import two preprocessing techniques.
+
+A. StandardScaler
+
+StandardScaler standardizes numerical values.
+
+Suppose our dataset contains:
+
+Age
+
+Salary
+
+20
+
+20000
+
+30
+
+50000
+
+40
+
+80000
+
+Notice that the numerical ranges are very different.
+
+Age ranges around 20–40, while salary ranges around 20,000–80,000.
+
+StandardScaler transforms numerical data so that it has approximately:
+
+Mean = 0
+
+Standard deviation = 1
+
+Formula:
+
+Z
+=
+X
+−
+μ
+σ
+Z= 
+σ
+X−μ
+​
+ 
+Where:
+
+X
+X = Original value.
+
+μ
+μ = Mean of the feature.
+
+σ
+σ = Standard deviation.
+
+Z
+Z = Standardized value.
+
+We'll explore this in detail in Block 3.
+
+B. OneHotEncoder
+
+OneHotEncoder converts categorical values into numerical binary columns.
+
+For example, consider:
+
+Geography
+
+France
+
+Germany
+
+Spain
+
+France
+
+A machine learning model cannot directly perform numerical calculations on words such as France and Germany.
+
+OneHotEncoder converts them into something like:
+
+France
+
+Germany
+
+Spain
+
+1
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+1
+
+1
+
+0
+
+0
+
+Here:
+
+1 means that category is present.
+
+0 means that category is absent.
+
+This process is called One-Hot Encoding.
+
+Why not simply convert France to 1, Germany to 2 and Spain to 3?
+
+Because the model might interpret those numbers as having an order or numerical relationship.
+
+For example, it might assume Spain (3) is greater than France (1), which makes no sense.
+
+One-hot encoding avoids this artificial ordering.
+
+Line 7
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+We import three evaluation functions.
+
+1. accuracy_score()
+
+Calculates the percentage of predictions that are correct.
+
+2. confusion_matrix()
+
+Creates a table comparing actual predictions with predicted results.
+
+It helps us understand:
+
+Correct predictions.
+
+Incorrect predictions.
+
+Customers correctly identified as leaving.
+
+Customers incorrectly identified as leaving.
+
+3. classification_report()
+
+Provides:
+
+Precision
+
+Recall
+
+F1-score
+
+Support
+
+We'll understand all four in Block 7.
+
+Line 8
+import pandas as pd
+
+This is a duplicate import.
+
+Pandas has already been imported in Line 2.
+
+Repeating the import does not normally cause an error, but it is unnecessary.
+
+You can safely remove this duplicate line.
+
+3. Block 2 – Loading the dataset
+Complete code
+df = pd.read_csv("Churn_Modelling - Churn_Modelling.csv")
+
+print("Dataset shape:", df.shape)
+
+display(df.head())
+
+print(df["Exited"].value_counts())
+
+This block loads the bank customer dataset and displays basic information.
+
+Line 1
+df = pd.read_csv("Churn_Modelling - Churn_Modelling.csv")
+
+Let's break this down.
+
+What is df?
+
+df is a variable that stores our dataset.
+
+The name df is commonly used as an abbreviation for DataFrame.
+
+What is pd.read_csv()?
+
+It is a Pandas function used to read a CSV file.
+
+CSV stands for Comma-Separated Values.
+
+It is a file format used to store tabular data.
+
+For example:
+
+Name,Age,Salary
+A,20,25000
+B,21,30000
+C,22,35000
+Each row represents a record, and commas separate the values.
+
+What is the filename inside the brackets?
+
+"Churn_Modelling - Churn_Modelling.csv"
+
+This tells Python which CSV file to read.
+
+Important: Your uploaded file is named:
+
+Churn_Modelling - Churn_Modelling(1).csv
+
+But the notebook expects:
+
+Churn_Modelling - Churn_Modelling.csv
+
+If you run the notebook with the uploaded filename unchanged, you may get:
+
+FileNotFoundError
+To fix this, either rename the CSV file or change the code to:
+
+df = pd.read_csv("Churn_Modelling - Churn_Modelling(1).csv")
+
+The CSV and notebook should be in the same working directory for this relative filename to work.
+
+Line 2
+print("Dataset shape:", df.shape)
+
+What is print()?
+
+print() is a built-in Python function used to display information on the screen.
+
+What is df.shape?
+
+shape is a DataFrame attribute that returns the number of rows and columns.
+
+Its output is a tuple:
+
+(number_of_rows, number_of_columns)
+
+Your uploaded dataset contains:
+
+10,000
+Customer records (rows)
+
+14
+Columns (features and target)
+
+Expected output:
+
+Dataset shape: (10000, 14)
+Remember:
+
+shape does not require parentheses.
+
+shape() would be incorrect because it is an attribute, not a function.
+
+Line 3
+display(df.head())
+
+What is head()?
+
+head() is a Pandas DataFrame function that displays the first five rows by default.
+
+Example:
+
+df.head()
+
+Displays rows 1–5.
+
+You can also specify the number of rows:
+
+df.head(10)
+
+Displays the first 10 rows.
+
+What is display()?
+
+display() shows an object in a rich notebook format, such as a formatted table.
+
+It is commonly available in Jupyter Notebook.
+
+Why do we use it?
+
+To inspect the dataset and understand what kind of information it contains.
+
+Understand your actual dataset
+Your dataset contains these 14 columns:
+
+Column
+
+Meaning
+
+RowNumber
+
+Row number of the record
+
+CustomerId
+
+Unique customer identification number
+
+Surname
+
+Customer's surname
+
+CreditScore
+
+Customer's credit score
+
+Geography
+
+Customer's country
+
+Gender
+
+Customer's gender category
+
+Age
+
+Customer's age
+
+Tenure
+
+Number of years associated with the bank
+
+Balance
+
+Bank account balance
+
+NumOfProducts
+
+Number of bank products used
+
+HasCrCard
+
+Whether customer has a credit card
+
+IsActiveMember
+
+Whether customer is an active member
+
+EstimatedSalary
+
+Estimated salary
+
+Exited
+
+Whether the customer left
+
+Example from your actual CSV:
+
+CreditScore
+
+Geography
+
+Age
+
+Balance
+
+Exited
+
+619
+
+France
+
+42
+
+0
+
+1
+
+608
+
+Spain
+
+41
+
+83807.86
+
+0
+
+502
+
+France
+
+42
+
+159660.80
+
+1
+
+Notice the last column, Exited.
+
+This is the column we want our ANN to predict.
+
+Line 4
+print(df["Exited"].value_counts())
+
+Let's understand it.
+
+What is df["Exited"]?
+
+It selects only the Exited column from the dataset.
+
+The double quotation marks indicate that Exited is a column name.
+
+What is value_counts()?
+
+It counts how many times each unique value occurs in a column.
+
+For example:
+
+df["Exited"].value_counts()
+
+Your actual dataset gives:
+
+Exited
+0    7963
+1    2037
+Meaning:
+
+Exited value
+
+Number of customers
+
+0 – Stayed
+
+7,963
+
+1 – Left
+
+2,037
+
+Total
+
+10,000
+
+Customer churn distribution
+Distribution of the actual target column in your uploaded dataset.
+
+0
+2,500
+5,000
+7,500
+10,000
+Stayed (0)
+Left (1)
+Stayed (0): Customers 7,963
+Left (1): Customers 2,037
+Why do we check this?
+
+Because we want to understand the distribution of our target classes.
+
+It also tells us that the dataset is imbalanced: there are considerably more customers who stayed than customers who left.
+
+This becomes important when interpreting accuracy, precision and recall.
+
+4. Block 3 – Data preprocessing and feature selection
+This is one of the most important blocks in your practical.
+
+Complete code
+# Remove identifier/name columns because they do not provide useful model input.
+
+X = df.drop(columns=["RowNumber", "CustomerId", "Surname", "Exited"])
+
+y = df["Exited"]
+
+numeric_features = X.select_dtypes(
+    include=["int64", "float64"]
+).columns.tolist()
+
+categorical_features = X.select_dtypes(
+    include=["object"]
+).columns.tolist()
+
+print("Numeric features:", numeric_features)
+
+print("Categorical features:", categorical_features)
+
+First understand what preprocessing means
+Data preprocessing is the process of preparing raw data before giving it to a machine learning model.
+
+Why is it required?
+
+Real-world datasets may contain:
+
+Unnecessary columns.
+
+Text values.
+
+Different numerical ranges.
+
+Missing values.
+
+Incorrect formats.
+
+Duplicate records.
+
+A machine learning algorithm needs data in a suitable format.
+
+Therefore, we clean and transform the data before training.
+
+A. Understanding X and y
+Line 1
+X = df.drop(columns=["RowNumber", "CustomerId", "Surname", "Exited"])
+
+This line is extremely important.
+
+What is X?
+
+X represents the input features or independent variables.
+
+These are the details that we provide to the model so it can make a prediction.
+
+For your bank dataset, examples include:
+
+CreditScore
+
+Geography
+
+Gender
+
+Age
+
+Tenure
+
+Balance
+
+Number of products
+
+Credit card status
+
+Active member status
+
+Estimated salary
+
+What is y?
+
+We'll understand it in the next line.
+
+First, let's understand drop().
+
+drop() is a Pandas function used to remove rows or columns from a DataFrame.
+
+Syntax:
+
+df.drop(columns=["column1", "column2"])
+
+Here, we are removing four columns:
+
+1. RowNumber
+
+This is just the row number.
+
+It does not provide useful information about whether the customer will leave.
+
+2. CustomerId
+
+This is simply the customer's unique identification number.
+
+The number itself does not explain the customer's behaviour.
+
+3. Surname
+
+This is the customer's surname.
+
+It is not considered a useful input for this particular model.
+
+4. Exited
+
+This is our target column.
+
+We must remove it from X because we don't want to give the answer to the model as an input.
+
+If we included it, the model could learn from the answer it is supposed to predict. That would create data leakage.
+
+After removing these four columns, we have 10 input features.
+
+Let's understand the concept of feature selection.
+
+What is a feature?
+
+A feature is an individual input variable used by a machine learning model to make predictions.
+
+For example, to predict whether a bank customer will leave:
+
+Age is a feature.
+
+Balance is a feature.
+
+Geography is a feature.
+
+CreditScore is a feature.
+
+What is feature selection?
+
+Feature selection means selecting relevant input features for building a machine learning model.
+
+In this code, we exclude identifiers and the target column.
+
+Line 2
+y = df["Exited"]
+
+Here, we select the Exited column separately.
+
+y represents the target variable or dependent variable.
+
+The target is the value that we want to predict.
+
+In our practical:
+
+X = Customer information
+y = Whether customer left or stayed
+Example:
+
+X: Age
+
+X: Balance
+
+y: Exited
+
+42
+
+0
+
+1
+
+41
+
+83807
+
+0
+
+42
+
+159660
+
+1
+
+The model learns the relationship between X and y.
+
+Easy way to remember:
+
+X = Questions/information given to the model.
+
+y = Correct answers the model needs to learn.
+
+B. Identifying numerical columns
+Code
+numeric_features = X.select_dtypes(
+    include=["int64", "float64"]
+).columns.tolist()
+
+Let's break this into parts.
+
+What is select_dtypes()?
+
+It is a Pandas function that selects columns based on their data types.
+
+What are data types?
+
+A data type defines what kind of value a variable or column stores.
+
+Common Python data types include:
+
+Data type
+
+Meaning
+
+Example
+
+int
+
+Integer
+
+10, 25, 100
+
+float
+
+Decimal number
+
+10.5, 25.75
+
+str
+
+String/text
+
+"Hello"
+
+bool
+
+Boolean
+
+True, False
+
+Pandas uses its own data type labels:
+
+int64 = 64-bit integer.
+
+float64 = 64-bit floating-point number.
+
+object = Often text or mixed-type data.
+
+Now look at:
+
+include=["int64", "float64"]
+
+It means select only columns having integer or floating-point data types.
+
+For example:
+
+Column
+
+Data type
+
+CreditScore
+
+int64
+
+Age
+
+int64
+
+Balance
+
+float64
+
+EstimatedSalary
+
+float64
+
+Geography
+
+object
+
+Gender
+
+object
+
+So it selects numerical columns.
+
+What does .columns do?
+
+It returns the column names of the selected DataFrame.
+
+What does .tolist() do?
+
+It converts the column index into a normal Python list.
+
+Example:
+
+["CreditScore", "Age", "Balance", "EstimatedSalary"]
+
+Why convert it into a list?
+
+Because we need to pass these column names to our preprocessing pipeline later.
+
+Your practical identifies these numerical features:
+
+CreditScore
+Age
+Tenure
+Balance
+NumOfProducts
+HasCrCard
+IsActiveMember
+EstimatedSalary
+There are 8 numerical features.
+
+Notice that HasCrCard and IsActiveMember are stored as 0 and 1, so they are numerical in this dataset.
+
+C. Identifying categorical columns
+Code
+categorical_features = X.select_dtypes(
+    include=["object"]
+).columns.tolist()
+
+This is almost the same as the previous code.
+
+The difference is:
+
+include=["object"]
+
+This selects columns with object data types.
+
+In your dataset, these are:
+
+Geography
+Gender
+There are 2 categorical features.
+
+What is categorical data?
+
+Categorical data represents groups or categories rather than numerical measurements.
+
+Examples:
+
+Gender: Male, Female.
+
+Geography: France, Germany, Spain.
+
+Product type: Savings, Current, Fixed Deposit.
+
+These values are not directly suitable as numerical inputs to the neural network.
+
+That's why we need OneHotEncoder.
+
+Line 4 and 5
+print("Numeric features:", numeric_features)
+
+print("Categorical features:", categorical_features)
+
+These statements simply display the feature lists.
+
+Expected output:
+
+Numeric features: [
+    'CreditScore',
+    'Age',
+    'Tenure',
+    'Balance',
+    'NumOfProducts',
+    'HasCrCard',
+    'IsActiveMember',
+    'EstimatedSalary'
+]
+
+Categorical features: ['Geography', 'Gender']
+Important concept: Why do we separate numerical and categorical data?
+Because they require different preprocessing techniques.
+
+Input features
+
+Numerical features
+
+CreditScore, Age, Balance, Salary, etc.
+
+StandardScaler
+
+Converts values to standardized numerical values.
+
+Categorical features
+
+Geography, Gender
+
+OneHotEncoder
+
+Converts categories into binary columns.
+
+Processed numerical data
+
+Ready to be provided to the ANN.
+
+5. Block 4 – Splitting data and preprocessing
+Complete code
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", StandardScaler(), numeric_features),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features)
+    ]
+)
+
+X_train_processed = preprocessor.fit_transform(X_train)
+
+X_test_processed = preprocessor.transform(X_test)
+
+# Keras dense layers expect regular numeric arrays.
+X_train_processed = X_train_processed.astype("float32")
+
+X_test_processed = X_test_processed.astype("float32")
+
+print("Training data shape:", X_train_processed.shape)
+
+print("Testing data shape:", X_test_processed.shape)
+
+This block has two major tasks:
+
+Splitting the dataset.
+
+Preprocessing the features.
+
+A. train_test_split()
+Code
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+First, why do we split the dataset?
+
+Imagine you are teaching a student.
+
+You give them 80 questions to practise.
+
+Then you give them 20 new questions to check whether they actually learned the concepts.
+
+If you test the student using exactly the questions they memorized, you cannot properly judge their understanding.
+
+The same principle applies to machine learning.
+
+Training data: Used by the model to learn.
+
+Testing data: Used to evaluate the trained model on unseen records.
+
+Let's understand the four variables.
+
+Variable
+
+Meaning
+
+X_train
+
+Input features used for training
+
+X_test
+
+Input features used for testing
+
+y_train
+
+Correct answers for training
+
+y_test
+
+Correct answers for testing
+
+What is test_size=0.2?
+It means 20% of the dataset will be used for testing.
+
+Your dataset contains 10,000 records.
+
+T
+e
+s
+t
+i
+n
+g
+=
+10000
+×
+0.2
+=
+2000
+Testing=10000×0.2=2000
+T
+r
+a
+i
+n
+i
+n
+g
+=
+10000
+−
+2000
+=
+8000
+Training=10000−2000=8000
+Dataset division
+
+80% Training
+
+8,000
+20% Testing
+
+2,000
+What is random_state=42?
+When we split the dataset, the records are selected randomly.
+
+If we run the program again, the split may change.
+
+To keep the same random split every time, we use random_state.
+
+Example:
+
+random_state=42
+
+It fixes the random seed so that the same split is reproducible, provided the dataset and other settings remain the same.
+
+Why 42?
+
+There is nothing special about 42. We could use 10, 100 or 123.
+
+It is simply a chosen integer.
+
+Important viva question: What is random_state?
+
+It is a parameter used to control randomness and make results reproducible.
+
+What is stratify=y?
+This is another very important parameter.
+
+Remember our dataset has:
+
+7,963 customers who stayed.
+
+2,037 customers who left.
+
+The classes are imbalanced.
+
+When randomly splitting data, we want both training and testing datasets to maintain approximately the same class proportions.
+
+That is what stratification does.
+
+It preserves the class distribution during splitting.
+
+For example, our complete dataset has approximately:
+
+79.63% class 0.
+
+20.37% class 1.
+
+The training and testing datasets will maintain approximately these proportions.
+
+Why do we use y?
+
+Because y contains the class labels, and stratification uses these labels to preserve their distribution.
+
+Viva: What happens if we don't use stratify?
+
+The training and testing datasets may end up with different proportions of the classes, which could make evaluation less representative.
+
+B. ColumnTransformer
+Code
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", StandardScaler(), numeric_features),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features)
+    ]
+)
+
+We already understood the purpose of ColumnTransformer.
+
+Now let's understand its implementation.
+
+preprocessor = ColumnTransformer(
+
+We create a ColumnTransformer object and store it in the variable preprocessor.
+
+Inside it, we provide a list of transformations.
+
+First transformation
+("num", StandardScaler(), numeric_features)
+
+It contains three things.
+
+"num" – Name given to this transformation.
+
+StandardScaler() – Transformation to perform.
+
+numeric_features – Columns on which to perform it.
+
+Meaning:
+
+Apply StandardScaler to all numerical columns.
+
+For example:
+
+CreditScore
+Age
+Tenure
+Balance
+EstimatedSalary
+And the other numerical features.
+
+Second transformation
+("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features)
+
+Again, three things.
+
+"cat" – Name of this transformation.
+
+OneHotEncoder() – Transformation to perform.
+
+categorical_features – Columns on which to perform it.
+
+Meaning:
+
+Apply OneHotEncoder to Geography and Gender.
+
+What is handle_unknown="ignore"?
+Suppose the training dataset contains:
+
+France
+Germany
+Spain
+The encoder learns these categories.
+
+Now imagine that a new testing record contains another category that wasn't seen during training.
+
+Without special handling, the encoder may raise an error.
+
+handle_unknown="ignore" tells the encoder to handle an unseen category by encoding it as all zeros for that feature's encoded columns rather than raising an error.
+
+This is useful because testing data may contain categories that were not present in training data.
+
+C. fit_transform()
+Code
+X_train_processed = preprocessor.fit_transform(X_train)
+
+This is one of the most important concepts in preprocessing.
+
+Let's separate it:
+
+fit() = Learn the necessary information from the data.
+
+transform() = Apply the learned transformation.
+
+fit_transform() = Perform both operations together.
+
+Example using StandardScaler:
+
+Suppose the training ages are:
+
+20, 30, 40
+The scaler calculates the mean:
+
+μ
+=
+20
++
+30
++
+40
+3
+=
+30
+μ= 
+3
+20+30+40
+​
+ =30
+It also calculates the standard deviation.
+
+Then it uses the learned mean and standard deviation to standardize the values.
+
+So fit_transform():
+
+Learns the mean and standard deviation from training data.
+
+Applies standardization to the training data.
+
+Learns the categories for OneHotEncoder.
+
+Converts the training categorical data into binary columns.
+
+The result is stored in:
+
+X_train_processed
+
+Why use fit_transform on training data?
+
+Because the model must learn preprocessing information only from the training dataset.
+
+D. transform()
+Code
+X_test_processed = preprocessor.transform(X_test)
+
+Notice that we are using transform(), not fit_transform().
+
+Why?
+
+Because the preprocessing rules have already been learned from training data.
+
+We must use exactly the same rules for testing data.
+
+For example:
+
+Suppose training ages are:
+
+20, 30, 40
+The scaler learns the training mean and standard deviation.
+
+Now testing age is:
+
+35
+We use the previously learned training mean and standard deviation to standardize 35.
+
+We do not calculate a new mean from testing data.
+
+Why is this important?
+
+To avoid data leakage.
+
+What is data leakage?
+Data leakage happens when information from the testing dataset improperly influences the model's training process.
+
+For example:
+
+If we calculate the scaler's mean using both training and testing data, information from the test set enters the training preprocessing process.
+
+This can make the evaluation misleading.
+
+Correct approach:
+
+Dataset
+
+Operation
+
+Training
+
+fit_transform()
+
+Testing
+
+transform()
+
+Remember this for your viva.
+
+E. astype("float32")
+Code
+X_train_processed = X_train_processed.astype("float32")
+
+X_test_processed = X_test_processed.astype("float32")
+
+What is astype()?
+
+It is a function used to change the data type of an array or similar data structure.
+
+Here:
+
+.astype("float32")
+
+Converts values into 32-bit floating-point numbers.
+
+What is float32?
+
+It is a numerical data type that stores decimal numbers using 32 bits.
+
+Why use float32?
+
+Neural networks commonly work efficiently with 32-bit floating-point numbers.
+
+TensorFlow and Keras commonly use float32 for neural network calculations.
+
+For example:
+
+import numpy as np
+
+a = np.array([10, 20, 30])
+
+b = a.astype("float32")
+
+print(b.dtype)
+
+Output:
+
+float32
+F. Displaying the shapes
+Code
+print("Training data shape:", X_train_processed.shape)
+
+print("Testing data shape:", X_test_processed.shape)
+
+We use shape to check the number of rows and columns after preprocessing.
+
+Your original 10 input features become 13 features after One-Hot Encoding:
+
+8 numerical features.
+
+3 Geography columns (France, Germany, Spain).
+
+2 Gender columns (Female, Male).
+
+Total:
+
+8
++
+3
++
+2
+=
+13
+8+3+2=13
+Expected shapes:
+
+Training data shape: (8000, 13)
+Testing data shape: (2000, 13)
+Notice that the number of columns changed from 10 to 13.
+
+Why?
+
+Because categorical columns were expanded into separate binary columns.
+
+Important viva question: Why does the number of features increase after OneHotEncoder?
+
+Because each unique category is represented by its own binary column.
+
+6. Block 5 – Building the Artificial Neural Network
+Now comes the main part of your practical.
+
+We are going to create the ANN architecture.
+
+Before understanding the code, let's understand how an ANN works internally.
+
+A. What is an Artificial Neural Network?
+An Artificial Neural Network is a computational model inspired by the interconnected neurons in the human brain.
+
+It consists of interconnected processing units called neurons.
+
+These neurons are arranged in layers.
+
+A typical ANN has three types of layers:
+
+Input layer.
+
+Hidden layer(s).
+
+Output layer.
+
+6.4. Neuronske mreže — Numerička matematika
+
+1. Input layer
+The input layer receives information from the dataset.
+
+Your practical has 13 processed input features.
+
+Therefore, the input layer receives 13 values for every customer.
+
+For example:
+
+CreditScore
+Age
+Tenure
+Balance
+...
+Geography_France
+Geography_Germany
+Geography_Spain
+Gender_Female
+Gender_Male
+2. Hidden layer
+A hidden layer is the layer between the input and output layers.
+
+Its job is to learn patterns and relationships from the input data.
+
+Your model contains two hidden layers:
+
+First hidden layer: 16 neurons.
+
+Second hidden layer: 8 neurons.
+
+Why are they called hidden layers?
+
+Because they perform internal calculations. Their outputs are not directly the final answer shown to the user.
+
+3. Output layer
+The output layer produces the final prediction.
+
+Your model has one output neuron.
+
+It predicts the probability that the customer will leave the bank.
+
+For example:
+
+0.85
+This means an estimated 85% probability of the customer leaving, according to the model.
+
+With the 0.5 threshold used in your code, this becomes class 1.
+
+B. Understand how one neuron works
+A neuron receives inputs and performs mathematical calculations.
+
+The basic formula is:
+
+z
+=
+w
+1
+x
+1
++
+w
+2
+x
+2
++
+⋯
++
+w
+n
+x
+n
++
+b
+z=w 
+1
+​
+ x 
+1
+​
+ +w 
+2
+​
+ x 
+2
+​
+ +⋯+w 
+n
+​
+ x 
+n
+​
+ +b
+Where:
+
+x
+x = Input values.
+
+w
+w = Weights.
+
+b
+b = Bias.
+
+z
+z = Weighted sum.
+
+Then an activation function is applied.
+
+Let's understand each term.
+
+Input: Information provided to the neuron.
+
+Example: Customer age = 40.
+
+Weight: A learnable value that determines how strongly an input influences the neuron's calculation.
+
+Example:
+
+Age weight = 0.5.
+
+Balance weight = 0.2.
+
+Bias: An additional learnable value that allows the neuron to adjust its output independently of the input values.
+
+Activation function: A mathematical function applied to the neuron's weighted sum.
+
+It helps the network learn complex, non-linear patterns.
+
+C. Complete ANN code
+import tensorflow as tf
+
+from tensorflow.keras.models import Sequential
+
+from tensorflow.keras.layers import Dense, Input
+
+from tensorflow.keras.callbacks import EarlyStopping
+
+tf.random.set_seed(42)
+
+model = Sequential([
+    Input(shape=(X_train_processed.shape[1],)),
+    Dense(16, activation="relu"),
+    Dense(8, activation="relu"),
+    Dense(1, activation="sigmoid")
+])
+
+model.compile(
+    optimizer="adam",
+    loss="binary_crossentropy",
+    metrics=["accuracy"]
+)
+
+model.summary()
+
+Let's understand each line.
+
+Line 1
+import tensorflow as tf
+
+What is TensorFlow?
+
+TensorFlow is an open-source machine learning and deep learning framework developed by Google.
+
+It is used for:
+
+Building neural networks.
+
+Training deep learning models.
+
+Performing mathematical operations.
+
+Working with tensors.
+
+Developing AI applications.
+
+What is tf?
+
+It is the alias given to TensorFlow.
+
+Line 2
+from tensorflow.keras.models import Sequential
+
+What is Keras?
+
+Keras is a high-level API used to build and train neural networks.
+
+It makes it easier to create deep learning models without manually implementing every mathematical operation.
+
+What is Sequential?
+
+Sequential is a model-building class in Keras.
+
+It allows us to create a neural network where layers are arranged one after another in a linear sequence.
+
+For example:
+
+Input → Hidden Layer → Hidden Layer → Output
+Why use Sequential?
+
+Because our practical has a simple ANN architecture in which each layer connects to the next layer.
+
+Line 3
+from tensorflow.keras.layers import Dense, Input
+
+We import two layer types.
+
+Input
+
+Used to define the shape of the input data.
+
+Dense
+
+A fully connected neural network layer.
+
+What does fully connected mean?
+
+Every neuron in a Dense layer receives input from all the neurons in the previous layer.
+
+For example:
+
+If the first layer has 13 input values and the next Dense layer has 16 neurons, each of those 16 neurons receives all 13 input values.
+
+This is called a fully connected layer.
+
+Line 4
+from tensorflow.keras.callbacks import EarlyStopping
+
+We import EarlyStopping.
+
+It is a Keras callback used to stop model training when the monitored metric stops improving.
+
+Why do we need it?
+
+Suppose we train our model for 30 epochs.
+
+The model may achieve its best validation performance after 15 epochs.
+
+Continuing training unnecessarily may cause overfitting.
+
+EarlyStopping helps stop training when improvement is no longer happening.
+
+We'll understand its settings later.
+
+Line 5
+tf.random.set_seed(42)
+
+This sets TensorFlow's random seed.
+
+Neural networks often initialize their weights randomly.
+
+By setting a random seed, we aim to make random operations reproducible.
+
+Why 42?
+
+It is simply a chosen seed value.
+
+It is not a special ML value.
+
+Note that a fixed seed does not guarantee identical results across every hardware and software environment, but it improves reproducibility.
+
+D. Creating the model
+Code
+model = Sequential([
+    Input(shape=(X_train_processed.shape[1],)),
+    Dense(16, activation="relu"),
+    Dense(8, activation="relu"),
+    Dense(1, activation="sigmoid")
+])
+
+This is the actual ANN architecture.
+
+Let's understand it line by line.
+
+Line 1
+model = Sequential([
+
+We create a Sequential neural network and store it in the variable model.
+
+The square brackets contain the layers in their execution order.
+
+Line 2
+Input(shape=(X_train_processed.shape[1],)),
+
+This defines the input layer's shape.
+
+Remember:
+
+X_train_processed.shape
+
+Returns:
+
+(8000, 13)
+What does [1] mean?
+
+Python indexing starts at zero.
+
+[0] = Number of rows = 8000.
+
+[1] = Number of columns = 13.
+
+Therefore:
+
+X_train_processed.shape[1]
+
+Returns 13.
+
+So:
+
+Input(shape=(13,))
+
+This means each customer record contains 13 input values.
+
+Why don't we specify 8000?
+
+Because 8000 is the number of training records, not the number of features per record.
+
+The input layer needs to know how many features each individual record contains.
+
+What does the comma mean in (13,)?
+
+It tells Python that this is a tuple containing one element.
+
+In Python:
+
+(13)
+
+is just an integer inside parentheses.
+
+But:
+
+(13,)
+
+is a single-element tuple.
+
+Line 3
+Dense(16, activation="relu"),
+
+This creates the first hidden layer.
+
+Let's separate the arguments.
+
+Dense(16)
+
+Means create a fully connected layer containing 16 neurons.
+
+What are these 16 neurons doing?
+
+They learn different patterns and relationships from the 13 input features.
+
+activation="relu"
+
+This specifies the activation function.
+
+ReLU stands for Rectified Linear Unit.
+
+Its formula is:
+
+f
+(
+x
+)
+=
+max
+⁡
+(
+0
+,
+x
+)
+f(x)=max(0,x)
+Meaning:
+
+If input is negative, output is 0.
+
+If input is positive, output remains unchanged.
+
+Example:
+
+Input
+
+ReLU output
+
+-5
+
+0
+
+-2
+
+0
+
+0
+
+0
+
+3
+
+3
+
+8
+
+8
+
+Why use ReLU?
+
+It introduces non-linearity into the network, allowing it to learn more complex relationships.
+
+Without non-linear activation functions between layers, stacking Dense layers would still behave like a single linear transformation.
+
+Line 4
+Dense(8, activation="relu"),
+
+This creates the second hidden layer.
+
+It contains 8 neurons.
+
+Again, ReLU is used as the activation function.
+
+The second hidden layer receives the outputs from the first hidden layer and learns further patterns.
+
+Your architecture so far:
+
+13 input features
+       |
+       v
+16 neurons (ReLU)
+       |
+       v
+8 neurons (ReLU)
+Why 16 and 8?
+
+These are hyperparameters selected for the architecture.
+
+They are not fixed rules.
+
+We could experiment with 32 and 16, 64 and 32, or other configurations to see how performance changes.
+
+Line 5
+Dense(1, activation="sigmoid")
+
+This creates the output layer.
+
+Why Dense(1)?
+
+Because we have one prediction to make:
+
+Will the customer leave?
+We only need one output neuron.
+
+Why sigmoid?
+
+Because this is a binary classification problem.
+
+Sigmoid converts the output into a value between 0 and 1.
+
+Formula:
+
+f
+(
+x
+)
+=
+1
+1
++
+e
+−
+x
+f(x)= 
+1+e 
+−x
+ 
+1
+​
+ 
+Example:
+
+Sigmoid input
+
+Approximate output
+
+-5
+
+0.0067
+
+-2
+
+0.119
+
+0
+
+0.5
+
+2
+
+0.881
+
+5
+
+0.993
+
+The output can be interpreted as the model's estimated probability of class 1, assuming the model is appropriately trained.
+
+For your practical:
+
+Output 0.85 → 85% estimated probability of leaving.
+
+Output 0.20 → 20% estimated probability of leaving.
+
+Why not ReLU in the output layer?
+
+Because we want a probability between 0 and 1.
+
+ReLU can return values greater than 1, so it is not appropriate for this probability output.
+
+Why not Softmax?
+
+Softmax is commonly used for multiclass classification when we have multiple output neurons.
+
+Sigmoid is a natural choice for this single-output binary classification setup.
+
+E. Visualizing your ANN architecture
+Your actual ANN architecture
+Input layer
+
+13
+Features
+
+Hidden layer 1
+
+16
+Neurons · ReLU
+
+Hidden layer 2
+
+8
+Neurons · ReLU
+
+Output layer
+
+1
+Neuron · Sigmoid
+
+Output: Probability that the customer will leave.
+
+F. What happens internally? Forward propagation
+Forward propagation means passing input data through the network, layer by layer, to generate a prediction.
+
+Let's understand with a simple example.
+
+Suppose a customer has 13 processed input values.
+
+The input layer receives all 13 values.
+
+The first hidden layer has 16 neurons. Each neuron calculates a weighted sum and applies ReLU.
+
+The second hidden layer receives those 16 outputs and produces 8 outputs.
+
+The output neuron receives those 8 outputs.
+
+Sigmoid converts the final value into a probability.
+
+Example:
+
+Input values
+     ↓
+16 neurons
+     ↓
+8 neurons
+     ↓
+Sigmoid
+     ↓
+0.85
+The model predicts an 85% probability of churn.
+
+This entire process is called forward propagation.
+
+G. How does the ANN learn? Backpropagation
+This is a very important theoretical concept.
+
+The model initially does not know the correct weights.
+
+It starts with initialized weights and makes predictions.
+
+Suppose:
+
+Actual answer = 1
+Predicted probability = 0.30
+The prediction is not very good.
+
+The model calculates the error using its loss function.
+
+Then backpropagation calculates how the weights contributed to the error by computing gradients.
+
+An optimizer uses these gradients to update the weights.
+
+This process repeats during training.
+
+The cycle is:
+
+1. Forward propagation
+
+Generate prediction.
+
+2. Calculate loss
+
+Compare prediction with actual answer.
+
+3. Backpropagation
+
+Calculate gradients.
+
+4. Optimizer
+
+Update weights.
+
+Repeat during training
+
+Important distinction:
+
+Forward propagation produces predictions.
+
+Backpropagation calculates gradients.
+
+Optimizer updates weights.
+
+7. Block 6 – Compiling the ANN model
+Complete code
+model.compile(
+    optimizer="adam",
+    loss="binary_crossentropy",
+    metrics=["accuracy"]
+)
+
+model.summary()
+
+First, understand what compilation means.
+
+Before training a neural network, we need to specify:
+
+How the model should update its weights.
+
+How the model should calculate its error.
+
+Which performance metrics should be monitored.
+
+That configuration is done using compile().
+
+A. optimizer="adam"
+optimizer="adam"
+
+What is an optimizer?
+
+An optimizer is an algorithm used to update the weights of a neural network to minimize the loss.
+
+Remember, the model initially makes predictions using initialized weights.
+
+It calculates the loss and then needs to adjust the weights.
+
+The optimizer decides how to update them using the gradients.
+
+What is Adam?
+
+Adam stands for Adaptive Moment Estimation.
+
+It is an optimization algorithm that adapts the learning rate for different parameters using estimates of the gradients and their squared values.
+
+In simple terms:
+
+Adam helps the neural network learn by adjusting its weights efficiently.
+
+What is learning rate?
+
+Learning rate controls the size of weight updates.
+
+Imagine walking towards a destination.
+
+Very large steps: You might overshoot the destination.
+
+Very small steps: You may take too long to reach it.
+
+Appropriate steps: You can move towards the destination efficiently.
+
+The same general idea applies to optimization.
+
+Adam manages adaptive step sizes for the model parameters.
+
+Your code uses Adam with its default settings.
+
+B. loss="binary_crossentropy"
+loss="binary_crossentropy"
+
+What is a loss function?
+
+A loss function measures how far the model's predictions are from the actual answers.
+
+The goal during training is to minimize this loss.
+
+What is Binary Crossentropy?
+
+It is a loss function commonly used for binary classification problems.
+
+Why binary?
+
+Because our target has two classes:
+
+0 = Customer stayed.
+
+1 = Customer left.
+
+Formula:
+
+L
+=
+−
+[
+y
+log
+⁡
+(
+p
+)
++
+(
+1
+−
+y
+)
+log
+⁡
+(
+1
+−
+p
+)
+]
+L=−[ylog(p)+(1−y)log(1−p)]
+Where:
+
+y
+y = Actual class.
+
+p
+p = Predicted probability of class 1.
+
+log
+⁡
+log = Natural logarithm.
+
+Let's understand with an example.
+
+Suppose:
+
+Actual answer = 1
+Predicted probability = 0.90
+The model is highly confident in the correct class.
+
+Therefore, the loss is low.
+
+Now suppose:
+
+Actual answer = 1
+Predicted probability = 0.10
+The model is highly confident in the wrong class.
+
+Therefore, the loss is high.
+
+Remember: Lower loss generally means better predictions on the data being evaluated.
+
+C. metrics=["accuracy"]
+metrics=["accuracy"]
+
+What is a metric?
+
+A metric is used to measure model performance.
+
+Accuracy tells us how many predictions were correct out of all predictions.
+
+Formula:
+
+A
+c
+c
+u
+r
+a
+c
+y
+=
+T
+P
++
+T
+N
+T
+P
++
+T
+N
++
+F
+P
++
+F
+N
+Accuracy= 
+TP+TN+FP+FN
+TP+TN
+​
+ 
+We'll understand all these terms in Block 10.
+
+Why do we specify accuracy?
+
+Because we want to monitor the model's accuracy during training.
+
+Important difference: Loss versus Accuracy
+
+Loss
+
+Accuracy
+
+Measures prediction error
+
+Measures correct predictions
+
+Lower is generally better
+
+Higher is generally better
+
+Used by the optimizer for training
+
+Used to monitor performance
+
+D. model.summary()
+model.summary()
+
+This displays a summary of the neural network architecture.
+
+It includes:
+
+Layer names.
+
+Output shapes.
+
+Number of trainable parameters.
+
+Let's calculate your model's parameters manually.
+
+First Dense layer: 13 inputs and 16 neurons
+
+Every neuron has 13 weights and one bias.
+
+P
+a
+r
+a
+m
+e
+t
+e
+r
+s
+=
+(
+13
+×
+16
+)
++
+16
+Parameters=(13×16)+16
+=
+208
++
+16
+=
+224
+=208+16=224
+Second Dense layer: 16 inputs and 8 neurons
+
+P
+a
+r
+a
+m
+e
+t
+e
+r
+s
+=
+(
+16
+×
+8
+)
++
+8
+Parameters=(16×8)+8
+=
+128
++
+8
+=
+136
+=128+8=136
+Output layer: 8 inputs and 1 neuron
+
+P
+a
+r
+a
+m
+e
+t
+e
+r
+s
+=
+(
+8
+×
+1
+)
++
+1
+Parameters=(8×1)+1
+=
+9
+=9
+Total trainable parameters:
+
+224
++
+136
++
+9
+=
+369
+224+136+9= 
+369
+​
+ 
+The input layer does not have trainable weights or biases.
+
+So your model has 369 trainable parameters.
+
+This is a very useful viva question.
+
+8. Block 7 – Early Stopping
+Complete code
+early_stop = EarlyStopping(
+    monitor="val_loss",
+    patience=4,
+    restore_best_weights=True
+)
+
+What is EarlyStopping?
+EarlyStopping is a callback in Keras.
+
+A callback is an object that performs a particular action at specific stages of model training.
+
+EarlyStopping monitors model performance and stops training if the monitored value does not improve for a specified number of epochs.
+
+Line 1
+early_stop = EarlyStopping(
+
+We create an EarlyStopping object and store it in the variable early_stop.
+
+Line 2
+monitor="val_loss",
+
+This specifies which value EarlyStopping should monitor.
+
+Here, val_loss means validation loss.
+
+What is validation data?
+
+During training, we can reserve some training data to check how well the model performs on data it is not directly learning from.
+
+Your practical uses:
+
+validation_split=0.2
+
+This means 20% of the training dataset is reserved for validation.
+
+Remember:
+
+Training data is used to update weights.
+
+Validation data is used to monitor performance.
+
+Testing data is used for final evaluation.
+
+Your original 10,000 records are divided like this:
+
+10,000 total records
+
+Training portion
+8,000
+
+80% used for weight updates: 6,400
+
+20% validation: 1,600
+
+Testing portion
+2,000
+
+Used for final evaluation after training.
+
+So, although we initially have 8,000 training records, only 6,400 are used for gradient-based weight updates in each epoch. The remaining 1,600 are used for validation.
+
+Line 3
+patience=4,
+
+This tells EarlyStopping how many consecutive epochs it should wait without improvement before stopping training.
+
+Example:
+
+Epoch
+
+Validation loss
+
+1
+
+0.52
+
+2
+
+0.48
+
+3
+
+0.45
+
+4
+
+0.46
+
+5
+
+0.47
+
+6
+
+0.46
+
+7
+
+0.48
+
+The best loss is at epoch 3.
+
+After four consecutive epochs without improvement, EarlyStopping can stop training.
+
+The exact stopping epoch depends on the training history.
+
+Line 4
+restore_best_weights=True
+
+This is very important.
+
+Suppose:
+
+Epoch 3 gives the best validation loss.
+
+Epoch 7 is where training finally stops.
+
+If we set:
+
+restore_best_weights=True
+
+Keras restores the model weights from the best epoch (epoch 3), rather than leaving the model with the weights from the final epoch.
+
+Why?
+
+Because we want to retain the best-performing version of the model according to validation loss.
+
+Why do we need EarlyStopping?
+To reduce unnecessary training and help prevent overfitting.
+
+What is overfitting?
+Overfitting occurs when a model learns the training data too closely, including noise or unnecessary patterns, and performs poorly on unseen data.
+
+Example:
+
+A student memorizes every answer from a practice paper but cannot solve new questions.
+
+This is similar to overfitting.
+
+What is underfitting?
+Underfitting occurs when a model is too simple or insufficiently trained to learn the important patterns in the data.
+
+Example:
+
+A student studies only one chapter and cannot answer questions from the remaining chapters.
+
+This is similar to underfitting.
+
+Overfitting
+
+Underfitting
+
+Learns training data too closely
+
+Fails to learn important patterns
+
+Training performance may be high
+
+Training performance may be poor
+
+Testing performance may be poor
+
+Testing performance is generally poor
+
+EarlyStopping can help
+
+More suitable model capacity or training may help
+
+9. Block 8 – Training the ANN
+This is where the model actually learns from the training data.
+
+Complete code
+history = model.fit(
+    X_train_processed,
+    y_train,
+    epochs=30,
+    batch_size=32,
+    validation_split=0.2,
+    callbacks=[early_stop],
+    verbose=1
+)
+
+Let's understand each line and every parameter.
+
+A. model.fit()
+history = model.fit(
+
+What is fit()?
+
+fit() is a Keras function used to train a model.
+
+It provides the training data to the neural network.
+
+During training:
+
+Input data is passed through the network.
+
+Predictions are generated.
+
+Loss is calculated.
+
+Backpropagation calculates gradients.
+
+The optimizer updates weights.
+
+The process repeats.
+
+The results of training are stored in the history variable.
+
+What is history?
+
+It is a Keras History object containing information about training.
+
+For example:
+
+Training accuracy.
+
+Validation accuracy.
+
+Training loss.
+
+Validation loss.
+
+We use it later to draw graphs.
+
+B. Training input
+X_train_processed,
+
+This is the preprocessed training input.
+
+Remember, it contains:
+
+Standardized numerical columns.
+
+One-hot encoded categorical columns.
+
+It has 8,000 rows and 13 columns.
+
+C. Training output
+y_train,
+
+This contains the actual answers corresponding to the training records.
+
+Remember:
+
+0 = Customer stayed
+1 = Customer left
+The model compares its predictions against these actual answers.
+
+D. epochs=30
+epochs=30,
+
+What is an epoch?
+
+One epoch means one complete pass through the entire training dataset.
+
+Your training dataset has 6,400 records used for weight updates per epoch.
+
+If we train for 30 epochs, the model can pass through those 6,400 records up to 30 times, unless EarlyStopping stops it earlier.
+
+Example:
+
+Imagine you have 100 questions.
+
+Epoch 1: Study all 100 questions once.
+
+Epoch 2: Study all 100 questions again.
+
+Epoch 3: Study all 100 questions again.
+
+And so on.
+
+Why do we use multiple epochs?
+
+Because the model may not learn the important patterns in a single pass.
+
+With more training, the model can gradually adjust its weights.
+
+Important: More epochs do not always mean a better model. Too many epochs may cause overfitting.
+
+E. batch_size=32
+batch_size=32,
+
+What is batch size?
+
+Batch size is the number of training samples processed before an optimizer update.
+
+Your batch size is 32.
+
+This means the model processes 32 customer records at a time, calculates the loss and updates the weights.
+
+Let's understand with an example.
+
+Suppose there are 100 training records.
+
+With batch size 10:
+
+Batch 1: Records 1–10.
+
+Batch 2: Records 11–20.
+
+Batch 3: Records 21–30.
+
+And so on.
+
+There are 10 batches per epoch.
+
+Your model has 6,400 records used for training per epoch.
+
+I
+t
+e
+r
+a
+t
+i
+o
+n
+s
+=
+6400
+32
+=
+200
+Iterations= 
+32
+6400
+​
+ =200
+So there are 200 training batches, and approximately 200 optimizer updates per epoch.
+
+What is an iteration?
+
+One iteration is one batch-processing and weight-update step.
+
+For your practical:
+
+Term
+
+Value
+
+Training records used for weight updates
+
+6,400
+
+Batch size
+
+32
+
+Iterations per epoch
+
+200
+
+Maximum epochs
+
+30
+
+Maximum training iterations
+
+6,000
+
+The actual number may be lower because EarlyStopping may stop training earlier.
+
+F. validation_split=0.2
+validation_split=0.2,
+
+This reserves 20% of the supplied training data for validation.
+
+We already discussed this in Block 7.
+
+Since X_train contains 8,000 records:
+
+8000
+×
+0.2
+=
+1600
+8000×0.2=1600
+Therefore:
+
+6,400 records are used for weight updates.
+
+1,600 records are used for validation.
+
+The validation data is not used to update weights.
+
+It is used to check how well the model generalizes during training.
+
+G. callbacks=[early_stop]
+callbacks=[early_stop],
+
+This passes our EarlyStopping callback to the training process.
+
+It tells Keras to monitor validation loss and stop training if the loss fails to improve for four consecutive epochs.
+
+Why square brackets?
+
+Because callbacks accepts a list of callbacks.
+
+Even though we have only one callback, we put it inside a list.
+
+H. verbose=1
+verbose=1
+
+This controls how much training progress information is displayed.
+
+Common values:
+
+Value
+
+Meaning
+
+0
+
+No training progress displayed
+
+1
+
+Progress bar displayed
+
+2
+
+One line per epoch
+
+Your practical uses 1, so you can see a progress bar and the training metrics.
+
+What will the training output look like?
+You will see output similar to this:
+
+Epoch 1/30
+
+200/200
+
+loss: ...
+accuracy: ...
+val_loss: ...
+val_accuracy: ...
+
+Epoch 2/30
+
+200/200
+
+loss: ...
+accuracy: ...
+val_loss: ...
+val_accuracy: ...
+The actual numerical values depend on running your model.
+
+Let's understand each metric.
+
+Term
+
+Meaning
+
+loss
+
+Training loss
+
+accuracy
+
+Training accuracy
+
+val_loss
+
+Validation loss
+
+val_accuracy
+
+Validation accuracy
+
+Why do we need training and validation accuracy?
+Suppose:
+
+Metric
+
+Accuracy
+
+Training accuracy
+
+95%
+
+Validation accuracy
+
+70%
+
+This may indicate overfitting.
+
+The model performs well on training data but not as well on validation data.
+
+Now suppose:
+
+Metric
+
+Accuracy
+
+Training accuracy
+
+85%
+
+Validation accuracy
+
+84%
+
+This indicates that training and validation performance are relatively close.
+
+We should also consider the losses and the final test performance.
+
+10. Block 9 – Visualizing ANN accuracy
+Complete code
+plt.figure(figsize=(7, 4))
+
+plt.plot(history.history["accuracy"], label="Training Accuracy")
+
+plt.plot(history.history["val_accuracy"], label="Validation Accuracy")
+
+plt.xlabel("Epoch")
+
+plt.ylabel("Accuracy")
+
+plt.title("ANN Accuracy")
+
+plt.legend()
+
+plt.show()
+
+Why do we visualize accuracy?
+
+Because numerical results alone may not clearly show how the model performs over multiple epochs.
+
+Graphs help us understand how accuracy changes during training.
+
+Line 1
+plt.figure(figsize=(7, 4))
+
+What is figure()?
+
+It creates a new figure for plotting.
+
+What is figsize?
+
+It specifies the size of the figure.
+
+Here:
+
+Width = 7 inches.
+
+Height = 4 inches.
+
+Why do we specify it?
+
+To control the dimensions of the graph.
+
+Line 2
+plt.plot(history.history["accuracy"], label="Training Accuracy")
+
+This plots the training accuracy.
+
+Let's break it down.
+
+history
+
+Contains the training history returned by model.fit().
+
+history.history
+
+Stores the training metrics in a dictionary.
+
+Example structure:
+
+{
+    "accuracy": [...],
+    "val_accuracy": [...],
+    "loss": [...],
+    "val_loss": [...]
+}
+
+["accuracy"]
+
+Selects training accuracy values.
+
+plt.plot()
+
+Draws a line graph.
+
+label="Training Accuracy"
+
+Gives the plotted line a name.
+
+Line 3
+plt.plot(history.history["val_accuracy"], label="Validation Accuracy")
+
+This plots validation accuracy.
+
+Why?
+
+To compare how well the model performs on training data and validation data.
+
+Line 4
+plt.xlabel("Epoch")
+
+Sets the horizontal X-axis label to Epoch.
+
+Line 5
+plt.ylabel("Accuracy")
+
+Sets the vertical Y-axis label to Accuracy.
+
+Line 6
+plt.title("ANN Accuracy")
+
+Sets the graph title.
+
+Line 7
+plt.legend()
+
+Displays the legend.
+
+The legend helps identify which line represents training accuracy and which represents validation accuracy.
+
+Line 8
+plt.show()
+
+Displays the graph.
+
+How to interpret the accuracy graph?
+Chapters - Deep Learning with Python
+
+X-axis: Epoch.
+
+Y-axis: Accuracy.
+
+One line: Training accuracy.
+
+Another line: Validation accuracy.
+
+If both lines increase and remain relatively close, it can indicate that the model is learning and generalizing reasonably well.
+
+If training accuracy increases but validation accuracy decreases or stops improving, it may indicate overfitting.
+
+If both remain low, it may indicate underfitting.
+
+Remember: The image above is an illustrative example, not the actual graph from your notebook.
+
+11. Block 10 – Visualizing ANN loss
+Complete code
+plt.figure(figsize=(7, 4))
+
+plt.plot(history.history["loss"], label="Training Loss")
+
+plt.plot(history.history["val_loss"], label="Validation Loss")
+
+plt.xlabel("Epoch")
+
+plt.ylabel("Loss")
+
+plt.title("ANN Loss")
+
+plt.legend()
+
+plt.show()
+
+This code is very similar to the previous block.
+
+The only major difference is that now we are plotting loss instead of accuracy.
+
+Line 1
+plt.figure(figsize=(7, 4))
+
+Creates a figure of width 7 inches and height 4 inches.
+
+Line 2
+plt.plot(history.history["loss"], label="Training Loss")
+
+Plots training loss.
+
+Training loss measures the model's error on the training data used for weight updates.
+
+Line 3
+plt.plot(history.history["val_loss"], label="Validation Loss")
+
+Plots validation loss.
+
+It measures how well the model's predictions match the actual labels in the validation data.
+
+Line 4
+plt.xlabel("Epoch")
+
+Sets the X-axis label.
+
+Line 5
+plt.ylabel("Loss")
+
+Sets the Y-axis label.
+
+Line 6
+plt.title("ANN Loss")
+
+Sets the graph title.
+
+Line 7
+plt.legend()
+
+Displays the legend.
+
+Line 8
+plt.show()
+
+Displays the graph.
+
+How to interpret the loss graph?
+Memahami Overfitting dan Underfitting: Dari Teori hingga Praktik di Kaggle | by Zahrah Fatimah Alhaq | Nov, 2025 | Medium
+
+Remember:
+
+Lower loss is generally better.
+
+If training loss decreases and validation loss also decreases, learning is progressing.
+
+If training loss decreases while validation loss increases, it may indicate overfitting.
+
+Very important viva question: What is the difference between accuracy and loss?
+
+Accuracy measures the proportion of correct predictions.
+
+Loss measures the error between predicted outputs and actual outputs.
+
+A model can have relatively high accuracy but still have a comparatively high loss if it makes some incorrect predictions with very high confidence.
+
+12. Block 11 – Predicting customer churn
+Now the model is trained.
+
+We want to use it to predict whether customers in the testing dataset will leave the bank.
+
+Complete code
+probabilities = model.predict(X_test_processed)
+
+predictions = (probabilities >= 0.5).astype(int).ravel()
+
+This block converts the model's output probabilities into actual class predictions.
+
+A. model.predict()
+probabilities = model.predict(X_test_processed)
+
+What is predict()?
+
+predict() is a Keras function used to generate predictions using a trained model.
+
+We provide:
+
+X_test_processed
+
+This contains the 2,000 testing records.
+
+The model processes each record and generates an output.
+
+Because the output layer uses sigmoid, the result is a probability between 0 and 1.
+
+The predictions are stored in:
+
+probabilities
+
+Example:
+
+[[0.85],
+ [0.20],
+ [0.73],
+ [0.11]]
+This is an illustrative example.
+
+Let's interpret it:
+
+Customer
+
+Predicted probability
+
+Interpretation
+
+1
+
+0.85
+
+High estimated probability of leaving
+
+2
+
+0.20
+
+Low estimated probability of leaving
+
+3
+
+0.73
+
+High estimated probability of leaving
+
+4
+
+0.11
+
+Low estimated probability of leaving
+
+But the model has produced probabilities, not final class labels.
+
+We need to convert them into 0 and 1.
+
+B. Understanding the threshold
+probabilities >= 0.5
+
+What is a threshold?
+
+A threshold is a cutoff value used to convert a predicted probability into a class.
+
+Your practical uses:
+
+T
+h
+r
+e
+s
+h
+o
+l
+d
+=
+0.5
+Threshold=0.5
+Rules:
+
+Probability greater than or equal to 0.5 → Class 1.
+
+Probability less than 0.5 → Class 0.
+
+Example:
+
+Probability
+
+Predicted class
+
+0.90
+
+1
+
+0.75
+
+1
+
+0.50
+
+1
+
+0.49
+
+0
+
+0.20
+
+0
+
+0.05
+
+0
+
+Why 0.5?
+
+It is a commonly used default threshold for binary classification, not a compulsory threshold.
+
+In practical applications, the threshold may be changed depending on the importance of false positives and false negatives.
+
+C. Understanding astype(int)
+.astype(int)
+
+This converts Boolean values into integers.
+
+For example:
+
+[True, False, True]
+
+Becomes:
+
+[1, 0, 1]
+
+Why?
+
+Because our target labels are integers 0 and 1.
+
+We need the predictions in the same format.
+
+D. Understanding ravel()
+.ravel()
+
+This converts a multidimensional array into a one-dimensional array.
+
+For example:
+
+[[1],
+ [0],
+ [1],
+ [0]]
+
+Becomes:
+
+[1, 0, 1, 0]
+
+Why do we need it?
+
+Because our predicted labels should have the same one-dimensional structure as y_test.
+
+This makes comparison and evaluation straightforward.
+
+Complete example
+probabilities = np.array([
+    [0.85],
+    [0.20],
+    [0.73],
+    [0.11]
+])
+
+predictions = (probabilities >= 0.5).astype(int).ravel()
+
+print(predictions)
+
+Output:
+
+[1 0 1 0]
+This means:
+
+Customer 1: Predicted to leave.
+
+Customer 2: Predicted to stay.
+
+Customer 3: Predicted to leave.
+
+Customer 4: Predicted to stay.
+
+13. Block 12 – Model evaluation
+This is the final major block of your code.
+
+Complete code
+print("Accuracy:", accuracy_score(y_test, predictions))
+
+print("\nConfusion Matrix:")
+
+print(confusion_matrix(y_test, predictions))
+
+print("\nClassification Report:")
+
+print(classification_report(y_test, predictions, zero_division=0))
+
+We use this block to evaluate how well our trained ANN performs.
+
+Let's understand each line.
+
+A. Accuracy
+print("Accuracy:", accuracy_score(y_test, predictions))
+
+First, understand the two arguments.
+
+y_test
+
+Contains the actual answers.
+
+predictions
+
+Contains the answers predicted by our ANN.
+
+The function:
+
+accuracy_score(y_test, predictions)
+
+Compares actual and predicted labels and calculates the percentage of correct predictions.
+
+Formula
+A
+c
+c
+u
+r
+a
+c
+y
+=
+Correct predictions
+Total predictions
+Accuracy= 
+Total predictions
+Correct predictions
+​
+ 
+More specifically:
+
+A
+c
+c
+u
+r
+a
+c
+y
+=
+T
+P
++
+T
+N
+T
+P
++
+T
+N
++
+F
+P
++
+F
+N
+Accuracy= 
+TP+TN+FP+FN
+TP+TN
+​
+ 
+Suppose the model predicts 100 customers.
+
+90 predictions are correct.
+
+10 predictions are incorrect.
+
+Then:
+
+A
+c
+c
+u
+r
+a
+c
+y
+=
+90
+100
+=
+0.90
+Accuracy= 
+100
+90
+​
+ =0.90
+Accuracy = 90%.
+
+What does accuracy tell us?
+
+It tells us the overall proportion of correct predictions.
+
+However, accuracy alone may not be sufficient when the dataset is imbalanced.
+
+Remember your dataset has more customers who stayed than customers who left.
+
+A model could predict that everyone stays and still achieve 79.63% accuracy, while failing to identify any customer who leaves.
+
+That is why we also need precision, recall and F1-score.
+
+B. Confusion Matrix
+Code
+print("\nConfusion Matrix:")
+
+print(confusion_matrix(y_test, predictions))
+
+What is a confusion matrix?
+
+A confusion matrix is a table used to compare actual classes with predicted classes.
+
+It helps us understand exactly which types of predictions were correct and which were incorrect.
+
+Your practical has two classes:
+
+0 = Stayed.
+
+1 = Left.
+
+The confusion matrix looks like this:
+
+Confusion matrix
+Predicted class
+
+0
+
+Stayed
+
+1
+
+Left
+
+Actual 0
+
+Stayed
+
+TN
+Correct
+
+FP
+Wrong
+
+Actual 1
+
+Left
+
+FN
+Wrong
+
+TP
+Correct
+
+Let's understand the four terms.
+
+1. True Positive (TP)
+Actual value = 1.
+
+Predicted value = 1.
+
+Meaning:
+
+The customer actually left the bank, and the model correctly predicted that the customer would leave.
+
+Example:
+
+Actual = 1
+Predicted = 1
+Correct prediction.
+
+2. True Negative (TN)
+Actual value = 0.
+
+Predicted value = 0.
+
+Meaning:
+
+The customer actually stayed, and the model correctly predicted that the customer would stay.
+
+Example:
+
+Actual = 0
+Predicted = 0
+Correct prediction.
+
+3. False Positive (FP)
+Actual value = 0.
+
+Predicted value = 1.
+
+Meaning:
+
+The customer actually stayed, but the model incorrectly predicted that the customer would leave.
+
+Example:
+
+Actual = 0
+Predicted = 1
+Incorrect prediction.
+
+4. False Negative (FN)
+Actual value = 1.
+
+Predicted value = 0.
+
+Meaning:
+
+The customer actually left, but the model incorrectly predicted that the customer would stay.
+
+Example:
+
+Actual = 1
+Predicted = 0
+Incorrect prediction.
+
+Which error is more serious for a bank?
+
+It depends on the bank's objectives.
+
+A false negative can be particularly costly because the bank fails to identify a customer who is actually going to leave.
+
+A false positive may also cost the bank money because it may spend resources trying to retain a customer who would have stayed anyway.
+
+C. Classification Report
+Code
+print("\nClassification Report:")
+
+print(classification_report(
+    y_test,
+    predictions,
+    zero_division=0
+))
+
+This function produces a report containing:
+
+Precision.
+
+Recall.
+
+F1-score.
+
+Support.
+
+Let's understand every term.
+
+1. Precision
+Precision answers:
+
+Out of all the customers predicted to leave, how many actually left?
+
+Formula:
+
+P
+r
+e
+c
+i
+s
+i
+o
+n
+=
+T
+P
+T
+P
++
+F
+P
+Precision= 
+TP+FP
+TP
+​
+ 
+Example:
+
+Suppose the model predicts that 100 customers will leave.
+
+But only 80 actually leave.
+
+P
+r
+e
+c
+i
+s
+i
+o
+n
+=
+80
+100
+=
+0.8
+Precision= 
+100
+80
+​
+ =0.8
+Precision = 80%.
+
+Meaning:
+
+80% of the customers predicted to leave actually left.
+
+High precision means fewer false positive predictions relative to the number of positive predictions.
+
+2. Recall
+Recall is also called Sensitivity or True Positive Rate.
+
+Recall answers:
+
+Out of all the customers who actually left, how many did the model correctly identify?
+
+Formula:
+
+R
+e
+c
+a
+l
+l
+=
+T
+P
+T
+P
++
+F
+N
+Recall= 
+TP+FN
+TP
+​
+ 
+Example:
+
+Suppose 100 customers actually left.
+
+The model correctly identified 80 of them.
+
+R
+e
+c
+a
+l
+l
+=
+80
+100
+=
+0.8
+Recall= 
+100
+80
+​
+ =0.8
+Recall = 80%.
+
+Meaning:
+
+The model identified 80% of all actual churners.
+
+High recall means fewer actual positive cases are missed.
+
+Precision versus Recall
+
+Precision
+
+Recall
+
+Focuses on positive predictions
+
+Focuses on actual positive cases
+
+Out of predicted churners, how many really left?
+
+Out of actual churners, how many did we identify?
+
+Related to FP
+
+Related to FN
+
+3. F1-score
+F1-score is the harmonic mean of precision and recall.
+
+Formula:
+
+F
+1
+=
+2
+×
+P
+r
+e
+c
+i
+s
+i
+o
+n
+×
+R
+e
+c
+a
+l
+l
+P
+r
+e
+c
+i
+s
+i
+o
+n
++
+R
+e
+c
+a
+l
+l
+F1=2× 
+Precision+Recall
+Precision×Recall
+​
+ 
+Example:
+
+Suppose:
+
+Precision = 80%.
+
+Recall = 60%.
+
+F
+1
+=
+2
+×
+0.8
+×
+0.6
+0.8
++
+0.6
+F1=2× 
+0.8+0.6
+0.8×0.6
+​
+ 
+F
+1
+=
+0.686
+F1=0.686
+F1-score ≈ 68.6%.
+
+Why do we need F1-score?
+
+Sometimes accuracy alone does not tell us whether a model is performing well on the positive class.
+
+F1-score combines precision and recall into one metric.
+
+It is especially useful when we want to balance both.
+
+4. Support
+Support tells us how many actual records belong to each class in the testing dataset.
+
+For class 0:
+
+S
+u
+p
+p
+o
+r
+t
+=
+T
+N
++
+F
+P
+Support=TN+FP
+For class 1:
+
+S
+u
+p
+p
+o
+r
+t
+=
+T
+P
++
+F
+N
+Support=TP+FN
+In your dataset, the testing set contains approximately:
+
+1,593 customers who stayed.
+
+407 customers who left.
+
+The exact support values can be checked from the actual test split.
+
+Why is support important?
+
+It tells us how many records were used to calculate the metrics for each class.
+
+5. Specificity
+Specificity is another important classification metric.
+
+It measures how well the model correctly identifies negative cases.
+
+In your practical:
+
+Negative class = Customer stayed.
+
+Formula:
+
+S
+p
+e
+c
+i
+f
+i
+c
+i
+t
+y
+=
+T
+N
+T
+N
++
+F
+P
+Specificity= 
+TN+FP
+TN
+​
+ 
+Example:
+
+Suppose 100 customers actually stayed.
+
+The model correctly identifies 90 of them as staying.
+
+S
+p
+e
+c
+i
+f
+i
+c
+i
+t
+y
+=
+90
+100
+=
+90
+%
+Specificity= 
+100
+90
+​
+ =90%
+6. Threshold
+Your code uses:
+
+probabilities >= 0.5
+
+Therefore, your threshold is 0.5.
+
+Remember:
+
+Probability ≥ 0.5 → Predict 1.
+
+Probability less than 0.5 → Predict 0.
+
+The threshold affects the balance between precision and recall.
+
+For example, lowering the threshold generally makes it easier for a record to be classified as positive, which tends to increase recall but may reduce precision.
+
+What does zero_division=0 mean?
+zero_division=0
+
+This parameter handles situations where a metric would require division by zero.
+
+For example, if the model never predicts a particular class, precision for that class has a zero denominator.
+
+Instead of producing a warning, the function returns 0 for that undefined metric.
+
+14. Important concepts you must know for the practical
+Your notebook also contains an important-terms section. Let's understand those concepts properly rather than just memorizing definitions.
+
+A. Activation functions
+An activation function is a mathematical function applied to the output of a neuron.
+
+Its purpose is to introduce non-linearity so the network can learn complex relationships.
+
+There are four important activation functions in your notebook.
+
+1. ReLU – Rectified Linear Unit
+Formula:
+
+f
+(
+x
+)
+=
+max
+⁡
+(
+0
+,
+x
+)
+f(x)=max(0,x)
+Working:
+
+Negative input → 0.
+
+Positive input → Same value.
+
+Example:
+
+Input:  -5, -2, 0, 3, 8
+
+Output:  0,  0, 0, 3, 8
+Where used?
+
+Your two hidden layers use ReLU.
+
+Why?
+
+It is computationally simple and helps neural networks learn non-linear patterns.
+
+2. Sigmoid
+Formula:
+
+f
+(
+x
+)
+=
+1
+1
++
+e
+−
+x
+f(x)= 
+1+e 
+−x
+ 
+1
+​
+ 
+It converts any real-valued input into a value between 0 and 1.
+
+Example:
+
+Input = 2
+Output ≈ 0.881
+Where used?
+
+Your output layer uses sigmoid.
+
+Why?
+
+Because we are solving a binary classification problem and need a probability-like output.
+
+3. Leaky ReLU
+Formula:
+
+f
+(
+x
+)
+=
+max
+⁡
+(
+0.01
+x
+,
+x
+)
+f(x)=max(0.01x,x)
+Unlike ordinary ReLU, it allows a small negative output.
+
+Example:
+
+Input
+
+Leaky ReLU output
+
+-10
+
+-0.1
+
+-5
+
+-0.05
+
+0
+
+0
+
+5
+
+5
+
+Why do we use it?
+
+Sometimes ReLU neurons can become inactive and continue producing zero for negative inputs.
+
+This is called the dying ReLU problem.
+
+Leaky ReLU attempts to reduce this problem by allowing a small negative gradient.
+
+It is not used in your actual model.
+
+4. Softmax
+Formula:
+
+S
+o
+f
+t
+m
+a
+x
+(
+z
+i
+)
+=
+e
+z
+i
+∑
+j
+e
+z
+j
+Softmax(z 
+i
+​
+ )= 
+∑ 
+j
+​
+ e 
+z 
+j
+​
+ 
+ 
+e 
+z 
+i
+​
+ 
+ 
+​
+ 
+Softmax converts multiple output scores into probabilities whose sum is 1.
+
+Example:
+
+Suppose a model predicts an animal:
+
+Animal
+
+Probability
+
+Cat
+
+0.70
+
+Dog
+
+0.20
+
+Rabbit
+
+0.10
+
+Total:
+
+0.70
++
+0.20
++
+0.10
+=
+1
+0.70+0.20+0.10=1
+Why use it?
+
+It is commonly used for multiclass classification.
+
+It is not used in your practical because you have a single sigmoid output for binary classification.
+
+B. Epoch, batch size and iteration
+These three terms are frequently asked together in practical exams.
+
+Term
+
+Meaning
+
+Your practical
+
+Epoch
+
+One complete pass through the training dataset
+
+Maximum 30
+
+Batch size
+
+Records processed before a weight update
+
+32
+
+Iteration
+
+One batch-processing and update step
+
+200 per epoch
+
+Remember:
+
+I
+t
+e
+r
+a
+t
+i
+o
+n
+s
+=
+T
+r
+a
+i
+n
+i
+n
+g
+ 
+s
+a
+m
+p
+l
+e
+s
+B
+a
+t
+c
+h
+ 
+s
+i
+z
+e
+Iterations= 
+Batch size
+Training samples
+​
+ 
+In your case:
+
+6400
+32
+=
+200
+32
+6400
+​
+ =200
+C. Learning rate
+Learning rate controls the step size used when updating neural network weights.
+
+Suppose the learning rate is very high.
+
+The model may overshoot good weight values and fail to converge properly.
+
+If the learning rate is too low, training may become very slow.
+
+Your code uses Adam's default learning-rate setting.
+
+D. Hyperparameters
+A hyperparameter is a model setting chosen before training rather than learned directly as a model weight.
+
+Examples from your practical:
+
+Hyperparameter
+
+Your value
+
+Hidden layer 1 neurons
+
+16
+
+Hidden layer 2 neurons
+
+8
+
+Epochs
+
+30
+
+Batch size
+
+32
+
+Validation split
+
+0.2
+
+Threshold
+
+0.5
+
+EarlyStopping patience
+
+4
+
+Weights and biases are different: they are learned during training.
+
+E. Standardization versus normalization
+These are both feature-scaling techniques.
+
+Standardization
+
+Transforms data using mean and standard deviation.
+
+Z
+=
+X
+−
+μ
+σ
+Z= 
+σ
+X−μ
+​
+ 
+The resulting data has approximately:
+
+Mean = 0.
+
+Standard deviation = 1.
+
+This is what your practical uses through StandardScaler.
+
+Normalization
+
+Normalization can refer to different scaling methods. A common one is Min-Max scaling, which converts values into a specified range, commonly 0 to 1.
+
+Formula:
+
+X
+′
+=
+X
+−
+X
+min
+⁡
+X
+max
+⁡
+−
+X
+min
+⁡
+X 
+′
+ = 
+X 
+max
+​
+ −X 
+min
+​
+ 
+X−X 
+min
+​
+ 
+​
+ 
+Example:
+
+Original values:
+
+10, 20, 30
+After Min-Max scaling:
+
+0, 0.5, 1
+Difference:
+
+Standardization
+
+Normalization
+
+Uses mean and standard deviation
+
+Commonly uses minimum and maximum
+
+Mean becomes approximately 0
+
+Values commonly lie between 0 and 1
+
+Uses StandardScaler
+
+Commonly uses MinMaxScaler
+
+F. TensorFlow versus Keras
+These are often confused.
+
+TensorFlow
+
+Keras
+
+Deep learning framework
+
+High-level deep learning API
+
+Provides numerical computation and model execution capabilities
+
+Provides a convenient way to build and train models
+
+Supports complex ML workflows
+
+Makes neural network development easier
+
+In your code:
+
+import tensorflow as tf
+
+Imports TensorFlow.
+
+from tensorflow.keras.models import Sequential
+
+Imports Keras functionality through TensorFlow.
+
+G. Dense layer
+A Dense layer is a fully connected layer.
+
+Every neuron receives inputs from all neurons in the previous layer.
+
+Your model has:
+
+Dense(16, activation="relu")
+Dense(8, activation="relu")
+Dense(1, activation="sigmoid")
+
+Therefore:
+
+First Dense layer: 16 neurons.
+
+Second Dense layer: 8 neurons.
+
+Third Dense layer: 1 neuron.
+
+H. Loss function versus optimizer
+Loss function
+
+Optimizer
+
+Calculates prediction error
+
+Updates model weights
+
+Measures how wrong the prediction is
+
+Helps reduce the error
+
+Your practical uses Binary Crossentropy
+
+Your practical uses Adam
+
+I. Supervised versus unsupervised learning
+Supervised Learning
+
+The model learns using labelled data.
+
+Example:
+
+Age
+
+Salary
+
+Churn
+
+25
+
+30000
+
+0
+
+45
+
+50000
+
+1
+
+The correct output is already available.
+
+Your practical uses supervised learning.
+
+Unsupervised Learning
+
+The model learns patterns or groups from data without labelled target outputs.
+
+Example:
+
+A bank groups customers based on their spending habits without knowing beforehand which group each customer belongs to.
+
+Clustering is an example of unsupervised learning.
+
+J. Classification versus regression
+Classification: Predicts a category or class.
+
+Examples:
+
+Spam or not spam.
+
+Fraud or not fraud.
+
+Customer stays or leaves.
+
+Regression: Predicts a continuous numerical value.
+
+Examples:
+
+Predicting house prices.
+
+Predicting salary.
+
+Predicting temperature.
+
+Your practical is classification, not regression.
+
+15. Important formulas – complete revision sheet
+These are the formulas from your notebook that you should know for your practical examination.
+
+Concept
+
+Formula
+
+Weighted sum
+
+z
+=
+∑
+w
+i
+x
+i
++
+b
+z=∑w 
+i
+​
+ x 
+i
+​
+ +b
+
+ReLU
+
+f
+(
+x
+)
+=
+max
+⁡
+(
+0
+,
+x
+)
+f(x)=max(0,x)
+
+Sigmoid
+
+f
+(
+x
+)
+=
+1
+1
++
+e
+−
+x
+f(x)= 
+1+e 
+−x
+ 
+1
+​
+ 
+
+Leaky ReLU
+
+f
+(
+x
+)
+=
+max
+⁡
+(
+0.01
+x
+,
+x
+)
+f(x)=max(0.01x,x)
+
+StandardScaler
+
+Z
+=
+X
+−
+μ
+σ
+Z= 
+σ
+X−μ
+​
+ 
+
+Binary Crossentropy
+
+L
+=
+−
+[
+y
+log
+⁡
+(
+p
+)
++
+(
+1
+−
+y
+)
+log
+⁡
+(
+1
+−
+p
+)
+]
+L=−[ylog(p)+(1−y)log(1−p)]
+
+Accuracy
+
+T
+P
++
+T
+N
+T
+P
++
+T
+N
++
+F
+P
++
+F
+N
+TP+TN+FP+FN
+TP+TN
+​
+ 
+
+Precision
+
+T
+P
+T
+P
++
+F
+P
+TP+FP
+TP
+​
+ 
+
+Recall
+
+T
+P
+T
+P
++
+F
+N
+TP+FN
+TP
+​
+ 
+
+F1-score
+
+2
+×
+P
+r
+e
+c
+i
+s
+i
+o
+n
+×
+R
+e
+c
+a
+l
+l
+P
+r
+e
+c
+i
+s
+i
+o
+n
++
+R
+e
+c
+a
+l
+l
+2× 
+Precision+Recall
+Precision×Recall
+​
+ 
+
+Specificity
+
+T
+N
+T
+N
++
+F
+P
+TN+FP
+TN
+​
+ 
+
+Iterations per epoch
+
+T
+r
+a
+i
+n
+i
+n
+g
+ 
+s
+a
+m
+p
+l
+e
+s
+B
+a
+t
+c
+h
+ 
+s
+i
+z
+e
+Batch size
+Training samples
+​
+ 
+
+16. Every important Python function used in your practical
+This table is useful for last-minute revision.
+
+Function
+
+Purpose
+
+np.array()
+
+Creates a NumPy array
+
+pd.read_csv()
+
+Reads a CSV file
+
+df.head()
+
+Displays first five rows
+
+df.shape
+
+Returns rows and columns
+
+df.drop()
+
+Removes columns or rows
+
+df.select_dtypes()
+
+Selects columns based on data type
+
+.columns
+
+Returns column names
+
+.tolist()
+
+Converts values to a list
+
+value_counts()
+
+Counts occurrences of unique values
+
+train_test_split()
+
+Splits the dataset
+
+ColumnTransformer()
+
+Applies different preprocessing to different columns
+
+StandardScaler()
+
+Standardizes numerical features
+
+OneHotEncoder()
+
+Encodes categorical features
+
+fit_transform()
+
+Learns and applies preprocessing
+
+transform()
+
+Applies learned preprocessing
+
+.astype()
+
+Changes data type
+
+Sequential()
+
+Creates a sequential model
+
+Input()
+
+Defines the input shape
+
+Dense()
+
+Creates a fully connected layer
+
+EarlyStopping()
+
+Stops training when improvement stalls
+
+model.compile()
+
+Configures training
+
+model.summary()
+
+Displays architecture and parameters
+
+model.fit()
+
+Trains the model
+
+model.predict()
+
+Generates predictions
+
+plt.figure()
+
+Creates a figure
+
+plt.plot()
+
+Plots a graph
+
+plt.xlabel()
+
+Sets X-axis label
+
+plt.ylabel()
+
+Sets Y-axis label
+
+plt.title()
+
+Sets graph title
+
+plt.legend()
+
+Displays graph legend
+
+plt.show()
+
+Displays graph
+
+accuracy_score()
+
+Calculates accuracy
+
+confusion_matrix()
+
+Creates confusion matrix
+
+classification_report()
+
+Displays classification metrics
+
+.ravel()
+
+Flattens an array into one dimension
+
+17. Practical viva questions and answers
+These are questions I would recommend preparing before your practical exam.
+
+ANN practical viva revision
+
+0/62 reviewed
+
+1.
+
+What is the aim of this practical?
+
+
+2.
+
+What is ANN?
+
+
+3.
+
+What is customer churn?
+
+
+4.
+
+Which dataset is used?
+
+
+5.
+
+Which column are we predicting?
+
+
+6.
+
+What does 0 and 1 represent?
+
+
+7.
+
+What type of ML problem is this?
+
+
+8.
+
+Why do we use Pandas?
+
+
+9.
+
+Why do we use NumPy?
+
+
+10.
+
+Why do we use Matplotlib?
+
+
+11.
+
+Why remove CustomerId and Surname?
+
+
+12.
+
+What are X and y?
+
+
+13.
+
+Why use train_test_split?
+
+
+14.
+
+What is the training-testing ratio?
+
+
+15.
+
+Why random_state=42?
+
+
+16.
+
+Why stratify=y?
+
+
+17.
+
+What is preprocessing?
+
+
+18.
+
+What is StandardScaler?
+
+
+19.
+
+What is OneHotEncoder?
+
+
+20.
+
+Why use ColumnTransformer?
+
+
+21.
+
+Difference between fit_transform and transform?
+
+
+22.
+
+What is data leakage?
+
+
+23.
+
+Why use float32?
+
+
+24.
+
+How many input features does the model have?
+
+
+25.
+
+How many hidden layers are used?
+
+
+26.
+
+How many neurons are in the hidden layers?
+
+
+27.
+
+Which activation function is used in hidden layers?
+
+
+28.
+
+Which activation function is used in the output layer?
+
+
+29.
+
+Why sigmoid?
+
+
+30.
+
+What is a neuron?
+
+
+31.
+
+What are weights?
+
+
+32.
+
+What is bias?
+
+
+33.
+
+What is forward propagation?
+
+
+34.
+
+What is backpropagation?
+
+
+35.
+
+What is an optimizer?
+
+
+36.
+
+Which optimizer is used?
+
+
+37.
+
+What is Binary Crossentropy?
+
+
+38.
+
+What is an epoch?
+
+
+39.
+
+What is batch size?
+
+
+40.
+
+What is an iteration?
+
+
+41.
+
+What is EarlyStopping?
+
+
+42.
+
+What is overfitting?
+
+
+43.
+
+What is underfitting?
+
+
+44.
+
+What is validation data?
+
+
+45.
+
+What is testing data?
+
+
+46.
+
+What is a loss function?
+
+
+47.
+
+What is accuracy?
+
+
+48.
+
+What is a confusion matrix?
+
+
+49.
+
+What is TP?
+
+
+50.
+
+What is TN?
+
+
+51.
+
+What is FP?
+
+
+52.
+
+What is FN?
+
+
+53.
+
+What is precision?
+
+
+54.
+
+What is recall?
+
+
+55.
+
+What is F1-score?
+
+
+56.
+
+What is support?
+
+
+57.
+
+What is specificity?
+
+
+58.
+
+What is a threshold?
+
+
+59.
+
+What threshold is used?
+
+
+60.
+
+How many trainable parameters are in your model?
+
+
+61.
+
+What is the difference between classification and regression?
+
+
+62.
+
+Why is Softmax not used here?
+
+18. Important things to remember about your actual notebook
+There are a few details worth knowing before you run it in Jupyter.
+
+First cell: It is empty, so there is nothing to execute.
+
+Second cell: Pandas is imported twice. The second import is unnecessary.
+
+CSV filename: Your uploaded CSV has (1) in its filename, whereas the notebook's read_csv() statement does not. Update the path or rename the file.
+
+Dataset: 10,000 rows and 14 original columns.
+
+Input features: 10 before encoding and 13 after encoding.
+
+Architecture: 13 → 16 → 8 → 1.
+
+Trainable parameters: 369.
+
+Data split: 80% training and 20% testing.
+
+Validation: 20% of the training portion.
+
+Optimizer: Adam.
+
+Loss: Binary Crossentropy.
+
+Activation: ReLU in hidden layers and sigmoid in the output layer.
+
+Early stopping: Monitors validation loss with patience 4.
+
+Maximum epochs: 30.
+
+Batch size: 32.
+
+Classification threshold: 0.5.
+
+One more thing: the notebook contains the code but does not contain saved execution results. Therefore, I have explained the expected outputs and actual dataset statistics, but I haven't invented a final ANN accuracy or confusion matrix. Those values need to come from executing the notebook.
+
+19. Test your understanding
+Before your practical, try answering these five questions without looking at the explanations.
+
+Mini practical test
+
+5 questions
+1. Why do we use OneHotEncoder?
+
+
+To remove duplicate rows
+
+To convert categorical data into numerical binary columns
+
+To calculate accuracy
+
+To split the dataset
+2. Why is sigmoid used in the output layer?
+
+
+To standardize numerical data
+
+To remove columns
+
+To produce an output between 0 and 1
+
+To calculate loss
+3. What does batch_size=32 mean?
+
+
+32 hidden layers
+
+32 epochs
+
+32 testing records
+
+32 training samples processed before a weight update
+4. Which metric answers how many actual churners the model successfully identifies?
+
+
+Recall
+
+Precision
+
+Accuracy
+
+Support
+5. What is the total number of trainable parameters in this ANN?
+
+
+224
+
+369
+
+136
+
+13
+My recommendation for your practical exam: Focus especially on data preprocessing, the difference between fit_transform() and transform(), ANN architecture, ReLU versus sigmoid, forward propagation, backpropagation, epochs versus batch size, EarlyStopping, and the confusion matrix. These concepts explain almost the entire practical, not just the Python syntax.
+
+You should be able to explain what happens from the moment the CSV is loaded until the model predicts whether a customer will leave the bank.
+
+
+
+
+0

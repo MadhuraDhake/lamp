@@ -1,0 +1,4731 @@
+
+User attachment
+
+sales_data_sample(2).ipynb
+Code
+ORDERNUMBER
+QUANTITYORDERED
+PRICEEACH
+ORDERLINENUMBER
+SALES
+ORDERDATE
+STATUS
+QTR_ID
+MONTH_ID
+YEAR_ID
+PRODUCTLINE
+MSRP
+PRODUCTCODE
+CUSTOMERNAME
+PHONE
+ADDRESSLINE1
+ADDRESSLINE2
+CITY
+STATE
+POSTALCODE
+COUNTRY
+TERRITORY
+CONTACTLASTNAME
+CONTACTFIRSTNAME
+DEALSIZE
+1	
+10107
+30
+95.7
+2
+2871
+2/24/2003 0:00
+Shipped
+1
+2
+2003
+Motorcycles
+95
+S10_1678
+Land of Toys Inc.
+2125557818
+897 Long Airport Avenue
+NYC
+NY
+10022
+USA
+NA
+Yu
+Kwai
+Small
+2	
+10121
+34
+81.35
+5
+2765.9
+5/7/2003 0:00
+Shipped
+2
+5
+2003
+Motorcycles
+95
+S10_1678
+Reims Collectables
+26.47.1555
+59 rue de l'Abbaye
+Reims
+51100
+France
+EMEA
+Henriot
+Paul
+Small
+3	
+10134
+41
+94.74
+2
+3884.34
+7/1/2003 0:00
+Shipped
+3
+7
+2003
+Motorcycles
+95
+S10_1678
+Lyon Souveniers
++33 1 46 62 7555
+27 rue du Colonel Pierre Avia
+Paris
+75508
+France
+EMEA
+Da Cunha
+Daniel
+Medium
+4	
+10145
+45
+83.26
+6
+3746.7
+8/25/2003 0:00
+Shipped
+3
+8
+2003
+Motorcycles
+95
+S10_1678
+Toys4GrownUps.com
+6265557265
+78934 Hillside Dr.
+Pasadena
+CA
+90003
+USA
+NA
+Young
+Julie
+Medium
+5	
+10159
+49
+100
+14
+5205.27
+10/10/2003 0:00
+Shipped
+4
+10
+2003
+Motorcycles
+95
+S10_1678
+Corporate Gift Ideas Co.
+6505551386
+7734 Strong St.
+San Francisco
+CA
+USA
+NA
+Brown
+Julie
+Medium
+6	
+10168
+36
+96.66
+1
+3479.76
+10/28/2003 0:00
+Shipped
+4
+10
+2003
+Motorcycles
+95
+S10_1678
+Technics Stores Inc.
+6505556809
+9408 Furth Circle
+Burlingame
+CA
+94217
+USA
+NA
+Hirano
+Juri
+Medium
+7	
+10180
+29
+86.13
+9
+2497.77
+11/11/2003 0:00
+Shipped
+4
+11
+2003
+Motorcycles
+95
+S10_1678
+Daedalus Designs Imports
+20.16.1555
+184, chausse de Tournai
+Lille
+59000
+France
+EMEA
+Rance
+Martine
+Small
+8	
+10188
+48
+100
+1
+5512.32
+11/18/2003 0:00
+Shipped
+4
+11
+2003
+Motorcycles
+95
+S10_1678
+Herkku Gifts
++47 2267 3215
+Drammen 121, PR 744 Sentrum
+Bergen
+N 5804
+Norway
+EMEA
+Oeztan
+Veysel
+Medium
+9	
+10201
+22
+98.57
+2
+2168.54
+12/1/2003 0:00
+Shipped
+4
+12
+2003
+Motorcycles
+95
+S10_1678
+Mini Wheels Co.
+6505555787
+5557 North Pendale Street
+San Francisco
+CA
+USA
+NA
+Murphy
+Julie
+Small
+10	
+10211
+41
+100
+14
+4708.44
+1/15/2004 0:00
+Shipped
+1
+1
+2004
+Motorcycles
+95
+S10_1678
+Auto Canal Petit
+(1) 47.55.6555
+25, rue Lauriston
+Paris
+75016
+France
+EMEA
+Perrier
+Dominique
+Medium
+11	
+10223
+37
+100
+1
+3965.66
+2/20/2004 0:00
+Shipped
+1
+2
+2004
+Motorcycles
+95
+S10_1678
+Australian Collectors, Co.
+03 9520 4555
+636 St Kilda Road
+Level 3
+Melbourne
+Victoria
+3004
+Australia
+APAC
+Ferguson
+Peter
+Medium
+12	
+10237
+23
+100
+7
+2333.12
+4/5/2004 0:00
+Shipped
+2
+4
+2004
+Motorcycles
+95
+S10_1678
+Vitachrome Inc.
+2125551500
+2678 Kingston Rd.
+Suite 101
+NYC
+NY
+10022
+USA
+NA
+Frick
+Michael
+Small
+13	
+10251
+28
+100
+2
+3188.64
+5/18/2004 0:00
+Shipped
+2
+5
+2004
+Motorcycles
+95
+S10_1678
+Tekni Collectables Inc.
+2015559350
+7476 Moss Rd.
+Newark
+NJ
+94019
+USA
+NA
+Brown
+William
+Medium
+14	
+10263
+34
+100
+2
+3676.76
+6/28/2004 0:00
+Shipped
+2
+6
+2004
+Motorcycles
+95
+S10_1678
+Gift Depot Inc.
+2035552570
+25593 South Bay Ln.
+Bridgewater
+CT
+97562
+USA
+NA
+King
+Julie
+Medium
+15	
+10275
+45
+92.83
+1
+4177.35
+7/23/2004 0:00
+Shipped
+3
+7
+2004
+Motorcycles
+95
+S10_1678
+La Rochelle Gifts
+40.67.8555
+67, rue des Cinquante Otages
+Nantes
+44000
+France
+EMEA
+Labrune
+Janine
+Medium
+16	
+10285
+36
+100
+6
+4099.68
+8/27/2004 0:00
+Shipped
+3
+8
+2004
+Motorcycles
+95
+S10_1678
+Marta's Replicas Co.
+6175558555
+39323 Spinnaker Dr.
+Cambridge
+MA
+51247
+USA
+NA
+Hernandez
+Marta
+Medium
+17	
+10299
+23
+100
+9
+2597.39
+9/30/2004 0:00
+Shipped
+3
+9
+2004
+Motorcycles
+95
+S10_1678
+Toys of Finland, Co.
+90-224 8555
+Keskuskatu 45
+Helsinki
+21240
+Finland
+EMEA
+Karttunen
+Matti
+Small
+18	
+10309
+41
+100
+5
+4394.38
+10/15/2004 0:00
+Shipped
+4
+10
+2004
+Motorcycles
+95
+S10_1678
+Baane Mini Imports
+07-98 9555
+Erling Skakkes gate 78
+Stavern
+4110
+Norway
+EMEA
+Bergulfsen
+Jonas
+Medium
+
+Machine Learning Practical – Customer Segmentation using K-Means and Hierarchical Clustering
+Madhura, let's understand this practical from absolute basics, as if you're performing it for the first time and have never studied clustering before.
+
+I've gone through your uploaded Jupyter Notebook and CSV dataset. We'll follow the exact order of your practical code, explain every block, every line, every function, and the concepts behind it.
+
+This practical implements two Machine Learning algorithms:
+
+K-Means Clustering
+
+Agglomerative Hierarchical Clustering
+
+It uses a sales dataset to group customers according to their purchasing behaviour.
+
+1. First understand the practical
+1.1 What is the aim of this practical?
+The aim is to perform customer segmentation using K-Means and Hierarchical Clustering algorithms on a sales dataset.
+
+In simple words, we want to divide customers into different groups based on their purchasing behaviour.
+
+For example:
+
+Imagine you own an online shopping company. You have 100 customers.
+
+Some customers purchase products frequently.
+
+Some customers spend a lot of money.
+
+Some customers purchase only occasionally.
+
+Some customers purchase large quantities but spend less money.
+
+Would you treat all these customers in the same way?
+
+Probably not!
+
+You might want to:
+
+Give discounts to frequent customers.
+
+Offer premium membership to high-spending customers.
+
+Send promotional offers to occasional customers.
+
+Encourage low-spending customers to purchase more.
+
+But how will you identify these different types of customers?
+
+This is where Customer Segmentation comes into the picture.
+
+1.2 What is Customer Segmentation?
+Customer segmentation means dividing customers into different groups based on similarities in their characteristics or behaviour.
+
+For example:
+
+Example: A company has 12 customers
+
+Cluster 0
+
+3
+High-value customers
+
+Spend more money and order frequently.
+Cluster 1
+
+4
+Regular customers
+
+Purchase regularly with moderate spending.
+Cluster 2
+
+2
+Occasional customers
+
+Purchase less frequently.
+Cluster 3
+
+3
+Low-value customers
+
+Lower overall purchasing value.
+Illustrative example only. These are not the actual cluster results from your dataset.
+The important thing is that the algorithm discovers groups based on similarities in the data.
+
+1.3 What is Clustering?
+Clustering is an Unsupervised Machine Learning technique.
+
+Let's understand this term.
+
+Machine Learning is broadly divided into three categories:
+
+Type
+
+Meaning
+
+Supervised Learning
+
+Learns from labelled data.
+
+Unsupervised Learning
+
+Finds patterns in data without predefined labels.
+
+Reinforcement Learning
+
+Learns through rewards and penalties.
+
+What is Unsupervised Learning?
+Suppose you give a computer information about 100 customers.
+
+You don't tell it which customer is:
+
+Rich
+
+Regular
+
+Occasional
+
+Low-spending
+
+You only provide their sales information.
+
+The computer analyses the similarities and automatically forms groups.
+
+This is called Unsupervised Learning.
+
+Important: Clustering does not require predefined output labels. It discovers groups from the input data.
+
+1.4 What are the two algorithms used?
+A. K-Means Clustering
+K-Means Clustering : What I Learned In Unsupervised Learning | by Aniket | Feb, 2026 | Medium
+
+K-Means divides data points into a predefined number of clusters, represented by K.
+
+For example, if K = 3, the algorithm creates three clusters.
+
+It works by:
+
+Selecting K initial centroids.
+
+Assigning each data point to its nearest centroid.
+
+Calculating new centroids.
+
+Repeating the process until the assignments stop changing significantly.
+
+What is a centroid?
+
+A centroid is the centre or average position of all the data points belonging to a cluster.
+
+Example:
+
+Suppose we have three customers with spending values:
+
+₹1,000, ₹2,000 and ₹3,000.
+
+Their average spending is:
+
+1000
++
+2000
++
+3000
+3
+=
+2000
+3
+1000+2000+3000
+​
+ =2000
+So ₹2,000 is the average value, which helps illustrate the idea of a cluster centre.
+
+B. Hierarchical Clustering
+Mastering Clustering Algorithms for Effective Data Analysis
+
+Hierarchical Clustering creates a hierarchy of clusters.
+
+It has two approaches:
+
+Approach
+
+Meaning
+
+Agglomerative
+
+Bottom-up approach: starts with individual points and merges them.
+
+Divisive
+
+Top-down approach: starts with one large cluster and splits it.
+
+Your practical uses Agglomerative Hierarchical Clustering.
+
+It starts by treating every customer as an individual cluster and gradually combines similar clusters.
+
+2. Understanding your dataset
+Before writing the algorithm, we need data.
+
+Your uploaded file is:
+
+sales_data_sample.csv
+
+I've inspected the actual CSV file.
+
+Dataset overview
+
+2,823
+Rows / records
+25
+Columns / features
+Sample data
+
+Customer
+
+Quantity
+
+Sales
+
+Land of Toys Inc.
+
+30
+
+2871.00
+
+Reims Collectables
+
+34
+
+2765.90
+
+Lyon Souveniers
+
+41
+
+3884.34
+
+Toys4GrownUps.com
+
+45
+
+3746.70
+
+Corporate Gift Ideas Co.
+
+49
+
+5205.27
+
+Actual sample records from your CSV.
+2.1 What is a row?
+A row represents one record in the dataset.
+
+In your dataset, one row represents a sales transaction or order-line record.
+
+For example:
+
+ORDERNUMBER
+
+CUSTOMERNAME
+
+QUANTITYORDERED
+
+SALES
+
+10107
+
+Land of Toys Inc.
+
+30
+
+2871.00
+
+This tells us:
+
+Order number: 10107
+
+Customer: Land of Toys Inc.
+
+Quantity purchased: 30
+
+Sales amount: 2871.00
+
+2.2 What is a column?
+A column represents a particular attribute or characteristic of the record.
+
+Your dataset has 25 columns.
+
+Some important columns:
+
+Column
+
+Meaning
+
+ORDERNUMBER
+
+Unique order identifier
+
+QUANTITYORDERED
+
+Number of products ordered
+
+PRICEEACH
+
+Price of each product
+
+SALES
+
+Total sales amount for that order line
+
+ORDERDATE
+
+Date of order
+
+PRODUCTLINE
+
+Category of product
+
+CUSTOMERNAME
+
+Name of customer
+
+COUNTRY
+
+Customer's country
+
+DEALSIZE
+
+Size category of the deal
+
+2.3 Why are we using only five columns?
+Your notebook selects:
+
+CUSTOMERNAME
+
+ORDERNUMBER
+
+QUANTITYORDERED
+
+SALES
+
+PRICEEACH
+
+Why?
+
+Because our objective is customer segmentation based on purchasing behaviour.
+
+For example:
+
+CUSTOMERNAME helps identify customers.
+
+ORDERNUMBER helps calculate the number of orders.
+
+QUANTITYORDERED helps calculate the quantity purchased.
+
+SALES helps calculate total spending.
+
+PRICEEACH helps calculate average product price.
+
+We don't need every column for this particular clustering experiment.
+
+3. Cell 1 – Importing the required libraries
+Let's start with the first code block from your notebook.
+
+Code
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans, AgglomerativeClustering
+from sklearn.metrics import silhouette_score
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+Before understanding each line, let's understand what a library is.
+
+What is a library in Python?
+A library is a collection of pre-written Python code that we can use to perform particular tasks.
+
+For example, imagine you want to calculate the average of 100 numbers.
+
+Instead of writing the complete mathematical logic yourself, you can use an existing function from a library.
+
+Similarly, Machine Learning libraries provide ready-made functions for:
+
+Data processing.
+
+Data cleaning.
+
+Clustering.
+
+Calculations.
+
+Graphs and visualizations.
+
+Now let's understand every import.
+
+Line 1
+import numpy as np
+
+What is NumPy?
+
+NumPy stands for Numerical Python.
+
+It is a Python library used for numerical calculations and working with arrays.
+
+Why do we use it in this practical?
+
+We use NumPy for handling numerical data and special values such as infinity and NaN.
+
+For example:
+
+import numpy as np
+
+numbers = np.array([10, 20, 30, 40])
+
+print(numbers)
+print(np.mean(numbers))
+
+Output:
+
+[10 20 30 40]
+25.0
+Here:
+
+np.array() creates a NumPy array.
+
+np.mean() calculates the average.
+
+np is the short name or alias we assigned to NumPy.
+
+What is an alias?
+
+An alias is simply another name given to a library.
+
+Instead of writing:
+
+numpy.array()
+
+We can write:
+
+np.array()
+
+This makes our code shorter.
+
+Line 2
+import pandas as pd
+
+What is Pandas?
+
+Pandas is a Python library used for data manipulation and analysis.
+
+It helps us:
+
+Read CSV files.
+
+Create tables.
+
+Select columns.
+
+Remove missing values.
+
+Group records.
+
+Calculate averages, sums and counts.
+
+Why do we use Pandas?
+
+Our dataset is stored in CSV format.
+
+We need to read that dataset and process its information.
+
+Pandas makes this easy.
+
+Example:
+
+import pandas as pd
+
+data = {
+    "Name": ["A", "B", "C"],
+    "Marks": [80, 90, 70]
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+Output:
+
+  Name  Marks
+0    A     80
+1    B     90
+2    C     70
+Here:
+
+pd.DataFrame() creates a table.
+
+df is the variable storing the table.
+
+What is a DataFrame?
+
+A DataFrame is a two-dimensional data structure containing rows and columns, similar to an Excel spreadsheet.
+
+Our sales dataset is also loaded as a DataFrame.
+
+Line 3
+import matplotlib.pyplot as plt
+
+What is Matplotlib?
+
+Matplotlib is a Python library used for data visualization.
+
+It helps us create:
+
+Line graphs.
+
+Bar charts.
+
+Scatter plots.
+
+Histograms.
+
+Pie charts.
+
+Why do we use it in this practical?
+
+We need graphs to:
+
+Display the Elbow Method.
+
+Visualize the K-Means clusters.
+
+Example:
+
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4]
+y = [10, 20, 30, 40]
+
+plt.plot(x, y)
+plt.show()
+
+This generates a line graph.
+
+What is plt?
+
+It is the alias used for matplotlib.pyplot.
+
+Instead of writing the full name, we use plt.
+
+Line 4
+from sklearn.preprocessing import StandardScaler
+
+What is Scikit-learn?
+
+Scikit-learn is a popular Python Machine Learning library.
+
+It provides algorithms and tools for:
+
+Classification.
+
+Regression.
+
+Clustering.
+
+Data preprocessing.
+
+Model evaluation.
+
+Here we import StandardScaler from its preprocessing module.
+
+What is preprocessing?
+
+Preprocessing means preparing raw data before giving it to a Machine Learning algorithm.
+
+For example, our dataset contains:
+
+Feature
+
+Value
+
+Total Sales
+
+150000
+
+Total Quantity
+
+2500
+
+Number of Orders
+
+10
+
+Average Price
+
+80
+
+Notice something?
+
+Total Sales has a much larger numerical value than Average Price.
+
+If we directly use these values in a distance-based clustering algorithm, features with large numerical scales can dominate the distance calculation.
+
+Therefore, we use StandardScaler.
+
+It converts the features into a comparable scale.
+
+We will study its formula and working in detail in Cell 4.
+
+Line 5
+from sklearn.cluster import KMeans, AgglomerativeClustering
+
+Here we import two clustering algorithms.
+
+First: KMeans
+
+KMeans is used to divide data points into K clusters.
+
+Example:
+
+If K = 3, it creates three groups.
+
+Second: AgglomerativeClustering
+
+This algorithm performs hierarchical clustering using a bottom-up approach.
+
+It starts with individual data points and repeatedly merges the closest clusters.
+
+We need both because our practical compares two clustering techniques.
+
+Line 6
+from sklearn.metrics import silhouette_score
+
+What is a metric?
+
+A metric is a measurement used to evaluate something.
+
+In Machine Learning, evaluation metrics help us understand how well an algorithm performs.
+
+Here we import silhouette_score.
+
+It measures how well the data points fit into their assigned clusters.
+
+For example:
+
+If customers inside one cluster are very similar, that is good.
+
+If customers in different clusters are clearly different, that is also good.
+
+Silhouette Score ranges from -1 to +1.
+
+Score
+
+Interpretation
+
+Close to +1
+
+Good clustering
+
+Around 0
+
+Clusters overlap
+
+Negative
+
+Some points may be assigned to the wrong cluster
+
+We'll understand the formula and an example later.
+
+Line 7
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+What is SciPy?
+
+SciPy stands for Scientific Python.
+
+It provides functions for scientific and mathematical computations.
+
+Here we import two functions.
+
+1. linkage
+
+linkage()
+
+It calculates how data points or clusters should be connected or merged during hierarchical clustering.
+
+It produces information about the merging process.
+
+2. dendrogram
+
+dendrogram()
+
+It creates a tree-like diagram representing the hierarchical merging of clusters.
+
+This diagram is used to visualize hierarchical clustering.
+
+Summary of Cell 1
+Library / Function
+
+Purpose
+
+NumPy
+
+Numerical calculations
+
+Pandas
+
+Reading and processing datasets
+
+Matplotlib
+
+Creating graphs
+
+StandardScaler
+
+Scaling numerical features
+
+KMeans
+
+K-Means clustering
+
+AgglomerativeClustering
+
+Hierarchical clustering
+
+silhouette_score
+
+Evaluating clustering quality
+
+linkage
+
+Calculating hierarchical merging
+
+dendrogram
+
+Drawing the hierarchical tree
+
+Viva question: Why do we import so many libraries?
+
+Because each library performs a different task. Pandas handles the dataset, NumPy handles numerical operations, Scikit-learn provides the clustering algorithms, and Matplotlib and SciPy help with visualization.
+
+4. Cell 2 – Load and inspect the dataset
+Code
+from pathlib import Path
+
+import pandas as pd
+
+# Load CSV from the same folder as the notebook
+DATA_PATH = "sales_data_sample.csv.csv"
+
+df = pd.read_csv(DATA_PATH)
+
+print("Dataset shape:", df.shape)
+print(df.head())
+print("Columns:", df.columns.tolist())
+
+Let's understand this block line by line.
+
+Line 1
+from pathlib import Path
+
+What is pathlib?
+
+pathlib is a built-in Python module used to work with file and folder paths.
+
+For example:
+
+from pathlib import Path
+
+path = Path("sales.csv")
+
+print(path.name)
+
+Output:
+
+sales.csv
+It helps us handle file paths in a convenient way.
+
+Important: In your current notebook, Path is imported but never actually used. It is not necessary for the remaining code.
+
+Line 2
+import pandas as pd
+
+We import Pandas again.
+
+It was already imported in Cell 1.
+
+Importing it again is unnecessary, but it does not cause a problem.
+
+Line 3
+DATA_PATH = "sales_data_sample.csv.csv"
+
+Here we create a variable called DATA_PATH.
+
+It stores the name of the CSV file that Python should read.
+
+Why do we create a variable?
+
+Instead of repeatedly writing the filename, we store it once and use the variable.
+
+For example:
+
+DATA_PATH = "students.csv"
+
+Later:
+
+df = pd.read_csv(DATA_PATH)
+
+If the filename changes, we only need to update the variable.
+
+Important correction for your notebook
+Your uploaded CSV file is named:
+
+sales_data_sample.csv(2).csv
+But the notebook specifies:
+
+sales_data_sample.csv.csv
+These names are different.
+
+You must either rename the CSV file to match the notebook or change the code to:
+
+DATA_PATH = "sales_data_sample.csv(2).csv"
+
+Make sure the CSV and notebook are in the same working folder when using a relative filename.
+
+Line 4
+df = pd.read_csv(DATA_PATH)
+
+This is one of the most important lines.
+
+What is read_csv()?
+
+read_csv() is a Pandas function used to read a CSV file.
+
+CSV stands for Comma-Separated Values.
+
+It stores data in a tabular format, where values are generally separated by commas.
+
+Example CSV:
+
+Name,Age,Marks
+A,20,80
+B,21,90
+C,20,75
+When we write:
+
+df = pd.read_csv(DATA_PATH)
+
+Python:
+
+Finds the CSV file.
+
+Reads its contents.
+
+Converts the contents into a Pandas DataFrame.
+
+Stores that DataFrame in df.
+
+Why is the variable named df?
+
+It is a common abbreviation for DataFrame.
+
+You can also write:
+
+sales_data = pd.read_csv(DATA_PATH)
+
+Both are correct.
+
+Line 5
+print("Dataset shape:", df.shape)
+
+What is shape?
+
+The shape attribute returns the dimensions of a DataFrame.
+
+It gives:
+
+(number_of_rows, number_of_columns)
+
+For your actual dataset:
+
+Dataset shape: (2823, 25)
+This means:
+
+2,823 rows.
+
+25 columns.
+
+Important: shape is an attribute, not a function.
+
+Therefore, we write:
+
+df.shape
+
+Not:
+
+df.shape()
+
+Line 6
+print(df.head())
+
+What is head()?
+
+head() displays the first five rows of a DataFrame by default.
+
+Example:
+
+print(df.head())
+
+It displays records from the beginning of the dataset.
+
+If you want the first 10 rows:
+
+print(df.head(10))
+
+If you want the first 3 rows:
+
+print(df.head(3))
+
+Why do we use it?
+
+To check whether:
+
+The file was loaded correctly.
+
+The columns are present.
+
+The values look correct.
+
+The dataset contains the expected information.
+
+Line 7
+print("Columns:", df.columns.tolist())
+
+Let's break this into three parts.
+
+Part A:
+
+df.columns
+
+Returns all column names in the DataFrame.
+
+Part B:
+
+df.columns.tolist()
+
+Converts the column names into a normal Python list.
+
+Example:
+
+["Name", "Age", "Marks"]
+
+Part C:
+
+print("Columns:", ...)
+
+Displays the list.
+
+Why do we need this?
+
+We need to know the exact column names before selecting the required columns.
+
+For example, if the dataset contains CUSTOMERNAME, we must use exactly that name.
+
+Python is case-sensitive, so customername and CUSTOMERNAME are different identifiers.
+
+Output of Cell 2
+Your actual dataset contains:
+
+Dataset shape: (2823, 25)
+And the first five rows are displayed.
+
+The column names are:
+
+ORDERNUMBER
+QUANTITYORDERED
+PRICEEACH
+ORDERLINENUMBER
+SALES
+ORDERDATE
+STATUS
+QTR_ID
+MONTH_ID
+YEAR_ID
+PRODUCTLINE
+MSRP
+PRODUCTCODE
+CUSTOMERNAME
+PHONE
+ADDRESSLINE1
+ADDRESSLINE2
+CITY
+STATE
+POSTALCODE
+COUNTRY
+TERRITORY
+CONTACTLASTNAME
+CONTACTFIRSTNAME
+DEALSIZE
+5. Cell 3 – Clean required columns and create customer-level data
+Very important block for your practical
+This is where the actual data processing happens.
+
+Remember:
+
+Our dataset contains 2,823 transaction records.
+
+But we don't want to cluster individual transaction records.
+
+We want to cluster customers.
+
+Therefore, we need to convert transaction-level data into customer-level data.
+
+First understand the difference
+Suppose we have the following sales records:
+
+Customer
+
+Order No.
+
+Quantity
+
+Sales
+
+A
+
+101
+
+10
+
+1,000
+
+A
+
+102
+
+20
+
+2,000
+
+A
+
+103
+
+15
+
+1,500
+
+B
+
+104
+
+5
+
+500
+
+B
+
+105
+
+10
+
+1,000
+
+Here, customer A appears three times and customer B appears twice.
+
+But for customer segmentation, we want one row per customer.
+
+We need to combine their records.
+
+After aggregation:
+
+Customer
+
+Total Sales
+
+Total Quantity
+
+Number of Orders
+
+A
+
+4,500
+
+45
+
+3
+
+B
+
+1,500
+
+15
+
+2
+
+This process is called Aggregation.
+
+Now let's understand the actual code.
+
+Code – Part 1: Selecting required columns
+required_columns = [
+    "CUSTOMERNAME", "ORDERNUMBER", "QUANTITYORDERED",
+    "SALES", "PRICEEACH"
+]
+
+What are we doing here?
+We create a Python list named required_columns.
+
+A list is a collection that can store multiple values.
+
+Example:
+
+numbers = [10, 20, 30, 40]
+
+Similarly, our list contains column names.
+
+Let's understand why each is selected:
+
+Column
+
+Why we need it
+
+CUSTOMERNAME
+
+To identify each customer
+
+ORDERNUMBER
+
+To count unique orders
+
+QUANTITYORDERED
+
+To calculate total quantity
+
+SALES
+
+To calculate total sales
+
+PRICEEACH
+
+To calculate average price
+
+Why not use all 25 columns?
+
+Because not every column is relevant to the customer purchasing-behaviour features we want to analyse.
+
+Also, the clustering model needs numerical input features, not customer names or phone numbers.
+
+Code – Part 2: Selecting the columns and creating a copy
+sales = df[required_columns].copy()
+
+Let's break this down.
+
+Part A
+df[required_columns]
+
+This selects only the columns mentioned in our list.
+
+For example:
+
+df[["Name", "Age"]]
+
+Selects only Name and Age from the original DataFrame.
+
+Notice that we use double square brackets because we are selecting multiple columns using a list.
+
+Part B
+.copy()
+
+Creates a separate copy of the selected data.
+
+Why do we use copy()?
+
+Suppose you select columns and then modify their values.
+
+Without making an explicit copy, you can encounter Pandas view-versus-copy behaviour and warnings when modifying selected data.
+
+Using .copy() ensures that we work on an independent DataFrame.
+
+Part C
+sales = ...
+
+Stores the selected and copied data in a new DataFrame called sales.
+
+Now:
+
+df contains all 25 original columns.
+
+sales contains only the five required columns.
+
+The original dataset remains unchanged.
+
+Code – Part 3: Converting columns into numeric format
+sales["QUANTITYORDERED"] = pd.to_numeric(
+    sales["QUANTITYORDERED"], errors="coerce"
+)
+
+sales["SALES"] = pd.to_numeric(
+    sales["SALES"], errors="coerce"
+)
+
+sales["PRICEEACH"] = pd.to_numeric(
+    sales["PRICEEACH"], errors="coerce"
+)
+
+This block is important because Machine Learning algorithms need numerical data for mathematical calculations.
+
+What is pd.to_numeric()?
+It is a Pandas function used to convert values into numeric data types.
+
+Example:
+
+values = ["10", "20", "30"]
+
+numbers = pd.to_numeric(values)
+
+print(numbers)
+
+Output:
+
+[10 20 30]
+The values are now numerical rather than text strings.
+
+What does errors="coerce" mean?
+This is a very important concept.
+
+It tells Pandas what to do if it encounters a value that cannot be converted into a number.
+
+There are three commonly used behaviours:
+
+Option
+
+Meaning
+
+raise
+
+Generate an error when conversion fails
+
+coerce
+
+Convert invalid values into NaN
+
+ignore
+
+Keep the original value unchanged (legacy behaviour in older Pandas versions)
+
+Let's take an example.
+
+values = ["100", "200", "hello", "300"]
+
+result = pd.to_numeric(values, errors="coerce")
+
+print(result)
+
+Output:
+
+[100. 200.  nan 300.]
+Why did hello become NaN?
+
+Because it cannot be converted into a number.
+
+What is NaN?
+NaN means Not a Number.
+
+It represents a missing or invalid numerical value.
+
+Example:
+
+Original value
+
+After conversion
+
+100
+
+100
+
+200
+
+200
+
+hello
+
+NaN
+
+300
+
+300
+
+Why is this useful?
+
+Instead of stopping the entire program because of one invalid value, we can identify it and handle it during data cleaning.
+
+Why are we converting three columns?
+Because:
+
+QUANTITYORDERED must support numerical calculations.
+
+SALES must support addition and averaging.
+
+PRICEEACH must support average-price calculations.
+
+Code – Part 4: Removing missing values
+sales = sales.dropna(
+    subset=[
+        "CUSTOMERNAME",
+        "ORDERNUMBER",
+        "QUANTITYORDERED",
+        "SALES"
+    ]
+)
+
+What is dropna()?
+dropna() is a Pandas function used to remove rows or columns containing missing values.
+
+Example:
+
+data = pd.DataFrame({
+    "Name": ["A", "B", "C"],
+    "Marks": [80, None, 90]
+})
+
+print(data.dropna())
+
+Output:
+
+  Name  Marks
+0    A   80.0
+2    C   90.0
+The row containing the missing mark is removed.
+
+What is subset?
+The subset parameter specifies which columns should be checked for missing values.
+
+In our code:
+
+subset=[
+    "CUSTOMERNAME",
+    "ORDERNUMBER",
+    "QUANTITYORDERED",
+    "SALES"
+]
+
+We remove a row if any of these four columns contains a missing value.
+
+Why do we need these columns?
+
+Without CUSTOMERNAME, we cannot identify the customer.
+
+Without ORDERNUMBER, we cannot calculate the number of orders reliably.
+
+Without QUANTITYORDERED, we cannot calculate total quantity.
+
+Without SALES, we cannot calculate total sales.
+
+Important observation: PRICEEACH is not included in this subset. A missing average price can therefore remain at this stage. It is handled later when we drop missing values from the aggregated customer data.
+
+Also, dropna() removes missing values, not duplicate rows.
+
+Code – Part 5: Grouping customers and aggregation
+customer_data = sales.groupby("CUSTOMERNAME").agg(
+    TotalSales=("SALES", "sum"),
+    TotalQuantity=("QUANTITYORDERED", "sum"),
+    NumberOfOrders=("ORDERNUMBER", "nunique"),
+    AveragePrice=("PRICEEACH", "mean")
+).reset_index()
+
+This is probably the most important block in the entire practical.
+
+Let's understand each concept separately.
+
+A. What is groupby()?
+groupby() is a Pandas function that groups rows based on a common value.
+
+Example:
+
+data = pd.DataFrame({
+    "Customer": ["A", "A", "B", "B"],
+    "Sales": [100, 200, 300, 400]
+})
+
+print(data.groupby("Customer").sum())
+
+Output:
+
+          Sales
+Customer
+A           300
+B           700
+What happened?
+
+Customer A has two records: 100 and 200.
+
+Customer B has two records: 300 and 400.
+
+Pandas grouped records customer-wise and added their sales.
+
+This is called grouping and aggregation.
+
+B. What is agg()?
+agg() stands for aggregation.
+
+Aggregation means combining multiple values into a single summary value.
+
+Common aggregation functions include:
+
+Function
+
+Purpose
+
+sum()
+
+Calculates total
+
+mean()
+
+Calculates average
+
+count()
+
+Counts non-missing values
+
+min()
+
+Finds minimum
+
+max()
+
+Finds maximum
+
+nunique()
+
+Counts distinct values
+
+C. Understanding each aggregation in your code
+1. TotalSales
+
+TotalSales=("SALES", "sum")
+
+It means:
+
+Take the SALES column.
+
+Add all sales values for each customer.
+
+Store the result in a new column called TotalSales.
+
+Example:
+
+Customer A:
+
+1000 + 2000 + 1500 = 4500.
+
+Therefore:
+
+TotalSales = 4500
+2. TotalQuantity
+
+TotalQuantity=("QUANTITYORDERED", "sum")
+
+It means:
+
+Take the QUANTITYORDERED column.
+
+Add the quantities for each customer.
+
+Store the result in TotalQuantity.
+
+Example:
+
+10 + 20 + 15 = 45.
+
+Therefore:
+
+TotalQuantity = 45
+3. NumberOfOrders
+
+NumberOfOrders=("ORDERNUMBER", "nunique")
+
+What is nunique()?
+
+It counts the number of unique or distinct values.
+
+Example:
+
+orders = [101, 102, 102, 103, 103]
+
+print(pd.Series(orders).nunique())
+
+Output:
+
+3
+Why?
+
+Because the unique order numbers are:
+
+101, 102, 103.
+
+Therefore, the number of unique orders is 3.
+
+Why not use count()?
+
+Suppose one order contains five product lines.
+
+The same order number may appear five times.
+
+Using count() would count those five rows separately.
+
+But we want to count distinct order numbers, so we use nunique().
+
+4. AveragePrice
+
+AveragePrice=("PRICEEACH", "mean")
+
+It calculates the average price of the products purchased by each customer.
+
+Formula:
+
+A
+v
+e
+r
+a
+g
+e
+P
+r
+i
+c
+e
+=
+Sum of Prices
+Number of Price Values
+AveragePrice= 
+Number of Price Values
+Sum of Prices
+​
+ 
+Example:
+
+Suppose a customer purchases products with prices:
+
+100, 200, 300.
+
+A
+v
+e
+r
+a
+g
+e
+P
+r
+i
+c
+e
+=
+100
++
+200
++
+300
+3
+=
+200
+AveragePrice= 
+3
+100+200+300
+​
+ =200
+Therefore:
+
+AveragePrice = 200
+D. Why are the column names written like this?
+TotalSales=("SALES", "sum")
+
+This is named aggregation syntax in Pandas.
+
+It has the following structure:
+
+NewColumnName=("ExistingColumn", "AggregationFunction")
+
+For example:
+
+TotalSales=("SALES", "sum")
+
+Means:
+
+Create a new column called TotalSales by calculating the sum of SALES.
+
+E. Understanding reset_index()
+.reset_index()
+
+After using groupby(), the grouping column becomes the index of the resulting DataFrame.
+
+An index is used to identify rows.
+
+reset_index() converts the customer index back into a normal column.
+
+For example, without resetting:
+
+CUSTOMERNAME
+A       4500
+B       1500
+After resetting:
+
+  CUSTOMERNAME  TotalSales
+0 A            4500
+1 B            1500
+This makes the DataFrame easier to use.
+
+Overall result of this block
+Our original dataset had 2,823 transaction records.
+
+After grouping, your actual dataset contains 92 customers.
+
+Transaction-level data
+
+2,823 rows
+Individual sales transaction records
+groupby() + agg()
+
+Combine transaction records customer-wise.
+Customer-level data
+
+92 customers
+One row per customer with summarized purchasing behaviour.
+Code – Part 6: Calculating Average Order Value
+customer_data["AverageOrderValue"] = (
+    customer_data["TotalSales"] / customer_data["NumberOfOrders"]
+)
+
+What is Average Order Value (AOV)?
+Average Order Value tells us how much money a customer spends per order on average.
+
+Formula:
+
+A
+O
+V
+=
+T
+o
+t
+a
+l
+S
+a
+l
+e
+s
+N
+u
+m
+b
+e
+r
+O
+f
+O
+r
+d
+e
+r
+s
+AOV= 
+NumberOfOrders
+TotalSales
+​
+ 
+Example:
+
+Suppose customer A:
+
+Total Sales = ₹10,000
+
+Number of Orders = 5
+
+Then:
+
+A
+O
+V
+=
+10000
+5
+=
+₹
+2000
+AOV= 
+5
+10000
+​
+ =₹2000
+This means customer A spends ₹2,000 per order on average.
+
+Understanding the code
+customer_data["AverageOrderValue"]
+
+Creates or accesses a column named AverageOrderValue.
+
+customer_data["TotalSales"]
+
+Gets the total sales for every customer.
+
+customer_data["NumberOfOrders"]
+
+Gets the number of unique orders for every customer.
+
+The division happens customer-wise, row by row.
+
+Why do we need AOV?
+
+Because two customers can have the same total sales but different purchasing behaviour.
+
+Example:
+
+Customer
+
+Total Sales
+
+Orders
+
+AOV
+
+A
+
+10,000
+
+2
+
+5,000
+
+B
+
+10,000
+
+10
+
+1,000
+
+Both generated ₹10,000 in sales.
+
+But customer A spends much more per order, while customer B orders more frequently.
+
+AOV helps the algorithm understand this difference.
+
+Code – Part 7: Handling infinity and missing values
+customer_data = customer_data.replace(
+    [np.inf, -np.inf], np.nan
+).dropna()
+
+This line performs two operations.
+
+A. What is infinity?
+Infinity is a value representing something unbounded.
+
+In Python:
+
+np.inf
+
+represents positive infinity.
+
+-np.inf
+
+represents negative infinity.
+
+How can infinity occur here?
+
+Consider:
+
+A
+O
+V
+=
+T
+o
+t
+a
+l
+S
+a
+l
+e
+s
+N
+u
+m
+b
+e
+r
+O
+f
+O
+r
+d
+e
+r
+s
+AOV= 
+NumberOfOrders
+TotalSales
+​
+ 
+If the denominator becomes zero, division can produce infinity.
+
+In our dataset, the number of unique orders should be positive for valid customer records, but this is a useful safety check.
+
+B. What is replace()?
+replace() replaces specified values with other values.
+
+Example:
+
+data = pd.DataFrame({
+    "Sales": [100, np.inf, 200]
+})
+
+data = data.replace(np.inf, np.nan)
+
+print(data)
+
+Output:
+
+   Sales
+0  100.0
+1    NaN
+2  200.0
+In our code:
+
+.replace([np.inf, -np.inf], np.nan)
+
+Both positive and negative infinity are replaced with NaN.
+
+C. Why do we use dropna() afterwards?
+.dropna()
+
+It removes rows containing missing values in any column.
+
+After replacing infinity with NaN, those rows can now be removed.
+
+Also, if a customer has a missing AveragePrice, that customer row will be removed here.
+
+Why?
+
+Because the clustering algorithm requires complete numerical input features for this experiment.
+
+Code – Part 8: Displaying customer data
+print("Number of customers:", len(customer_data))
+display(customer_data.head())
+
+First line
+len(customer_data)
+
+len() is a built-in Python function that returns the number of items.
+
+For a DataFrame, it returns the number of rows.
+
+Your output:
+
+Number of customers: 92
+Second line
+display(customer_data.head())
+
+head() displays the first five customer records.
+
+display() is commonly available in Jupyter Notebook and displays the DataFrame in a formatted table.
+
+Unlike print(), it provides a richer tabular presentation.
+
+What does our final customer-level table contain?
+Column
+
+Meaning
+
+CUSTOMERNAME
+
+Customer's name
+
+TotalSales
+
+Total money generated by customer
+
+TotalQuantity
+
+Total products ordered
+
+NumberOfOrders
+
+Number of distinct orders
+
+AveragePrice
+
+Average product price
+
+AverageOrderValue
+
+Average spending per order
+
+Cell 3 complete
+At this stage, we have converted the original transaction dataset into a customer-level dataset ready for clustering.
+
+6. Cell 4 – Select features and scale them
+Now that we have created customer-level data, we need to prepare it for Machine Learning.
+
+Code – Part 1: Selecting features
+features = [
+    "TotalSales",
+    "TotalQuantity",
+    "NumberOfOrders",
+    "AveragePrice",
+    "AverageOrderValue"
+]
+
+What is a feature in Machine Learning?
+A feature is an individual measurable characteristic or input variable used by a Machine Learning algorithm.
+
+For example, if we want to predict student performance, our features might be:
+
+Attendance.
+
+Study hours.
+
+Previous marks.
+
+Assignment scores.
+
+Similarly, in customer segmentation, our features are:
+
+TotalSales.
+
+TotalQuantity.
+
+NumberOfOrders.
+
+AveragePrice.
+
+AverageOrderValue.
+
+Why are we not including CUSTOMERNAME?
+
+Because customer names are identifiers, not meaningful numerical measurements for calculating purchasing-behaviour distances.
+
+The algorithm uses the five numerical features to determine similarities.
+
+Code – Part 2: Creating X
+X = customer_data[features]
+
+Here we select the five feature columns from customer_data.
+
+We store them in a variable named X.
+
+What is X in Machine Learning?
+Conventionally:
+
+X represents input features.
+
+y represents the target/output variable in supervised learning.
+
+For example, in a student marks prediction problem:
+
+X = [Attendance, StudyHours]
+y = Marks
+
+But remember, our practical uses unsupervised learning.
+
+We don't have a predefined target variable y.
+
+Therefore, we only need X.
+
+Our X contains 92 rows and 5 columns.
+
+Code – Part 3: Creating the StandardScaler object
+scaler = StandardScaler()
+
+Here we create an object of the StandardScaler class.
+
+What is a class?
+
+A class is a blueprint used to create objects.
+
+What is an object?
+
+An object is an instance of a class.
+
+Example:
+
+class Student:
+    pass
+
+s1 = Student()
+
+Here:
+
+Student is a class.
+
+s1 is an object.
+
+Similarly:
+
+scaler = StandardScaler()
+
+Creates a scaler object.
+
+This object can be used to standardize our numerical features.
+
+Why is scaling necessary?
+Let's understand with a simple example.
+
+Suppose we have two customers:
+
+Customer
+
+Total Sales
+
+Number of Orders
+
+A
+
+10,000
+
+5
+
+B
+
+20,000
+
+10
+
+The numerical ranges are different.
+
+Sales values are in thousands, while the number of orders is much smaller.
+
+K-Means uses distance calculations to decide which customers are similar.
+
+If one feature has much larger numerical values, it can dominate the distance calculation.
+
+Therefore, we scale the features.
+
+What is Standardization?
+Standardization transforms data so that each feature has:
+
+Mean approximately equal to 0.
+
+Standard deviation approximately equal to 1.
+
+Formula:
+
+Z
+=
+X
+−
+μ
+σ
+Z= 
+σ
+X−μ
+​
+ 
+Where:
+
+Symbol
+
+Meaning
+
+X
+
+Original value
+
+μ
+
+Mean of the feature
+
+σ
+
+Standard deviation
+
+Z
+
+Standardized value
+
+Understand with a simple example
+Suppose:
+
+Original value = 80
+
+Mean = 50
+
+Standard deviation = 10
+
+Then:
+
+Z
+=
+80
+−
+50
+10
+Z= 
+10
+80−50
+​
+ 
+Z
+=
+3
+Z=3
+So the standardized value is 3.
+
+This means the original value is three standard deviations above the mean.
+
+Another example:
+
+Original value = 40
+
+Mean = 50
+
+Standard deviation = 10
+
+Z
+=
+40
+−
+50
+10
+=
+−
+1
+Z= 
+10
+40−50
+​
+ =−1
+The standardized value is -1.
+
+This means the value is one standard deviation below the mean.
+
+Important: Standardization does not mean every value becomes between 0 and 1. It can produce negative and positive values.
+
+Code – Part 4: Applying scaling
+X_scaled = scaler.fit_transform(X)
+
+This is another extremely important line.
+
+Let's break it into two functions.
+
+A. What is fit()?
+fit() learns the statistical properties of the input data.
+
+For StandardScaler, it calculates:
+
+Mean of each feature.
+
+Standard deviation of each feature.
+
+Example:
+
+scaler.fit(X)
+
+It learns the mean and standard deviation.
+
+B. What is transform()?
+transform() uses the learned mean and standard deviation to standardize the values.
+
+Example:
+
+scaler.transform(X)
+
+It converts the original values into standardized values.
+
+C. What is fit_transform()?
+It combines both operations.
+
+scaler.fit_transform(X)
+
+It:
+
+Learns the mean and standard deviation.
+
+Standardizes the data.
+
+Returns the scaled data.
+
+Why do we store it in X_scaled?
+Because:
+
+X contains original numerical values.
+
+X_scaled contains standardized numerical values.
+
+We use X_scaled as input to the clustering algorithms.
+
+Small example
+Original data:
+
+Customer
+
+Sales
+
+Orders
+
+A
+
+10,000
+
+2
+
+B
+
+20,000
+
+4
+
+C
+
+30,000
+
+6
+
+After StandardScaler, the data will be approximately:
+
+Customer
+
+Scaled Sales
+
+Scaled Orders
+
+A
+
+-1.225
+
+-1.225
+
+B
+
+0
+
+0
+
+C
+
+1.225
+
+1.225
+
+Both features now have comparable scales.
+
+Code – Part 5: Displaying the scaled shape
+print("Scaled feature shape:", X_scaled.shape)
+
+X_scaled.shape returns the number of rows and columns.
+
+For your practical:
+
+Scaled feature shape: (92, 5)
+It means:
+
+92 customers.
+
+5 scaled features.
+
+Cell 4 complete
+Viva question: Why do we use StandardScaler before K-Means?
+
+Because K-Means is a distance-based algorithm. StandardScaler ensures that features with larger numerical ranges do not dominate the distance calculation.
+
+7. Cell 5 – Find the number of clusters using the Elbow Method
+Before applying K-Means, we need to decide how many clusters to create.
+
+This number is represented by K.
+
+For example:
+
+K = 2 means two clusters.
+
+K = 3 means three clusters.
+
+K = 4 means four clusters.
+
+But how do we decide the correct K?
+
+We use the Elbow Method.
+
+What is the Elbow Method?
+The Elbow Method is a technique used to estimate a suitable number of clusters in K-Means.
+
+It calculates the inertia for different values of K and plots them on a graph.
+
+We look for a point where the reduction in inertia starts slowing down considerably. This point resembles an elbow.
+
+First understand inertia
+Inertia measures the sum of squared distances between each data point and the centroid of its assigned cluster.
+
+In simple language:
+
+It measures how closely the data points are grouped around their respective cluster centres.
+
+Lower inertia generally means tighter clusters.
+
+However, increasing K usually reduces inertia, so the lowest inertia alone does not tell us the best K.
+
+Formula
+I
+n
+e
+r
+t
+i
+a
+=
+∑
+i
+=
+1
+n
+(
+x
+i
+−
+μ
+c
+i
+)
+2
+Inertia= 
+i=1
+∑
+n
+​
+ (x 
+i
+​
+ −μ 
+c 
+i
+​
+ 
+​
+ ) 
+2
+ 
+Here:
+
+x
+i
+x 
+i
+​
+  = data point.
+
+μ
+c
+i
+μ 
+c 
+i
+​
+ 
+​
+  = centroid of the assigned cluster.
+
+n
+n = number of data points.
+
+Code – Part 1: Creating an empty list
+inertia_values = []
+
+We create an empty Python list.
+
+Why?
+
+We need to store the inertia value for every tested value of K.
+
+For example:
+
+inertia_values = [460, 225, 159, 111]
+
+These values represent inertia for different numbers of clusters.
+
+Code – Part 2: Finding the maximum K
+max_k = min(10, len(customer_data) - 1)
+
+Let's understand this.
+
+A. len(customer_data)
+Returns the number of customers.
+
+For your dataset:
+
+92
+B. len(customer_data) - 1
+92
+−
+1
+=
+91
+92−1=91
+C. min()
+min() is a built-in Python function that returns the smallest value.
+
+Example:
+
+print(min(10, 91))
+
+Output:
+
+10
+Therefore:
+
+max_k = 10
+
+Why are we using min(10, len(customer_data)-1)?
+We want to test a maximum of 10 clusters, but K must remain smaller than the number of data points for this experiment.
+
+This line dynamically limits the upper value if the dataset contains fewer customers.
+
+Code – Part 3: The for loop
+for k in range(1, max_k + 1):
+
+What is a for loop?
+A for loop is used to repeat a block of code for multiple values.
+
+Example:
+
+for i in range(1, 5):
+    print(i)
+
+Output:
+
+1
+2
+3
+4
+What is range()?
+range() generates a sequence of numbers.
+
+range(1, 5)
+
+Generates:
+
+1, 2, 3, 4.
+
+The ending value is excluded.
+
+In our code:
+
+range(1, max_k + 1)
+
+Since max_k = 10:
+
+range(1, 11)
+
+It generates:
+
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+
+Why?
+
+Because we want to test K from 1 to 10.
+
+Code – Part 4: Creating the K-Means model
+kmeans = KMeans(
+    n_clusters=k,
+    random_state=42,
+    n_init=10
+)
+
+We create a K-Means model for each value of K.
+
+Let's understand all three parameters.
+
+A. n_clusters=k
+Specifies the number of clusters to create.
+
+For example:
+
+KMeans(n_clusters=3)
+
+Creates three clusters.
+
+Inside our loop, K changes from 1 to 10.
+
+Therefore, the algorithm tests different cluster counts.
+
+B. random_state=42
+K-Means initially selects centroids, and different initial positions can lead to different results.
+
+random_state controls the random number generator so that the results are reproducible when the same data and settings are used.
+
+Example:
+
+KMeans(n_clusters=3, random_state=42)
+
+Running the algorithm again with the same configuration gives consistent initialization behaviour.
+
+Why 42?
+
+It is simply a commonly used example seed. It does not have any special mathematical meaning.
+
+You could also use:
+
+random_state=10
+
+or:
+
+random_state=100
+
+C. n_init=10
+This is important.
+
+K-Means can produce different cluster results depending on the initial centroids.
+
+Therefore, we run it multiple times with different initializations.
+
+n_init=10 means the algorithm performs 10 initialisation runs and retains the result with the lowest inertia.
+
+Why?
+
+To reduce the chance of getting a poor clustering result because of unlucky initial centroid positions.
+
+Code – Part 5: Training the model
+kmeans.fit(X_scaled)
+
+What is fit() here?
+In Scikit-learn, fit() trains or fits an algorithm using the provided input data.
+
+For K-Means, it:
+
+Initializes the centroids.
+
+Assigns data points to clusters.
+
+Updates the centroids.
+
+Repeats until convergence.
+
+Here, we provide:
+
+X_scaled
+
+because we want the algorithm to use standardized customer data.
+
+Code – Part 6: Storing inertia
+inertia_values.append(kmeans.inertia_)
+
+Let's break this into two parts.
+
+A. kmeans.inertia_
+Returns the inertia calculated by the fitted K-Means model.
+
+Notice the underscore at the end.
+
+In Scikit-learn, many attributes learned or calculated during fitting end with _.
+
+B. append()
+append() adds an item to the end of a list.
+
+Example:
+
+numbers = []
+
+numbers.append(10)
+numbers.append(20)
+
+print(numbers)
+
+Output:
+
+[10, 20]
+So our code stores the inertia of each K-Means run.
+
+Actual inertia values from your dataset
+K
+
+Inertia
+
+1
+
+460.00
+
+2
+
+225.22
+
+3
+
+158.95
+
+4
+
+111.14
+
+5
+
+92.46
+
+6
+
+78.79
+
+7
+
+66.89
+
+8
+
+58.22
+
+9
+
+49.67
+
+10
+
+44.61
+
+Code – Part 7: Creating the graph
+plt.figure(figsize=(7, 4))
+
+Creates a new figure for the graph.
+
+figsize=(7,4) specifies its dimensions in inches:
+
+Width = 7 inches.
+
+Height = 4 inches.
+
+plt.plot(
+    range(1, max_k + 1),
+    inertia_values,
+    marker="o"
+)
+
+This creates a line graph.
+
+Let's understand its parameters.
+
+range(1, max_k + 1) represents K values.
+
+inertia_values represents the corresponding inertia.
+
+marker="o" displays a circular marker for each point.
+
+Example:
+
+plt.plot([1, 2, 3], [100, 50, 30], marker="o")
+
+This draws a line connecting the three points.
+
+plt.xlabel("Number of Clusters (K)")
+
+Sets the horizontal X-axis label.
+
+plt.ylabel("Inertia")
+
+Sets the vertical Y-axis label.
+
+plt.title("Elbow Method")
+
+Sets the graph title.
+
+plt.xticks(range(1, max_k + 1))
+
+Displays the K values as ticks on the X-axis.
+
+plt.grid(True)
+
+Displays grid lines to make the graph easier to read.
+
+plt.show()
+
+Displays the completed graph.
+
+Understanding the Elbow Graph
+K-means Clustering: Complete Guide with Algorithm, Implementation & Best Practices - Interactive | Michael Brenndoerfer | Michael Brenndoerfer
+
+What should you observe?
+
+As K increases, inertia decreases.
+
+Initially, inertia decreases significantly.
+
+After some point, the reduction becomes smaller.
+
+That turning point is called the elbow.
+
+Important for your practical: Your notebook does not automatically calculate the elbow point. It asks you to observe the graph and select K manually.
+
+The code later uses K = 4 as a starting value. You should check whether that choice is supported by the actual graph.
+
+8. Cell 6 – Apply K-Means Clustering
+Now that we have studied the Elbow Method, we can apply K-Means to divide our customers into clusters.
+
+Code
+# Choose K by observing the elbow in the plot.
+# Four clusters are used as a starting value; change it if your elbow suggests otherwise.
+
+chosen_k = 4
+
+kmeans_model = KMeans(
+    n_clusters=chosen_k,
+    random_state=42,
+    n_init=10
+)
+
+customer_data["KMeans_Cluster"] = kmeans_model.fit_predict(X_scaled)
+
+print(customer_data["KMeans_Cluster"].value_counts().sort_index())
+
+display(customer_data.head())
+
+Let's understand every line.
+
+Part 1: Choosing the number of clusters
+chosen_k = 4
+
+We create a variable named chosen_k and assign it the value 4.
+
+This means we want to divide our customers into four clusters.
+
+For example:
+
+Cluster 0
+
+Cluster 1
+
+Cluster 2
+
+Cluster 3
+
+Why does it start from 0?
+
+Python uses zero-based indexing in many contexts.
+
+The cluster labels assigned by K-Means are also represented using integer labels starting at 0.
+
+Therefore, four clusters are numbered 0, 1, 2 and 3.
+
+Important: Cluster 0 does not mean better than Cluster 1. These are just labels.
+
+Part 2: Creating the K-Means model
+kmeans_model = KMeans(
+    n_clusters=chosen_k,
+    random_state=42,
+    n_init=10
+)
+
+We create the K-Means model.
+
+Let's understand the parameters again in this context.
+
+1. n_clusters
+
+n_clusters=chosen_k
+
+Since chosen_k = 4, the algorithm creates four clusters.
+
+2. random_state
+
+random_state=42
+
+Ensures reproducible random initialization.
+
+3. n_init
+
+n_init=10
+
+Runs the algorithm with 10 initializations and selects the result with the lowest inertia.
+
+Part 3: Applying the algorithm
+customer_data["KMeans_Cluster"] = kmeans_model.fit_predict(X_scaled)
+
+This line is extremely important.
+
+Let's divide it into three parts.
+
+A. What is fit_predict()?
+fit_predict() combines two operations:
+
+fit() – learns the clusters from the input data.
+
+predict() – assigns each data point to its nearest learned cluster.
+
+In K-Means, it:
+
+Learns the cluster centres.
+
+Assigns every customer to a cluster.
+
+Returns the cluster label for each customer.
+
+Example:
+
+Suppose we have five customers.
+
+labels = [0, 0, 1, 2, 1]
+
+This means:
+
+Customer
+
+Assigned cluster
+
+A
+
+0
+
+B
+
+0
+
+C
+
+1
+
+D
+
+2
+
+E
+
+1
+
+Customers A and B belong to Cluster 0.
+
+Customers C and E belong to Cluster 1.
+
+Customer D belongs to Cluster 2.
+
+B. What is customer_data["KMeans_Cluster"]?
+We are creating a new column called KMeans_Cluster.
+
+This column stores the cluster assigned to each customer.
+
+Our customer-level DataFrame now contains:
+
+CUSTOMERNAME
+
+TotalSales
+
+KMeans_Cluster
+
+Customer A
+
+10000
+
+0
+
+Customer B
+
+20000
+
+1
+
+Customer C
+
+15000
+
+0
+
+Customer D
+
+5000
+
+2
+
+The values above are only an illustrative example.
+
+C. Why do we store the labels?
+Because we want to:
+
+Identify which cluster each customer belongs to.
+
+Visualize the groups.
+
+Compare the results with Hierarchical Clustering.
+
+Evaluate clustering quality.
+
+Part 4: Counting the customers in each cluster
+print(
+    customer_data["KMeans_Cluster"]
+    .value_counts()
+    .sort_index()
+)
+
+Let's understand the functions.
+
+A. customer_data["KMeans_Cluster"]
+Selects the KMeans_Cluster column.
+
+B. value_counts()
+Counts how many times each value appears.
+
+Example:
+
+clusters = [0, 0, 0, 1, 1, 2]
+
+print(pd.Series(clusters).value_counts())
+
+Output:
+
+0    3
+1    2
+2    1
+It means:
+
+Cluster 0 contains 3 customers.
+
+Cluster 1 contains 2 customers.
+
+Cluster 2 contains 1 customer.
+
+C. sort_index()
+Sorts the result according to the cluster labels.
+
+For example:
+
+Without sorting, the output might be ordered by frequency.
+
+With sorting:
+
+0
+1
+2
+3
+The cluster labels are displayed in ascending order.
+
+Actual result for your uploaded dataset
+K-Means customer distribution
+
+K = 4 · 92 customers
+
+Cluster 0
+
+32 customers (34.8%)
+
+Cluster 1
+
+2 customers (2.2%)
+
+Cluster 2
+
+25 customers (27.2%)
+
+Cluster 3
+
+33 customers (35.9%)
+
+Part 5: Displaying the first five customers
+display(customer_data.head())
+
+This displays the first five customer records.
+
+You will now see the newly created KMeans_Cluster column along with the other customer features.
+
+Viva question: What is the output of K-Means?
+
+The output is a cluster label assigned to every data point, indicating which cluster that data point belongs to.
+
+9. Cell 7 – Visualize K-Means Clusters
+We have applied K-Means, but how can we visually understand the customer groups?
+
+We use a scatter plot.
+
+What is a Scatter Plot?
+A scatter plot is a graph that represents individual data points using dots.
+
+It helps us understand the relationship between two numerical variables.
+
+For example:
+
+X-axis: Total Sales.
+
+Y-axis: Total Quantity.
+
+Each dot represents one customer.
+
+The colour of the dot represents the customer's cluster.
+
+Code
+plt.figure(figsize=(7, 5))
+
+scatter = plt.scatter(
+    customer_data["TotalSales"],
+    customer_data["TotalQuantity"],
+    c=customer_data["KMeans_Cluster"]
+)
+
+plt.xlabel("Total Sales")
+plt.ylabel("Total Quantity")
+plt.title("Customer Segments using K-Means")
+
+plt.colorbar(scatter, label="Cluster")
+
+plt.show()
+
+Let's understand every line.
+
+Line 1
+plt.figure(figsize=(7, 5))
+
+Creates a new figure.
+
+Width = 7 inches.
+
+Height = 5 inches.
+
+Line 2
+scatter = plt.scatter(
+    customer_data["TotalSales"],
+    customer_data["TotalQuantity"],
+    c=customer_data["KMeans_Cluster"]
+)
+
+This creates the scatter plot.
+
+Let's understand the parameters.
+
+1. First parameter
+
+customer_data["TotalSales"]
+
+Represents the X-axis.
+
+It contains the total sales of every customer.
+
+2. Second parameter
+
+customer_data["TotalQuantity"]
+
+Represents the Y-axis.
+
+It contains the total quantity purchased by every customer.
+
+3. Third parameter
+
+c=customer_data["KMeans_Cluster"]
+
+This determines the colour of each point according to its cluster label.
+
+Here, c stands for colour.
+
+For example:
+
+Cluster 0 receives one colour.
+
+Cluster 1 receives another colour.
+
+Cluster 2 receives another colour.
+
+Cluster 3 receives another colour.
+
+Matplotlib chooses the colours automatically.
+
+4. Why store the result in scatter?
+
+scatter = ...
+
+We store the scatter plot object in a variable called scatter.
+
+We need this object later to create a colour bar.
+
+Line 3
+plt.xlabel("Total Sales")
+
+Sets the horizontal axis label.
+
+Line 4
+plt.ylabel("Total Quantity")
+
+Sets the vertical axis label.
+
+Line 5
+plt.title("Customer Segments using K-Means")
+
+Sets the title of the graph.
+
+Line 6
+plt.colorbar(scatter, label="Cluster")
+
+Displays a colour bar beside the scatter plot.
+
+It helps us understand which colours correspond to which cluster labels.
+
+Line 7
+plt.show()
+
+Displays the graph.
+
+How to interpret the graph?
+Credit Card Customer Segmentation Analysis and Retention Model | by Ting-Hsin(Louis) | Medium
+
+Imagine the graph shows:
+
+Some customers grouped towards the upper-right side.
+
+Some customers grouped towards the lower-left side.
+
+Some customers in the middle.
+
+This can indicate differences in purchasing behaviour.
+
+For example:
+
+Customers with higher total sales and quantity may have larger purchasing volumes.
+
+Customers with lower sales and quantity may have smaller purchasing volumes.
+
+Important limitation: Your graph displays only two features, TotalSales and TotalQuantity. But K-Means uses all five features to create clusters.
+
+Therefore, the graph is only a two-dimensional visualization of a five-dimensional clustering result.
+
+Also, cluster numbers do not automatically mean high-value, low-value, or regular customers. You would need to inspect the average characteristics of each cluster to give it a business meaning.
+
+10. Cell 8 – Apply Hierarchical Clustering
+Now we implement our second algorithm.
+
+Agglomerative Hierarchical Clustering.
+
+First, remember the difference:
+
+K-Means
+
+Hierarchical
+
+Divides data into K clusters.
+
+Builds a hierarchy of clusters.
+
+Uses centroids.
+
+Uses distances between observations/clusters.
+
+Requires K beforehand.
+
+Does not require K to build the hierarchy, but can use K when cutting it into clusters.
+
+Repeatedly updates cluster assignments and centroids.
+
+Repeatedly merges the closest clusters in the agglomerative approach.
+
+Code
+hierarchical_model = AgglomerativeClustering(n_clusters=chosen_k)
+
+customer_data["Hierarchical_Cluster"] = hierarchical_model.fit_predict(X_scaled)
+
+print(
+    customer_data["Hierarchical_Cluster"]
+    .value_counts()
+    .sort_index()
+)
+
+display(customer_data[[
+    "CUSTOMERNAME",
+    "KMeans_Cluster",
+    "Hierarchical_Cluster"
+]].head(10))
+
+Let's understand each line.
+
+Part 1: Creating the model
+hierarchical_model = AgglomerativeClustering(
+    n_clusters=chosen_k
+)
+
+We create an object of the AgglomerativeClustering class.
+
+What is n_clusters=chosen_k?
+Previously:
+
+chosen_k = 4
+
+Therefore:
+
+n_clusters=4
+
+We instruct the algorithm to create four final clusters.
+
+How does Agglomerative Clustering work?
+Let's take five customers:
+
+A, B, C, D, E.
+
+Initially, each customer is treated as an independent cluster.
+
+Step 1: Initially, every customer is separate
+
+A
+
+B
+
+C
+
+D
+
+E
+
+Step 2: Merge the most similar customers
+
+A + B
+
+C
+D
+E
+Step 3: Continue merging
+
+A + B
+C + D
+E
+Step 4: Continue until the required number of clusters remains
+
+A + B
+C + D
+E
+Illustration of merging. The actual merges depend on the distances between data points and the selected linkage method.
+The actual algorithm starts with 92 individual customers and merges clusters until four remain.
+
+Part 2: Applying Hierarchical Clustering
+customer_data["Hierarchical_Cluster"] = hierarchical_model.fit_predict(X_scaled)
+
+Let's understand.
+
+A. fit_predict()
+It fits the Agglomerative Clustering model and assigns a cluster label to each customer.
+
+Unlike K-Means, Agglomerative Clustering does not calculate centroids to assign customers.
+
+Instead, it uses distances and a linkage criterion to decide which clusters should be merged.
+
+B. Why X_scaled?
+Because we want both algorithms to work on the same standardized input features.
+
+This makes their evaluation more comparable.
+
+C. Why create Hierarchical_Cluster?
+We store the cluster labels in a new column.
+
+Now our DataFrame contains two cluster-label columns:
+
+KMeans_Cluster
+Hierarchical_Cluster
+This allows us to compare both methods.
+
+Part 3: Counting cluster members
+print(
+    customer_data["Hierarchical_Cluster"]
+    .value_counts()
+    .sort_index()
+)
+
+This is exactly the same logic used for K-Means.
+
+value_counts() counts customers in each cluster.
+
+sort_index() sorts the cluster labels.
+
+print() displays the results.
+
+For your uploaded dataset, the cluster distribution is:
+
+Cluster
+
+Number of customers
+
+0
+
+37
+
+1
+
+2
+
+2
+
+34
+
+3
+
+19
+
+Total
+
+92
+
+Part 4: Comparing the first 10 customers
+display(customer_data[[
+    "CUSTOMERNAME",
+    "KMeans_Cluster",
+    "Hierarchical_Cluster"
+]].head(10))
+
+Let's understand this syntax.
+
+A. Selecting multiple columns
+customer_data[[
+    "CUSTOMERNAME",
+    "KMeans_Cluster",
+    "Hierarchical_Cluster"
+]]
+
+Selects only three columns.
+
+B. head(10)
+Displays the first 10 rows.
+
+C. display()
+Shows the result in a formatted table.
+
+Why are we displaying these three columns?
+We want to see how both algorithms assigned the customers.
+
+For example:
+
+Customer
+
+K-Means
+
+Hierarchical
+
+A
+
+0
+
+2
+
+B
+
+1
+
+0
+
+C
+
+0
+
+2
+
+D
+
+3
+
+1
+
+These are illustrative labels, not actual customer assignments.
+
+Important: Cluster labels from two algorithms are arbitrary. If K-Means assigns a customer to Cluster 0 and Hierarchical assigns it to Cluster 2, it does not automatically mean the algorithms disagree. Their cluster numbering systems are independent.
+
+11. Cell 9 – Draw a Dendrogram
+This cell is used to visualize Hierarchical Clustering.
+
+First: What is a Dendrogram?
+A dendrogram is a tree-like diagram that represents the process of merging clusters in Hierarchical Clustering.
+
+It shows:
+
+Which observations or groups are merged.
+
+The order in which clusters are merged.
+
+The distance at which clusters are merged.
+
+Hierarchical clustering explained
+
+How to read a dendrogram?
+There are two important axes.
+
+X-axis:
+
+Represents observations or groups of observations.
+
+Y-axis:
+
+Represents the distance at which clusters are merged.
+
+The height at which two branches join tells us the distance at which those clusters were combined.
+
+A merge at a smaller height indicates more similar clusters under the chosen distance and linkage definition.
+
+A merge at a larger height indicates less similar clusters.
+
+What is linkage?
+Linkage defines how the distance between two clusters is calculated.
+
+Some common linkage methods are:
+
+Linkage
+
+Meaning
+
+Single
+
+Minimum distance between points in two clusters
+
+Complete
+
+Maximum distance between points in two clusters
+
+Average
+
+Average distance between points in two clusters
+
+Ward
+
+Merges clusters based on the increase in within-cluster variance
+
+Your practical uses Ward linkage.
+
+Code – Part 1: Calculating linkage
+linked = linkage(X_scaled, method="ward")
+
+Let's understand.
+
+A. linkage()
+This function comes from:
+
+from scipy.cluster.hierarchy import linkage
+
+It calculates the hierarchical merging structure.
+
+It takes the standardized customer data as input.
+
+B. X_scaled
+This contains:
+
+92 customers.
+
+5 numerical features.
+
+C. method="ward"
+This specifies Ward's linkage method.
+
+What is Ward's method?
+
+Ward's method merges clusters in a way that minimizes the increase in within-cluster variance at each merging step.
+
+In simple language:
+
+It tries to combine clusters that result in the smallest increase in the variation within the resulting cluster.
+
+Why use it?
+
+It often produces relatively compact clusters.
+
+What does linked contain?
+It stores the hierarchical merging information.
+
+For 92 observations, the linkage matrix contains 91 merging steps.
+
+Each row records:
+
+The two clusters or observations being merged.
+
+The distance between them.
+
+The number of original observations in the newly formed cluster.
+
+Code – Part 2: Creating a figure
+plt.figure(figsize=(12, 5))
+
+Creates a figure with:
+
+Width = 12 inches.
+
+Height = 5 inches.
+
+Why larger?
+
+Because dendrograms can contain many branches, so a wider graph is easier to read.
+
+Code – Part 3: Drawing the dendrogram
+dendrogram(linked, truncate_mode="lastp", p=30)
+
+Let's understand the parameters.
+
+A. dendrogram()
+This function draws the hierarchical clustering tree.
+
+B. linked
+Provides the merging information calculated by the linkage function.
+
+C. truncate_mode="lastp"
+This reduces the complexity of the displayed dendrogram by showing the last P merged clusters or groups rather than all individual observations.
+
+Why?
+
+Our dataset contains 92 customers.
+
+Displaying every leaf can make the diagram crowded.
+
+Truncation makes the graph easier to inspect.
+
+D. p=30
+Specifies that the truncated display should show the last 30 merging groups according to the chosen truncation mode.
+
+It does not mean we are creating 30 clusters in our final clustering model.
+
+This is a visualization setting only.
+
+Code – Part 4: Adding graph labels
+plt.title("Hierarchical Clustering Dendrogram")
+
+Sets the title.
+
+plt.xlabel("Customer groups")
+
+Labels the horizontal axis.
+
+plt.ylabel("Distance")
+
+Labels the vertical axis.
+
+Code – Part 5: Displaying the graph
+plt.show()
+
+Displays the dendrogram.
+
+How do we decide the number of clusters from a dendrogram?
+Imagine drawing a horizontal line across the dendrogram.
+
+Count how many vertical branches the horizontal line intersects.
+
+That gives the number of groups at that cutting height.
+
+For example:
+
+Hierarchical Clustering: Build Trees That Reveal Hidden Data Structure - perfecXion.ai
+
+If the horizontal line intersects four major branches, we obtain four clusters.
+
+Important distinction in your code:
+
+Your dendrogram is used to visualize the merging structure. Your actual Hierarchical Clustering model already uses:
+
+n_clusters=4
+
+So the final number of clusters is specified directly in Cell 8, not automatically determined by the dendrogram.
+
+12. Cell 10 – Compare Cluster Quality using Silhouette Score
+We have implemented both clustering algorithms.
+
+Now we need to evaluate them.
+
+For this, we use Silhouette Score.
+
+What is Silhouette Score?
+Silhouette Score measures how well a data point fits within its own cluster compared with other clusters.
+
+It considers two things:
+
+How close the data point is to other points in its own cluster.
+
+How far the data point is from points in the nearest neighbouring cluster.
+
+Its value ranges from -1 to +1.
+
+Score
+
+Meaning
+
+Close to +1
+
+Well-separated clusters
+
+Around 0
+
+Overlapping clusters
+
+Negative
+
+Possible incorrect cluster assignment
+
+Understand with an example
+Imagine we have two clusters.
+
+Cluster A: Customers who spend approximately ₹1,000.
+
+Cluster B: Customers who spend approximately ₹10,000.
+
+If a customer spending ₹1,100 is placed in Cluster A, that assignment looks reasonable.
+
+But if the same customer is placed in Cluster B, that may be a poor assignment.
+
+Silhouette Score helps evaluate this type of clustering quality.
+
+Formula
+For each data point:
+
+s
+=
+b
+−
+a
+max
+⁡
+(
+a
+,
+b
+)
+s= 
+max(a,b)
+b−a
+​
+ 
+Where:
+
+a
+a = Average distance between the point and other points in its own cluster.
+
+b
+b = Lowest average distance between the point and points in another cluster (the nearest neighbouring cluster).
+
+Example 1: Good clustering
+Suppose:
+
+a = 2
+
+b = 8
+
+s
+=
+8
+−
+2
+8
+s= 
+8
+8−2
+​
+ 
+s
+=
+0.75
+s=0.75
+This is a good silhouette value.
+
+It means the point is much closer to its own cluster than to the nearest other cluster.
+
+Example 2: Poor clustering
+Suppose:
+
+a = 7
+
+b = 5
+
+s
+=
+5
+−
+7
+7
+s= 
+7
+5−7
+​
+ 
+s
+=
+−
+0.286
+s=−0.286
+This is a negative value.
+
+It suggests that the point is closer, on average, to another cluster than its own.
+
+How is the overall score calculated?
+The Silhouette Score of the model is the average of the silhouette values of all data points.
+
+Actual code
+if len(set(customer_data["KMeans_Cluster"])) > 1:
+    print(
+        "K-Means silhouette score:",
+        silhouette_score(X_scaled, customer_data["KMeans_Cluster"])
+    )
+
+if len(set(customer_data["Hierarchical_Cluster"])) > 1:
+    print(
+        "Hierarchical silhouette score:",
+        silhouette_score(X_scaled, customer_data["Hierarchical_Cluster"])
+    )
+
+Let's understand every line.
+
+Part 1: Understanding set()
+set(customer_data["KMeans_Cluster"])
+
+A set is a Python collection that stores unique values.
+
+Example:
+
+numbers = [0, 0, 1, 1, 2, 2]
+
+print(set(numbers))
+
+Output:
+
+{0, 1, 2}
+It removes repeated values.
+
+Here, it gives us the distinct cluster labels.
+
+Part 2: Understanding len()
+len(set(customer_data["KMeans_Cluster"]))
+
+Counts the number of unique cluster labels.
+
+If the labels are:
+
+0, 0, 1, 1, 2, 2
+Then the result is:
+
+3
+Part 3: Understanding the if condition
+if len(set(customer_data["KMeans_Cluster"])) > 1:
+
+An if statement executes a block of code only when a condition is true.
+
+Here, we check whether there is more than one cluster.
+
+Why?
+
+Silhouette Score requires at least two clusters.
+
+If there is only one cluster, the score cannot be calculated meaningfully.
+
+Therefore, this condition prevents an invalid silhouette calculation.
+
+Part 4: Calculating the K-Means score
+silhouette_score(
+    X_scaled,
+    customer_data["KMeans_Cluster"]
+)
+
+This function accepts two important arguments.
+
+First argument:
+
+X_scaled
+
+The scaled input data.
+
+Second argument:
+
+customer_data["KMeans_Cluster"]
+
+The cluster labels generated by K-Means.
+
+The function calculates the average Silhouette Score for all customers.
+
+Part 5: Calculating Hierarchical score
+silhouette_score(
+    X_scaled,
+    customer_data["Hierarchical_Cluster"]
+)
+
+The same evaluation process is performed for Hierarchical Clustering.
+
+The only difference is that we supply the labels generated by the Hierarchical Clustering algorithm.
+
+Actual results from your uploaded dataset
+Clustering quality comparison
+
+Calculated using your 92 customer records and five standardized features, with K = 4.
+
+K-Means
+
+0.3190
+Hierarchical
+
+0.2954
+Conclusion
+
+K-Means has a slightly higher Silhouette Score for this configuration, suggesting somewhat better-separated clusters according to this metric.
+
+Important: Both scores are relatively close to zero rather than close to +1. This suggests that the clusters have some overlap. We cannot claim that either model produces excellent separation.
+
+Also, a higher silhouette score does not automatically mean that an algorithm is better for every business purpose.
+
+13. Complete working of both algorithms – Important conceptual understanding
+Now let's connect everything you have learned so far.
+
+13.1 How exactly does K-Means work internally?
+K-Means follows these steps:
+
+Unsupervised Clustering in Python with Scikit-learn
+
+Step 1: Choose K
+
+We choose the number of clusters.
+
+In your practical:
+
+chosen_k = 4
+
+Step 2: Initialize centroids
+
+The algorithm initializes four cluster centres.
+
+These are the starting points for the clustering process.
+
+Step 3: Calculate distances
+
+It calculates the distance between each customer and the cluster centroids.
+
+A commonly used distance is Euclidean Distance.
+
+Formula:
+
+d
+=
+(
+x
+2
+−
+x
+1
+)
+2
++
+(
+y
+2
+−
+y
+1
+)
+2
+d= 
+(x 
+2
+​
+ −x 
+1
+​
+ ) 
+2
+ +(y 
+2
+​
+ −y 
+1
+​
+ ) 
+2
+ 
+​
+ 
+Example:
+
+Point A = (2, 3)
+
+Point B = (5, 7)
+
+d
+=
+(
+5
+−
+2
+)
+2
++
+(
+7
+−
+3
+)
+2
+d= 
+(5−2) 
+2
+ +(7−3) 
+2
+ 
+​
+ 
+d
+=
+9
++
+16
+d= 
+9+16
+​
+ 
+d
+=
+5
+d=5
+Step 4: Assign data points
+
+Every customer is assigned to the nearest centroid.
+
+Step 5: Update centroids
+
+The algorithm calculates the mean of the customers belonging to each cluster.
+
+That mean becomes the new centroid.
+
+Step 6: Repeat
+
+It repeats distance calculation and centroid updating until the clusters converge or the maximum iteration limit is reached.
+
+What is convergence?
+Convergence means the algorithm has reached a stable state where the cluster assignments or centroid positions no longer change significantly.
+
+This is when K-Means stops iterating.
+
+13.2 How exactly does Agglomerative Clustering work?
+The Beginner’s Guide to Clustering in Machine Learning | by Utsav Desai | Medium
+
+It follows these steps:
+
+Initially, every customer is treated as an individual cluster.
+
+Calculate the distances between clusters.
+
+Find the closest clusters.
+
+Merge those clusters.
+
+Recalculate distances using the selected linkage method.
+
+Repeat until the required number of clusters remains.
+
+In your practical:
+
+Initial clusters = 92.
+
+Final clusters = 4.
+
+Therefore, 88 merging operations are performed.
+
+Difference between linkage and distance
+These two concepts are related but different.
+
+Distance measures how far two individual points are from one another.
+
+Linkage determines how the distance between two groups of points is calculated.
+
+For example, single linkage uses the minimum pairwise distance, while Ward linkage uses the increase in within-cluster variance.
+
+Your code uses Ward linkage for the dendrogram. Your AgglomerativeClustering call does not explicitly specify linkage, so it uses Scikit-learn's default linkage="ward".
+
+14. Important Python concepts used in this practical
+Here is a revision of the Python concepts you encountered.
+
+Concept
+
+Meaning
+
+Example from your code
+
+Import
+
+Bring library functionality into the program
+
+import pandas as pd
+
+Variable
+
+Stores a value
+
+chosen_k = 4
+
+List
+
+Stores multiple values
+
+features = [...]
+
+DataFrame
+
+Tabular data structure
+
+customer_data
+
+Function
+
+Performs a particular task
+
+pd.read_csv()
+
+Method
+
+Function associated with an object
+
+.head(), .dropna()
+
+Attribute
+
+Stores or exposes an object's property
+
+.shape, .inertia_
+
+For loop
+
+Repeats a block of code
+
+for k in range(...)
+
+If condition
+
+Executes code when a condition is true
+
+if ... > 1
+
+Class
+
+Blueprint for creating objects
+
+KMeans
+
+Object
+
+Instance of a class
+
+kmeans_model
+
+Aggregation
+
+Combines multiple values into a summary
+
+.agg()
+
+Standardization
+
+Converts features to comparable scales
+
+StandardScaler()
+
+Clustering
+
+Groups similar observations
+
+K-Means
+
+Visualization
+
+Represents data graphically
+
+plt.scatter()
+
+15. Expected output of your practical
+Let's summarize the outputs you should observe when running the notebook with the uploaded CSV correctly referenced.
+
+Step
+
+Expected output
+
+Load dataset
+
+2823 rows, 25 columns
+
+Customer aggregation
+
+92 customers
+
+Feature selection
+
+5 features
+
+StandardScaler
+
+Shape (92, 5)
+
+Elbow Method
+
+Inertia graph
+
+K-Means
+
+4 clusters
+
+K-Means visualization
+
+Scatter plot
+
+Hierarchical Clustering
+
+4 clusters
+
+Dendrogram
+
+Hierarchical tree
+
+Silhouette Score
+
+Two numerical scores
+
+The calculated cluster distributions are:
+
+Algorithm
+
+Cluster 0
+
+Cluster 1
+
+Cluster 2
+
+Cluster 3
+
+K-Means
+
+32
+
+2
+
+25
+
+33
+
+Hierarchical
+
+37
+
+2
+
+34
+
+19
+
+And the calculated Silhouette Scores:
+
+K-Means: approximately 0.3190
+
+Hierarchical: approximately 0.2954
+
+These values correspond to K = 4 and the five standardized features in your notebook.
+
+16. Time and Space Complexity
+These are useful additional viva concepts.
+
+Algorithm / Operation
+
+Time complexity
+
+K-Means
+
+Approximately 
+O
+(
+n
+K
+d
+i
+)
+O(nKdi)
+
+Agglomerative Clustering
+
+Generally 
+O
+(
+n
+2
+log
+⁡
+n
+)
+O(n 
+2
+ logn) for common implementations
+
+StandardScaler
+
+O
+(
+n
+d
+)
+O(nd)
+
+Silhouette Score
+
+Generally 
+O
+(
+n
+2
+d
+)
+O(n 
+2
+ d)
+
+Where:
+
+n
+n = Number of customers.
+
+K
+K = Number of clusters.
+
+d
+d = Number of features.
+
+i
+i = Number of K-Means iterations.
+
+Space complexity:
+
+K-Means: approximately 
+O
+(
+n
+d
++
+K
+d
+)
+O(nd+Kd), excluding implementation-specific overhead.
+
+Agglomerative Clustering: generally 
+O
+(
+n
+2
+)
+O(n 
+2
+ ) memory for distance/linkage-related storage in common implementations.
+
+StandardScaler: approximately 
+O
+(
+d
+)
+O(d) additional storage for learned statistics, apart from the transformed dataset.
+
+1. CSV filename: Your notebook says sales_data_sample.csv.csv, whereas your uploaded file is named sales_data_sample.csv(2).csv. Correct the path.
+
+2. Unused import: from pathlib import Path is not used anywhere in the notebook. It can be removed.
+
+3. Repeated Pandas import: Pandas is imported in both the first and second cells. One import is enough.
+
+4. Choosing K: Your notebook uses K = 4 as a starting value. Do not claim that the Elbow Method automatically selected 4; you must justify it by observing the graph.
+
+5. Dendrogram: p=30 is only for displaying a truncated dendrogram. It does not mean the algorithm creates 30 final clusters.
+
+6. Cluster names: Your code generates numerical labels. It does not automatically identify customers as premium, regular or low-value customers.
+
+7. AveragePrice missing values: Your first dropna() does not check PRICEEACH. The later customer-level dropna() removes customers whose aggregated AveragePrice remains missing.
+
+Final revision – What should you remember?
+Your entire practical in 10 steps
+Import required libraries – NumPy, Pandas, Matplotlib, Scikit-learn and SciPy.
+Load the sales CSV file using pd.read_csv().
+
+Select the required five columns and clean the data.
+Group transactions customer-wise using groupby() and agg().
+
+Calculate Total Sales, Total Quantity, Number of Orders, Average Price and Average Order Value.
+Scale the numerical features using StandardScaler.
+Find a suitable K using the Elbow Method and apply K-Means.
+Visualize K-Means clusters using a scatter plot.
+Apply Agglomerative Clustering and visualize its hierarchy using a dendrogram.
+Compare both clustering algorithms using Silhouette Score.
+  
+

@@ -1,0 +1,4290 @@
+
+
+prac9Spam.ipynb
+
+
+ML Practical 9 – Email Spam Detection Using KNN and SVM
+Complete code explanation Beginner-friendly
+
+Your uploaded notebook contains an ML practical titled Email Spam Detection Using KNN and SVM.
+
+We will understand the practical from absolute basics, including:
+
+What is spam detection and why do we need it?
+
+What is Machine Learning?
+
+What is classification?
+
+What are KNN and SVM?
+
+What is preprocessing and why do we perform it?
+
+What is training and testing?
+
+Why do we use StandardScaler?
+
+What is a confusion matrix?
+
+Accuracy, Precision, Recall and F1 Score.
+
+How to compare two ML algorithms.
+
+Complete code explained block by block.
+
+Sample dataset, expected output format and practical viva questions.
+
+I'll keep the explanation in a copy-paste-friendly format, so you can save it in your practical notes and study directly from it.
+
+PART 1 – Understanding the practical
+1. What is the aim of this practical?
+Aim: To implement Email Spam Detection using Machine Learning algorithms K-Nearest Neighbors (KNN) and Support Vector Machine (SVM), and compare their performance using evaluation metrics.
+
+2. What is Email Spam Detection?
+Email Spam Detection is a Machine Learning application that identifies whether an email is:
+
+Spam: Unwanted or suspicious emails, such as fake lottery messages, advertisements, phishing attempts, etc.
+
+Not Spam (Ham): Genuine emails, such as college notifications, work emails, personal messages, etc.
+
+For example:
+
+Email message
+
+Classification
+
+Congratulations! You won ₹10 lakh. Click here!
+
+Spam
+
+Your college exam timetable is released.
+
+Not Spam
+
+Claim your free iPhone now!
+
+Spam
+
+Meeting scheduled for tomorrow at 10 AM.
+
+Not Spam
+
+The objective is to train a computer to identify these patterns automatically.
+
+3. What is Machine Learning?
+Machine Learning (ML) is a branch of Artificial Intelligence in which computers learn patterns from data and use those patterns to make predictions or decisions without being explicitly programmed for every situation.
+
+Simple example:
+
+Suppose we give a computer 1,000 emails.
+
+500 emails are labelled Spam.
+
+500 emails are labelled Not Spam.
+
+The computer studies the patterns in these emails.
+
+For example, spam emails might frequently contain words such as:
+
+Free
+
+Win
+
+Prize
+
+Offer
+
+Congratulations
+
+After learning these patterns, we give the computer a new email.
+
+It predicts whether that email is Spam or Not Spam.
+
+This is called Machine Learning.
+
+4. What type of Machine Learning is used?
+This practical uses Supervised Machine Learning.
+
+Supervised Learning means the model learns from already labelled data.
+
+For example:
+
+Email features
+
+Prediction
+
+Free, Prize, Win
+
+1 (Spam)
+
+College, Assignment, Notes
+
+0 (Not Spam)
+
+Lottery, Offer, Money
+
+1 (Spam)
+
+Here:
+
+Input data (X): Email-related features.
+
+Output data (y): Whether the email is Spam or Not Spam.
+
+The model learns the relationship between X and y.
+
+What is Classification?
+
+Classification is a type of supervised learning in which the model predicts a category or class.
+
+In our practical, there are two classes:
+
+0 = Not Spam
+
+1 = Spam
+
+Therefore, this is a Binary Classification Problem because there are exactly two possible output classes.
+
+5. Algorithms used in this practical
+We are implementing two algorithms.
+
+1. K-Nearest Neighbors (KNN)
+
+Using K Nearest Neighbours algorithm in scenario tuning - SAS Users
+
+KNN classifies a new data point based on the classes of its nearest neighbouring data points.
+
+2. Support Vector Machine (SVM)
+
+Support Vector Machine (SVM) in Python
+
+SVM finds an optimal decision boundary (hyperplane) that separates different classes.
+
+A. What is KNN?
+KNN stands for K-Nearest Neighbors.
+
+It is a supervised Machine Learning algorithm used for classification and regression.
+
+It works on the concept of similarity or distance.
+
+How does it work?
+
+Suppose we have the following training data:
+
+Student
+
+Study hours
+
+Result
+
+A
+
+1
+
+Fail
+
+B
+
+2
+
+Fail
+
+C
+
+8
+
+Pass
+
+D
+
+9
+
+Pass
+
+Now a new student studies for 7 hours.
+
+We want to predict whether the student will Pass or Fail.
+
+KNN checks the nearest existing data points.
+
+If we choose K = 3, it checks the three nearest neighbours.
+
+Suppose:
+
+Neighbour 1 = Pass
+
+Neighbour 2 = Pass
+
+Neighbour 3 = Fail
+
+Majority vote = Pass.
+
+Therefore, KNN predicts Pass.
+
+What does K mean?
+
+K represents the number of nearest neighbours considered while making a prediction.
+
+In our practical:
+
+KNeighborsClassifier(n_neighbors=5)
+
+Here, K = 5.
+
+This means the algorithm considers the five nearest data points to classify a new email.
+
+Important: A small K can be sensitive to noise, whereas a very large K may make the model less sensitive to local patterns.
+
+B. What is SVM?
+SVM stands for Support Vector Machine.
+
+It is a supervised Machine Learning algorithm used for classification and regression.
+
+It tries to find the best possible boundary that separates different classes.
+
+Example:
+
+Imagine we have two groups of points:
+
+Red points = Spam emails.
+
+Blue points = Not Spam emails.
+
+SVM draws a boundary between the two groups.
+
+This boundary is called a Hyperplane.
+
+The objective is to find a hyperplane that separates the classes with the maximum possible margin.
+
+Important terms:
+
+Hyperplane: The decision boundary separating different classes.
+
+Support Vectors: The data points closest to the hyperplane.
+
+Margin: The distance between the hyperplane and the nearest data points of both classes.
+
+Kernel: A function that helps SVM handle data that cannot be separated easily using a straight boundary.
+
+In our practical:
+
+SVC(kernel='linear', random_state=42)
+
+SVC means Support Vector Classifier.
+
+kernel='linear' means we are using a linear decision boundary.
+
+random_state=42 sets a reproducible random seed for operations that use randomness.
+
+PART 2 – Complete code explained block by block
+Your notebook has one main code cell. Below, I have divided that exact code into logical blocks.
+
+BLOCK 1 – Importing the required libraries
+Code
+# EMAIL SPAM DETECTION USING KNN AND SVM
+
+# 1. Import libraries
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.preprocessing import StandardScaler
+
+from sklearn.neighbors import KNeighborsClassifier
+
+from sklearn.svm import SVC
+
+from sklearn.pipeline import make_pipeline
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report
+
+Explanation
+First, we import all the libraries required to perform our Machine Learning practical.
+
+Line 1:
+
+# EMAIL SPAM DETECTION USING KNN AND SVM
+
+# is used to write a comment in Python.
+
+Comments are not executed by Python.
+
+They are written to explain what the code does.
+
+This comment tells us that the practical is about detecting spam emails using KNN and SVM.
+
+Line 2:
+
+import pandas as pd
+
+What is Pandas?
+
+Pandas is a Python library used for data manipulation and data analysis.
+
+It helps us:
+
+Read CSV files.
+
+Create tables.
+
+Handle missing values.
+
+Remove duplicate records.
+
+Select specific columns.
+
+Perform operations on datasets.
+
+What is a CSV file?
+
+CSV stands for Comma-Separated Values.
+
+It is a file format used to store tabular data.
+
+For example:
+
+Name,Age,Marks
+Rahul,20,85
+Priya,21,90
+Amit,20,75
+Pandas allows us to read this file and convert it into a DataFrame.
+
+What is pd?
+
+pd is an alias (short name) for Pandas.
+
+Instead of writing:
+
+pandas.read_csv()
+
+We can write:
+
+pd.read_csv()
+
+This makes the code shorter and easier to write.
+
+Line 3:
+
+from sklearn.model_selection import train_test_split
+
+What is Scikit-learn?
+
+Scikit-learn is a Python Machine Learning library.
+
+It provides ready-made algorithms and functions for:
+
+Classification.
+
+Regression.
+
+Clustering.
+
+Data preprocessing.
+
+Model evaluation.
+
+Here:
+
+sklearn is the Scikit-learn library.
+
+model_selection is a module inside Scikit-learn.
+
+train_test_split is a function used to divide a dataset into training and testing data.
+
+Why do we need it?
+
+We cannot simply train our model using all the data and then test it on the same data.
+
+We need separate data to check whether the model can predict correctly on previously unseen examples.
+
+We will understand this in detail in Block 4.
+
+Line 4:
+
+from sklearn.preprocessing import StandardScaler
+
+What is preprocessing?
+
+Preprocessing means preparing raw data before giving it to a Machine Learning algorithm.
+
+For example, suppose our dataset contains:
+
+Feature
+
+Value
+
+Word count
+
+500
+
+Percentage of special characters
+
+0.05
+
+Number of links
+
+3
+
+The values have different ranges.
+
+StandardScaler transforms numerical features so that they have approximately:
+
+Mean = 0
+
+Standard deviation = 1
+
+This is called Standardization.
+
+Why do we need it?
+
+KNN calculates distances between data points.
+
+If one feature has very large values and another has very small values, the larger-valued feature may dominate the distance calculation.
+
+StandardScaler helps prevent this problem.
+
+We will study this properly in Block 5.
+
+Line 5:
+
+from sklearn.neighbors import KNeighborsClassifier
+
+This imports the KNN classification algorithm.
+
+neighbors is a Scikit-learn module.
+
+KNeighborsClassifier is the class that implements KNN for classification.
+
+We use it to classify emails into Spam or Not Spam.
+
+Line 6:
+
+from sklearn.svm import SVC
+
+This imports the Support Vector Classifier.
+
+svm is the Scikit-learn module for Support Vector Machines.
+
+SVC is the classification implementation of SVM.
+
+We use it to classify emails into two categories.
+
+Line 7:
+
+from sklearn.pipeline import make_pipeline
+
+What is a Pipeline?
+
+A Pipeline combines multiple Machine Learning operations into a single sequence.
+
+For example, our practical requires two operations:
+
+Standardize the data.
+
+Apply the KNN algorithm.
+
+Instead of manually performing both operations separately, we can combine them using a Pipeline.
+
+Example:
+
+model = make_pipeline(
+    StandardScaler(),
+    KNeighborsClassifier(n_neighbors=5)
+)
+
+This means:
+
+First → StandardScaler
+
+Then → KNN
+
+The same approach is used for SVM.
+
+Why do we use a Pipeline?
+
+Makes code cleaner.
+
+Automatically applies preprocessing before prediction.
+
+Helps prevent data leakage when fitting preprocessing only on training data.
+
+Ensures the same preprocessing is applied to training and testing data.
+
+Line 8:
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report
+
+This imports functions used to evaluate our ML models.
+
+Let's understand each one:
+
+Function
+
+Purpose
+
+accuracy_score
+
+Calculates overall correct predictions
+
+precision_score
+
+Measures how many predicted spam emails were actually spam
+
+recall_score
+
+Measures how many actual spam emails were detected
+
+f1_score
+
+Combines precision and recall
+
+confusion_matrix
+
+Shows correct and incorrect predictions in a matrix
+
+classification_report
+
+Displays precision, recall, F1-score and support for each class
+
+We will study each evaluation metric in Block 7.
+
+Remember for viva:
+
+Pandas → Data handling.
+
+Scikit-learn → Machine Learning.
+
+train_test_split → Splitting dataset.
+
+StandardScaler → Feature standardization.
+
+KNeighborsClassifier → KNN algorithm.
+
+SVC → SVM algorithm.
+
+make_pipeline → Combining preprocessing and model.
+
+sklearn.metrics → Model evaluation.
+
+BLOCK 2 – Loading the dataset
+Code
+# 2. Load dataset
+df = pd.read_csv('emails.csv.csv')
+
+print("Dataset:")
+print(df.head())
+print("\nDataset Shape:", df.shape)
+
+Explanation
+Line 1:
+
+# 2. Load dataset
+
+This is a comment indicating that the next part of the code loads our dataset.
+
+Line 2:
+
+df = pd.read_csv('emails.csv.csv')
+
+Let's break this into smaller parts.
+
+df is a variable.
+
+pd represents Pandas.
+
+read_csv() is a Pandas function.
+
+'emails.csv.csv' is the name of the dataset file.
+
+What happens here?
+
+Pandas opens the CSV file.
+
+Reads the data stored inside it.
+
+Converts the data into a DataFrame.
+
+Stores that DataFrame inside the variable df.
+
+What is a DataFrame?
+
+A DataFrame is a two-dimensional data structure provided by Pandas.
+
+It looks like a table with rows and columns.
+
+For example, imagine our dataset looks like this:
+
+Email No.
+
+free
+
+win
+
+offer
+
+money
+
+Prediction
+
+Email 1
+
+4
+
+2
+
+1
+
+3
+
+1
+
+Email 2
+
+0
+
+0
+
+0
+
+0
+
+0
+
+Email 3
+
+3
+
+5
+
+2
+
+4
+
+1
+
+Email 4
+
+0
+
+1
+
+0
+
+0
+
+0
+
+This is an illustrative example, not the actual contents of your uploaded dataset.
+
+Here:
+
+Each row represents one email.
+
+Each column represents a feature or attribute of that email.
+
+Prediction represents the target/output label.
+
+The actual dataset's feature columns are determined by your CSV file.
+
+Line 3:
+
+print("Dataset:")
+
+print() is a built-in Python function.
+
+It displays information on the screen.
+
+Here, it prints the text Dataset:.
+
+Line 4:
+
+print(df.head())
+
+What is head()?
+
+head() is a Pandas DataFrame function that displays the first five rows by default.
+
+For example:
+
+df.head()
+
+Displays the first 5 rows.
+
+df.head(10)
+
+Displays the first 10 rows.
+
+Why do we use it?
+
+To check whether:
+
+The dataset was loaded successfully.
+
+The columns are correct.
+
+The values are readable.
+
+The dataset contains the expected information.
+
+Line 5:
+
+print("\nDataset Shape:", df.shape)
+
+Let's understand both parts.
+
+"\n":
+
+\n represents a newline character.
+
+It moves the output to the next line.
+
+df.shape:
+
+shape is a DataFrame attribute.
+
+It returns the dimensions of the dataset.
+
+It gives the number of rows and columns.
+
+For example:
+
+df.shape
+
+Output:
+
+(5000, 3002)
+This means:
+
+5000 rows.
+
+3002 columns.
+
+These numbers are only an example.
+
+Important difference:
+
+Command
+
+Meaning
+
+df.head()
+
+Displays first five rows
+
+df.tail()
+
+Displays last five rows
+
+df.shape
+
+Returns rows and columns
+
+df.columns
+
+Displays column names
+
+df.info()
+
+Displays column information
+
+df.describe()
+
+Displays statistical information
+
+BLOCK 3 – Data preprocessing
+Code
+# 3. Preprocessing
+df = df.dropna()
+df = df.drop_duplicates()
+
+# Remove email number and separate input and output
+X = df.drop(columns=['Email No.', 'Prediction'])
+y = df['Prediction']
+
+This is one of the most important blocks in our practical.
+
+Before training an ML model, we need to prepare the dataset.
+
+This process is called Data Preprocessing.
+
+Line 1
+# 3. Preprocessing
+
+A comment indicating that we are preparing the dataset.
+
+Line 2
+df = df.dropna()
+
+What is missing data?
+
+Suppose our dataset contains:
+
+Name
+
+Age
+
+Marks
+
+Rahul
+
+20
+
+85
+
+Priya
+
+NaN
+
+90
+
+Amit
+
+21
+
+75
+
+Here, NaN means Not a Number. It represents a missing value.
+
+A missing value means that some information is not available.
+
+For example:
+
+Age is missing.
+
+Marks are missing.
+
+Some feature values are not recorded.
+
+What is dropna()?
+
+dropna() is a Pandas function used to remove rows or columns containing missing values.
+
+By default:
+
+df.dropna()
+
+Removes rows containing at least one missing value.
+
+After applying it:
+
+Name
+
+Age
+
+Marks
+
+Rahul
+
+20
+
+85
+
+Amit
+
+21
+
+75
+
+The row containing the missing value is removed.
+
+Why do we use it?
+
+Many Machine Learning algorithms cannot directly work with missing values.
+
+Removing incomplete rows is one way of handling missing data.
+
+Important: dropna() is not always the best solution. If many values are missing, removing rows can result in losing useful information. We can also use imputation, where missing values are replaced with suitable values such as mean, median or mode.
+
+Line 3
+df = df.drop_duplicates()
+
+What are duplicate records?
+
+Duplicate records are repeated rows in a dataset.
+
+Example:
+
+Name
+
+Age
+
+Marks
+
+Rahul
+
+20
+
+85
+
+Priya
+
+21
+
+90
+
+Rahul
+
+20
+
+85
+
+Here, Rahul's record is repeated.
+
+What is drop_duplicates()?
+
+It is a Pandas function used to remove duplicate rows.
+
+After applying it:
+
+Name
+
+Age
+
+Marks
+
+Rahul
+
+20
+
+85
+
+Priya
+
+21
+
+90
+
+Why do we remove duplicates?
+
+To avoid repeated information.
+
+To reduce unnecessary data.
+
+To prevent repeated records from affecting model learning and evaluation.
+
+Line 4
+# Remove email number and separate input and output
+
+This comment explains the next two lines.
+
+We are separating the input features from the output/target column.
+
+Before understanding the code, let's understand two very important terms.
+
+What is X?
+
+X represents independent variables or input features.
+
+These are the values that the ML model uses to make predictions.
+
+In our practical, these are the email-related feature columns.
+
+For example:
+
+Frequency of particular words.
+
+Number of times certain terms appear.
+
+Other numerical email features available in the dataset.
+
+What is y?
+
+y represents the dependent variable or target variable.
+
+It is the output that we want the model to predict.
+
+In our practical:
+
+0 = Not Spam.
+
+1 = Spam.
+
+Line 5
+X = df.drop(columns=['Email No.', 'Prediction'])
+
+Let's understand it.
+
+X is a variable that stores input features.
+
+df is our original DataFrame.
+
+drop() removes specified columns.
+
+columns specifies the column names to remove.
+
+Here, we remove two columns:
+
+1. Email No.
+
+This is an email identifier or serial number.
+
+It identifies an email but does not necessarily help the model determine whether it is spam.
+
+For example:
+
+Email No.
+
+1
+
+2
+
+3
+
+The number 1 does not mean that the email is spam, and number 2 does not mean it is genuine.
+
+Therefore, we remove this identifier from the input features.
+
+2. Prediction
+
+This column contains the correct output labels.
+
+We cannot include it in X because the model must learn to predict this column.
+
+If we include the answer itself as an input, the model would get information it is supposed to predict. This is called target leakage.
+
+Therefore, we remove both columns from X.
+
+Line 6
+y = df['Prediction']
+
+This line extracts the target column from the DataFrame.
+
+df['Prediction'] selects the Prediction column.
+
+y stores the selected column.
+
+Example:
+
+Prediction
+
+1
+
+0
+
+1
+
+0
+
+This is what the model will learn to predict.
+
+Visual understanding of X and y
+Original dataset
+
+Email No. + features + Prediction
+
+Email No. | free | win | offer | Prediction
+X – Input
+
+free, win, offer and other features
+
+y – Output
+
+Prediction (0 or 1)
+
+X contains the information used for prediction; y contains the correct answer.
+
+Remember: X = Input and y = Output.
+
+BLOCK 4 – Splitting the dataset into training and testing data
+Code
+# 4. Split dataset into training and testing sets
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+This is another very important concept in Machine Learning.
+
+First, understand Training and Testing.
+What is Training?
+
+Training means providing data to a Machine Learning algorithm so that it can learn patterns and relationships.
+
+Example:
+
+We provide 100 emails to our model.
+
+The model studies their features and corresponding labels.
+
+It learns which patterns are associated with Spam and Not Spam.
+
+What is Testing?
+
+Testing means checking how well the trained model predicts the correct output for data it has not seen during training.
+
+We provide new emails to the model and compare its predictions with the actual answers.
+
+Why do we split the dataset?
+
+If we train and test using exactly the same data, the model's performance evaluation may be misleading.
+
+We want to know whether the model can generalize to unseen data.
+
+Understanding each line
+Line 1:
+
+X_train, X_test, y_train, y_test = train_test_split(
+
+train_test_split() is a function from Scikit-learn.
+
+It divides the dataset into four parts.
+
+X_train: Input features used for training.
+
+X_test: Input features used for testing.
+
+y_train: Correct output labels used during training.
+
+y_test: Correct output labels used for evaluating predictions.
+
+Line 2:
+
+X, y, test_size=0.2, random_state=42, stratify=y
+
+Let's understand every parameter.
+
+1. X
+
+The input features.
+
+These are the columns used to predict whether an email is spam.
+
+2. y
+
+The target/output column.
+
+It contains the actual Spam and Not Spam labels.
+
+3. test_size=0.2
+
+This specifies the percentage of data used for testing.
+
+Here:
+
+test_size=0.2
+
+Means 20% of the dataset is used for testing.
+
+The remaining 80% is used for training.
+
+Example:
+
+Suppose our dataset has 1,000 emails.
+
+Dataset
+
+Percentage
+
+Number of emails
+
+Training
+
+80%
+
+800
+
+Testing
+
+20%
+
+200
+
+Total
+
+100%
+
+1000
+
+4. random_state=42
+
+What is random_state?
+
+The splitting process involves randomness.
+
+Every time we split the dataset, we might get different training and testing records.
+
+For example:
+
+First execution:
+
+Training: Email 1, 2, 4, 5...
+
+Testing: Email 3, 6, 7...
+
+Second execution could produce a different split.
+
+To make the split reproducible, we use random_state.
+
+Here:
+
+random_state=42
+
+It fixes the random seed so that repeated executions with the same data and settings produce the same split.
+
+Why 42?
+
+There is nothing special about 42. It is simply a commonly used example of a fixed seed. We could use 10, 100 or another integer.
+
+5. stratify=y
+
+This is particularly important for classification problems.
+
+What is stratification?
+
+Stratification means maintaining approximately the same proportion of each class in both training and testing datasets.
+
+Example:
+
+Suppose we have 1,000 emails:
+
+800 Not Spam.
+
+200 Spam.
+
+Original distribution:
+
+Class
+
+Percentage
+
+Not Spam
+
+80%
+
+Spam
+
+20%
+
+When we use:
+
+stratify=y
+
+The training and testing sets will approximately preserve this distribution.
+
+Dataset
+
+Not Spam
+
+Spam
+
+Training (800)
+
+640
+
+160
+
+Testing (200)
+
+160
+
+40
+
+This is an illustrative example.
+
+Why is stratification useful?
+
+Suppose we randomly split data without stratification and accidentally get very few spam emails in the testing dataset.
+
+Then our model evaluation may not properly represent its ability to detect spam.
+
+Stratification helps avoid such an imbalance in the split.
+
+Final understanding
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+Means:
+
+Take input features and output labels, divide them into 80% training and 20% testing, use a fixed random seed, and maintain the class proportions.
+
+BLOCK 5 – K-Nearest Neighbors (KNN) Classification
+Code
+# 5. K-Nearest Neighbors (KNN) Classification
+
+knn = make_pipeline(
+    StandardScaler(),
+    KNeighborsClassifier(n_neighbors=5)
+)
+
+knn.fit(X_train, y_train)
+knn_pred = knn.predict(X_test)
+
+Now we are implementing our first Machine Learning algorithm: KNN.
+
+Line 1
+# 5. K-Nearest Neighbors (KNN) Classification
+
+This is a comment indicating that we are implementing the KNN algorithm.
+
+Line 2
+knn = make_pipeline(
+
+Here, we create a Machine Learning Pipeline.
+
+knn is the variable that stores our pipeline.
+
+make_pipeline() combines multiple steps.
+
+We are going to combine StandardScaler and KNN.
+
+Why do we need this?
+
+Because we want the data to be standardized before the KNN algorithm uses it.
+
+Line 3
+StandardScaler(),
+
+This creates a StandardScaler object.
+
+What is Standardization?
+
+Standardization is a feature scaling technique.
+
+It transforms the numerical values of features so that they have approximately a mean of 0 and a standard deviation of 1.
+
+The formula is:
+
+z
+=
+x
+−
+μ
+σ
+z= 
+σ
+x−μ
+​
+ 
+Where:
+
+z
+z = Standardized value.
+
+x
+x = Original value.
+
+μ
+μ = Mean of the feature.
+
+σ
+σ = Standard deviation of the feature.
+
+Let's understand with a simple example.
+
+Suppose a feature has these values:
+
+10, 20, 30
+Mean:
+
+μ
+=
+10
++
+20
++
+30
+3
+=
+20
+μ= 
+3
+10+20+30
+​
+ =20
+Standard deviation (population):
+
+σ
+=
+(
+10
+−
+20
+)
+2
++
+(
+20
+−
+20
+)
+2
++
+(
+30
+−
+20
+)
+2
+3
+σ= 
+3
+(10−20) 
+2
+ +(20−20) 
+2
+ +(30−20) 
+2
+ 
+​
+ 
+​
+ 
+σ
+≈
+8.165
+σ≈8.165
+For the value 10:
+
+z
+=
+10
+−
+20
+8.165
+z= 
+8.165
+10−20
+​
+ 
+z
+≈
+−
+1.225
+z≈−1.225
+The original value 10 becomes approximately -1.225 after standardization.
+
+Similarly:
+
+20 becomes 0.
+
+30 becomes approximately 1.225.
+
+Why do we need standardization in KNN?
+
+KNN uses distance to find the nearest neighbours.
+
+Consider two features:
+
+Email
+
+Word count
+
+Special characters
+
+A
+
+500
+
+2
+
+B
+
+600
+
+4
+
+The numerical ranges are very different.
+
+If we calculate distances directly, word count can have a much greater influence than the number of special characters.
+
+Standardization helps bring the features onto a comparable scale.
+
+Line 4
+KNeighborsClassifier(n_neighbors=5)
+
+This creates the KNN classification model.
+
+Let's break it down.
+
+KNeighborsClassifier = KNN algorithm for classification.
+
+n_neighbors=5 = Number of nearest neighbours to consider.
+
+Here, K = 5.
+
+How does KNN make a prediction?
+
+Suppose we want to classify a new email.
+
+The model:
+
+Calculates distances between the new email and training emails.
+
+Finds the five closest emails.
+
+Checks their class labels.
+
+Uses majority voting.
+
+Predicts the class with the most votes.
+
+Example:
+
+Neighbour
+
+Class
+
+1
+
+Spam
+
+2
+
+Spam
+
+3
+
+Not Spam
+
+4
+
+Spam
+
+5
+
+Not Spam
+
+Votes:
+
+Spam = 3.
+
+Not Spam = 2.
+
+Final prediction = Spam.
+
+This is called Majority Voting.
+
+Which distance does KNN use?
+
+A common distance measure is Euclidean Distance.
+
+Formula:
+
+d
+=
+∑
+i
+=
+1
+n
+(
+x
+i
+−
+y
+i
+)
+2
+d= 
+i=1
+∑
+n
+​
+ (x 
+i
+​
+ −y 
+i
+​
+ ) 
+2
+ 
+​
+ 
+For two-dimensional data:
+
+d
+=
+(
+x
+2
+−
+x
+1
+)
+2
++
+(
+y
+2
+−
+y
+1
+)
+2
+d= 
+(x 
+2
+​
+ −x 
+1
+​
+ ) 
+2
+ +(y 
+2
+​
+ −y 
+1
+​
+ ) 
+2
+ 
+​
+ 
+Example:
+
+Point A = (2, 3)
+
+Point B = (5, 7)
+
+d
+=
+(
+5
+−
+2
+)
+2
++
+(
+7
+−
+3
+)
+2
+d= 
+(5−2) 
+2
+ +(7−3) 
+2
+ 
+​
+ 
+d
+=
+9
++
+16
+=
+25
+=
+5
+d= 
+9+16
+​
+ = 
+25
+​
+ =5
+The distance between these two points is 5.
+
+Line 5
+)
+
+This closes the make_pipeline() function.
+
+Our pipeline now contains:
+
+StandardScaler.
+
+KNeighborsClassifier with K = 5.
+
+The execution order is:
+
+Input training data
+
+X_train
+
+StandardScaler
+
+Standardizes the features
+
+KNN (K = 5)
+
+Learns the training examples
+
+Prediction
+
+Spam or Not Spam
+
+Line 6
+knn.fit(X_train, y_train)
+
+This is where actual model training happens.
+
+What is fit()?
+
+fit() is a method used to train a Machine Learning model.
+
+It accepts:
+
+X_train: Training input features.
+
+y_train: Correct training labels.
+
+What happens here?
+
+The pipeline receives X_train.
+
+StandardScaler learns the mean and standard deviation from X_train and transforms it.
+
+KNN stores the standardized training examples and their labels.
+
+Important: KNN is called a lazy learning algorithm because it does not learn a traditional mathematical decision boundary during training. It stores the training examples and performs neighbour calculations when predicting.
+
+Line 7
+knn_pred = knn.predict(X_test)
+
+What is predict()?
+
+predict() is used to generate predictions for new input data.
+
+Here:
+
+knn is our trained pipeline.
+
+X_test contains testing data.
+
+predict() generates the predicted classes.
+
+knn_pred stores those predictions.
+
+What happens internally?
+
+Testing data is passed to the pipeline.
+
+StandardScaler transforms the testing data using the mean and standard deviation learned from the training data.
+
+KNN calculates distances from the training examples.
+
+It finds the five nearest neighbours.
+
+It predicts the majority class.
+
+Example:
+
+knn_pred = [1, 0, 1, 1, 0]
+
+This is an illustrative prediction array.
+
+Here:
+
+1 = Spam.
+
+0 = Not Spam.
+
+Important difference:
+
+Method
+
+Purpose
+
+fit()
+
+Trains the model
+
+predict()
+
+Predicts output
+
+transform()
+
+Transforms data
+
+fit_transform()
+
+Learns transformation parameters and transforms data
+
+BLOCK 6 – Support Vector Machine (SVM) Classification
+Code
+# 6. Support Vector Machine (SVM) Classification
+
+svm = make_pipeline(
+    StandardScaler(),
+    SVC(kernel='linear', random_state=42)
+)
+
+svm.fit(X_train, y_train)
+svm_pred = svm.predict(X_test)
+
+This block implements the second ML algorithm: SVM.
+
+Line 1
+# 6. Support Vector Machine (SVM) Classification
+
+This is a comment describing the next block.
+
+Line 2
+svm = make_pipeline(
+
+We create a pipeline and store it in a variable called svm.
+
+Just like KNN, this pipeline will contain:
+
+StandardScaler.
+
+SVM classifier.
+
+Line 3
+StandardScaler(),
+
+This standardizes the input features before passing them to SVM.
+
+Why do we use it?
+
+SVM is sensitive to feature scales.
+
+If one feature has a much larger range than another, the model's margin and decision boundary can be affected.
+
+Standardization helps make the features comparable.
+
+Line 4
+SVC(kernel='linear', random_state=42)
+
+Let's understand each part.
+
+1. SVC
+
+SVC stands for Support Vector Classifier.
+
+It is Scikit-learn's implementation of Support Vector Machine for classification.
+
+2. kernel='linear'
+
+What is a kernel?
+
+A kernel helps SVM determine the decision boundary between different classes.
+
+Different types of kernels include:
+
+Kernel
+
+Purpose
+
+Linear
+
+Straight decision boundary
+
+Polynomial
+
+Polynomial-shaped decision boundary
+
+RBF
+
+Handles nonlinear decision boundaries
+
+Sigmoid
+
+Uses a sigmoid-based kernel function
+
+In our practical:
+
+kernel='linear'
+
+This means we use a linear kernel.
+
+It tries to find a straight decision boundary in the feature space.
+
+3. random_state=42
+
+This specifies a fixed random seed for operations in the estimator that use randomness.
+
+It helps make such operations reproducible.
+
+For this particular linear SVC configuration, the random seed generally does not affect the result.
+
+Line 5
+)
+
+This closes the pipeline.
+
+Our SVM pipeline contains:
+
+StandardScaler.
+
+SVC with a linear kernel.
+
+Line 6
+svm.fit(X_train, y_train)
+
+This trains the SVM model.
+
+What happens?
+
+X_train is passed to StandardScaler.
+
+StandardScaler learns and applies feature scaling.
+
+SVM receives the transformed training data.
+
+SVM learns a decision boundary that separates the classes.
+
+Unlike KNN, SVM learns a decision function during training.
+
+Line 7
+svm_pred = svm.predict(X_test)
+
+This predicts the class labels for testing data.
+
+The pipeline:
+
+Standardizes X_test using the training-set scaling parameters.
+
+Passes the data to SVM.
+
+Uses the learned decision boundary.
+
+Predicts Spam or Not Spam.
+
+The results are stored in svm_pred.
+
+Difference between KNN and SVM
+KNN
+
+SVM
+
+Distance-based algorithm
+
+Margin-based algorithm
+
+Uses nearest neighbours
+
+Uses decision boundary
+
+Uses majority voting
+
+Uses a learned hyperplane
+
+Lazy learning algorithm
+
+Eager learning algorithm
+
+Requires feature scaling
+
+Usually benefits from feature scaling
+
+K is an important parameter
+
+Kernel and C are important parameters
+
+Important viva question: Why do we use both KNN and SVM?
+
+We use both algorithms to compare their performance on the same dataset.
+
+This helps us understand which algorithm performs better for our spam detection problem based on the evaluation metrics.
+
+BLOCK 7 – Evaluating the KNN model
+Code
+# 7. Evaluate KNN
+
+print("\n========== KNN RESULTS ==========")
+
+print("Accuracy:", accuracy_score(y_test, knn_pred))
+
+print("Precision:", precision_score(y_test, knn_pred))
+
+print("Recall:", recall_score(y_test, knn_pred))
+
+print("F1 Score:", f1_score(y_test, knn_pred))
+
+print("Confusion Matrix:\n", confusion_matrix(y_test, knn_pred))
+
+print("Classification Report:\n", classification_report(y_test, knn_pred))
+
+Now that we have trained our KNN model and generated predictions, we need to evaluate how well it works.
+
+This process is called Model Evaluation.
+
+First, understand two things:
+
+y_test = Actual answers.
+
+knn_pred = Predictions made by KNN.
+
+We compare these two to measure model performance.
+
+Line 1
+# 7. Evaluate KNN
+
+A comment indicating that we are evaluating the KNN model.
+
+Line 2
+print("\n========== KNN RESULTS ==========")
+
+Prints a heading to separate the KNN results from other outputs.
+
+Line 3 – Accuracy
+print("Accuracy:", accuracy_score(y_test, knn_pred))
+
+What is Accuracy?
+
+Accuracy is the percentage of total predictions that are correct.
+
+Formula:
+
+A
+c
+c
+u
+r
+a
+c
+y
+=
+T
+P
++
+T
+N
+T
+P
++
+T
+N
++
+F
+P
++
+F
+N
+Accuracy= 
+TP+TN+FP+FN
+TP+TN
+​
+ 
+Let's understand the terms first.
+
+Confusion Matrix – The four important terms
+Suppose our model predicts whether emails are Spam or Not Spam.
+
+There are four possible outcomes.
+
+Term
+
+Meaning
+
+Example
+
+TP
+
+True Positive
+
+Actual Spam, predicted Spam
+
+TN
+
+True Negative
+
+Actual Not Spam, predicted Not Spam
+
+FP
+
+False Positive
+
+Actual Not Spam, predicted Spam
+
+FN
+
+False Negative
+
+Actual Spam, predicted Not Spam
+
+Let's understand them carefully.
+
+1. True Positive (TP)
+
+Actual result = Spam.
+
+Predicted result = Spam.
+
+The model correctly identifies spam.
+
+2. True Negative (TN)
+
+Actual result = Not Spam.
+
+Predicted result = Not Spam.
+
+The model correctly identifies genuine email.
+
+3. False Positive (FP)
+
+Actual result = Not Spam.
+
+Predicted result = Spam.
+
+The model incorrectly marks a genuine email as spam.
+
+This is also called a Type I error.
+
+4. False Negative (FN)
+
+Actual result = Spam.
+
+Predicted result = Not Spam.
+
+The model fails to identify a spam email.
+
+This is also called a Type II error.
+
+Example of a confusion matrix
+Suppose our model gives the following results:
+
+Predicted Not Spam
+
+Predicted Spam
+
+Actual Not Spam
+
+90
+
+10
+
+Actual Spam
+
+5
+
+95
+
+Here:
+
+TN = 90.
+
+FP = 10.
+
+FN = 5.
+
+TP = 95.
+
+Total emails:
+
+90
++
+10
++
+5
++
+95
+=
+200
+90+10+5+95=200
+Accuracy:
+
+A
+c
+c
+u
+r
+a
+c
+y
+=
+95
++
+90
+200
+Accuracy= 
+200
+95+90
+​
+ 
+A
+c
+c
+u
+r
+a
+c
+y
+=
+185
+200
+=
+0.925
+Accuracy= 
+200
+185
+​
+ =0.925
+A
+c
+c
+u
+r
+a
+c
+y
+=
+92.5
+%
+Accuracy=92.5%
+This means 92.5% of the predictions were correct.
+
+Line 4 – Precision
+print("Precision:", precision_score(y_test, knn_pred))
+
+What is Precision?
+
+Precision tells us how many of the emails predicted as Spam were actually Spam.
+
+Formula:
+
+P
+r
+e
+c
+i
+s
+i
+o
+n
+=
+T
+P
+T
+P
++
+F
+P
+Precision= 
+TP+FP
+TP
+​
+ 
+Using our example:
+
+P
+r
+e
+c
+i
+s
+i
+o
+n
+=
+95
+95
++
+10
+Precision= 
+95+10
+95
+​
+ 
+P
+r
+e
+c
+i
+s
+i
+o
+n
+=
+95
+105
+Precision= 
+105
+95
+​
+ 
+P
+r
+e
+c
+i
+s
+i
+o
+n
+≈
+0.9048
+Precision≈0.9048
+P
+r
+e
+c
+i
+s
+i
+o
+n
+≈
+90.48
+%
+Precision≈90.48%
+Meaning:
+
+Out of all emails predicted as Spam, approximately 90.48% were actually Spam.
+
+Why is precision important?
+
+We don't want genuine emails to be incorrectly classified as spam.
+
+Higher precision means fewer false spam predictions, assuming the other conditions remain comparable.
+
+Line 5 – Recall
+print("Recall:", recall_score(y_test, knn_pred))
+
+What is Recall?
+
+Recall tells us how many actual spam emails were correctly identified by the model.
+
+Formula:
+
+R
+e
+c
+a
+l
+l
+=
+T
+P
+T
+P
++
+F
+N
+Recall= 
+TP+FN
+TP
+​
+ 
+Using our example:
+
+R
+e
+c
+a
+l
+l
+=
+95
+95
++
+5
+Recall= 
+95+5
+95
+​
+ 
+R
+e
+c
+a
+l
+l
+=
+95
+100
+=
+0.95
+Recall= 
+100
+95
+​
+ =0.95
+R
+e
+c
+a
+l
+l
+=
+95
+%
+Recall=95%
+Meaning:
+
+Out of all actual spam emails, the model successfully detected 95%.
+
+Why is recall important?
+
+We don't want spam emails to enter the user's inbox.
+
+Higher recall means fewer spam emails are missed, assuming other conditions remain comparable.
+
+Line 6 – F1 Score
+print("F1 Score:", f1_score(y_test, knn_pred))
+
+What is F1 Score?
+
+F1 Score is the harmonic mean of Precision and Recall.
+
+It provides a combined measure of these two metrics.
+
+Formula:
+
+F
+1
+=
+2
+×
+P
+r
+e
+c
+i
+s
+i
+o
+n
+×
+R
+e
+c
+a
+l
+l
+P
+r
+e
+c
+i
+s
+i
+o
+n
++
+R
+e
+c
+a
+l
+l
+F1=2× 
+Precision+Recall
+Precision×Recall
+​
+ 
+Using our example:
+
+Precision = 0.9048
+
+Recall = 0.95
+
+F
+1
+=
+2
+×
+0.9048
+×
+0.95
+0.9048
++
+0.95
+F1=2× 
+0.9048+0.95
+0.9048×0.95
+​
+ 
+F
+1
+≈
+0.9268
+F1≈0.9268
+F
+1
+≈
+92.68
+%
+F1≈92.68%
+Why do we use F1 Score?
+
+Sometimes accuracy alone is not enough.
+
+For example, if a dataset contains 95% Not Spam and only 5% Spam, a model that predicts every email as Not Spam can achieve 95% accuracy while detecting zero spam emails.
+
+F1 Score helps evaluate the balance between precision and recall.
+
+Line 7 – Confusion Matrix
+print("Confusion Matrix:\n", confusion_matrix(y_test, knn_pred))
+
+What is a confusion matrix?
+
+It is a table that compares actual class labels with predicted class labels.
+
+It displays:
+
+True Positive.
+
+True Negative.
+
+False Positive.
+
+False Negative.
+
+For binary classification, Scikit-learn arranges the matrix using the sorted class labels.
+
+Since our classes are 0 and 1, the arrangement is:
+
+[[TN, FP],
+ [FN, TP]]
+Example:
+
+[[90 10]
+ [ 5 95]]
+Meaning:
+
+90 = Correctly predicted Not Spam.
+
+10 = Not Spam incorrectly predicted as Spam.
+
+5 = Spam incorrectly predicted as Not Spam.
+
+95 = Correctly predicted Spam.
+
+Line 8 – Classification Report
+print("Classification Report:\n", classification_report(y_test, knn_pred))
+
+What is a Classification Report?
+
+It displays multiple evaluation metrics in one report.
+
+It contains:
+
+Precision.
+
+Recall.
+
+F1-score.
+
+Support.
+
+What is Support?
+
+Support represents the number of actual samples belonging to each class in the testing dataset.
+
+Example:
+
+Class
+
+Precision
+
+Recall
+
+F1-score
+
+Support
+
+0
+
+0.95
+
+0.90
+
+0.92
+
+100
+
+1
+
+0.90
+
+0.95
+
+0.92
+
+100
+
+These are illustrative values.
+
+What is Macro Average?
+
+Macro average calculates the arithmetic mean of the metric values across all classes, giving each class equal importance.
+
+What is Weighted Average?
+
+Weighted average calculates the average by considering the number of actual samples in each class.
+
+It gives more weight to classes with more samples.
+
+Remember:
+
+Accuracy = Overall correctness.
+
+Precision = Correctness of positive predictions.
+
+Recall = How many actual positive cases were detected.
+
+F1 Score = Balance between precision and recall.
+
+Confusion Matrix = Detailed correct/incorrect prediction counts.
+
+Support = Actual number of samples in each class.
+
+BLOCK 8 – Evaluating the SVM model
+Code
+# 8. Evaluate SVM
+
+print("\n========== SVM RESULTS ==========")
+
+print("Accuracy:", accuracy_score(y_test, svm_pred))
+
+print("Precision:", precision_score(y_test, svm_pred))
+
+print("Recall:", recall_score(y_test, svm_pred))
+
+print("F1 Score:", f1_score(y_test, svm_pred))
+
+print("Confusion Matrix:\n", confusion_matrix(y_test, svm_pred))
+
+print("Classification Report:\n", classification_report(y_test, svm_pred))
+
+This block is almost identical to Block 7.
+
+The only difference is that here we evaluate the SVM model instead of KNN.
+
+Let's understand the changes.
+
+Line 1
+# 8. Evaluate SVM
+
+Comment indicating SVM evaluation.
+
+Line 2
+print("\n========== SVM RESULTS ==========")
+
+Displays the SVM results heading.
+
+Line 3
+print("Accuracy:", accuracy_score(y_test, svm_pred))
+
+Calculates the accuracy of SVM.
+
+y_test = Actual testing labels.
+
+svm_pred = Predicted testing labels.
+
+Line 4
+print("Precision:", precision_score(y_test, svm_pred))
+
+Calculates how many emails predicted as Spam were actually Spam.
+
+Line 5
+print("Recall:", recall_score(y_test, svm_pred))
+
+Calculates how many actual Spam emails were correctly identified.
+
+Line 6
+print("F1 Score:", f1_score(y_test, svm_pred))
+
+Calculates the harmonic mean of precision and recall.
+
+Line 7
+print("Confusion Matrix:\n", confusion_matrix(y_test, svm_pred))
+
+Displays the confusion matrix for SVM.
+
+Line 8
+print("Classification Report:\n", classification_report(y_test, svm_pred))
+
+Displays the complete classification report for SVM.
+
+Why are we evaluating both models separately?
+
+Because we want to compare the performance of KNN and SVM on the same testing dataset.
+
+This helps us identify which algorithm performs better for our particular dataset.
+
+BLOCK 9 – Comparing KNN and SVM
+Code
+# 9. Compare both models
+
+results = pd.DataFrame({
+    'Model': ['KNN', 'SVM'],
+
+    'Accuracy': [
+        accuracy_score(y_test, knn_pred),
+        accuracy_score(y_test, svm_pred)
+    ],
+
+    'Precision': [
+        precision_score(y_test, knn_pred),
+        precision_score(y_test, svm_pred)
+    ],
+
+    'Recall': [
+        recall_score(y_test, knn_pred),
+        recall_score(y_test, svm_pred)
+    ],
+
+    'F1 Score': [
+        f1_score(y_test, knn_pred),
+        f1_score(y_test, svm_pred)
+    ]
+})
+
+print("\n========== MODEL COMPARISON ==========")
+print(results)
+
+print("\nBetter model based on F1 Score:",
+      results.loc[results['F1 Score'].idxmax(), 'Model'])
+
+This is the final block of our practical.
+
+Here, we create a comparison table containing the evaluation results of both algorithms.
+
+Line 1
+# 9. Compare both models
+
+A comment indicating that we are comparing KNN and SVM.
+
+Line 2
+results = pd.DataFrame({
+
+Let's understand this.
+
+results is a variable.
+
+pd.DataFrame() creates a Pandas DataFrame.
+
+{} represents a Python dictionary.
+
+We are creating a table containing the performance metrics of both models.
+
+Line 3
+'Model': ['KNN', 'SVM'],
+
+This creates a column called Model.
+
+It contains two values:
+
+KNN.
+
+SVM.
+
+These identify the algorithms being compared.
+
+Line 4
+'Accuracy': [
+    accuracy_score(y_test, knn_pred),
+    accuracy_score(y_test, svm_pred)
+],
+
+This creates the Accuracy column.
+
+It calculates:
+
+KNN accuracy.
+
+SVM accuracy.
+
+The values are stored in the same order as the model names.
+
+Line 5
+'Precision': [
+    precision_score(y_test, knn_pred),
+    precision_score(y_test, svm_pred)
+],
+
+This creates the Precision column.
+
+It calculates precision for both algorithms.
+
+Line 6
+'Recall': [
+    recall_score(y_test, knn_pred),
+    recall_score(y_test, svm_pred)
+],
+
+This creates the Recall column.
+
+It calculates recall for both algorithms.
+
+Line 7
+'F1 Score': [
+    f1_score(y_test, knn_pred),
+    f1_score(y_test, svm_pred)
+]
+
+This creates the F1 Score column.
+
+It calculates the F1 score for both models.
+
+Line 8
+})
+
+This closes the dictionary and the DataFrame creation.
+
+Our comparison table will look something like this:
+
+Model
+
+Accuracy
+
+Precision
+
+Recall
+
+F1 Score
+
+KNN
+
+0.91
+
+0.90
+
+0.92
+
+0.91
+
+SVM
+
+0.95
+
+0.94
+
+0.96
+
+0.95
+
+These values are only an example. Your actual output depends on the dataset and execution.
+
+Line 9
+print("\n========== MODEL COMPARISON ==========")
+
+Displays the heading for the model comparison.
+
+Line 10
+print(results)
+
+Displays the DataFrame containing the evaluation metrics.
+
+Final two lines – Selecting the better model
+print("\nBetter model based on F1 Score:",
+      results.loc[results['F1 Score'].idxmax(), 'Model'])
+
+This is an important line. Let's break it down carefully.
+
+Part 1:
+
+results['F1 Score']
+
+Selects the F1 Score column from the comparison DataFrame.
+
+Example:
+
+0    0.91
+1    0.95
+Part 2:
+
+results['F1 Score'].idxmax()
+
+What is idxmax()?
+
+idxmax() returns the index (row position label) containing the maximum value.
+
+Example:
+
+0    0.91
+1    0.95
+The highest F1 score is 0.95.
+
+Its index is 1.
+
+Therefore:
+
+results['F1 Score'].idxmax()
+
+Returns:
+
+1
+Part 3:
+
+results.loc[1, 'Model']
+
+What is loc?
+
+loc is a Pandas accessor used to select rows and columns using their labels.
+
+Here:
+
+1 = Row index.
+
+'Model' = Column name.
+
+It selects the model name from row 1.
+
+If row 1 contains SVM, the result is:
+
+SVM
+Putting everything together:
+
+results.loc[results['F1 Score'].idxmax(), 'Model']
+
+Means:
+
+Find the F1 Score column.
+
+Find the maximum F1 Score.
+
+Get its row index.
+
+Select the Model column at that index.
+
+Return the model name.
+
+Finally, print() displays the name of the model with the highest F1 Score.
+
+Why use F1 Score for comparison?
+
+Because F1 Score balances Precision and Recall.
+
+For spam detection, both are important:
+
+Precision helps avoid marking genuine emails as spam.
+
+Recall helps avoid missing spam emails.
+
+However, the best metric ultimately depends on the application's requirements.
+
+PART 3 – Complete practical workflow
+Now let's understand how the entire practical works from beginning to end.
+
+Email Spam Detection – Workflow
+Import Libraries
+
+Import Pandas and Scikit-learn functions.
+
+Load Dataset
+
+Read the emails CSV file using Pandas.
+
+Preprocessing
+
+Remove missing values and duplicate records.
+
+Separate X and y
+
+Separate input features and output labels.
+
+Train-Test Split
+
+Divide data into 80% training and 20% testing.
+
+KNN Model
+
+Standardize data, train KNN and predict results.
+
+SVM Model
+
+Standardize data, train SVM and predict results.
+
+Model Evaluation
+
+Calculate Accuracy, Precision, Recall, F1 Score and Confusion Matrix.
+
+Model Comparison
+
+Compare KNN and SVM and select the higher F1 Score.
+
+PART 4 – Complete code (copy-paste version)
+This is the complete code from your notebook, without changing the logic.
+
+You can copy and paste it directly into Jupyter Notebook.
+
+
+# EMAIL SPAM DETECTION USING KNN AND SVM
+
+# 1. Import libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report
+
+# 2. Load dataset
+df = pd.read_csv('emails.csv.csv')
+
+print("Dataset:")
+print(df.head())
+print("\nDataset Shape:", df.shape)
+
+# 3. Preprocessing
+df = df.dropna()
+df = df.drop_duplicates()
+
+# Remove email number and separate input and output
+X = df.drop(columns=['Email No.', 'Prediction'])
+y = df['Prediction']
+
+# 4. Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# 5. K-Nearest Neighbors (KNN) Classification
+knn = make_pipeline(
+    StandardScaler(),
+    KNeighborsClassifier(n_neighbors=5)
+
+PART 5 – Sample output
+Your actual output depends on the contents of emails.csv.csv, so the following is an illustrative example.
+
+1. Dataset output
+Dataset:
+   Email No.  free  win  offer  Prediction
+0  Email 1      4    2      1       1
+1  Email 2      0    0      0       0
+2  Email 3      3    5      2       1
+
+Dataset Shape: (5000, 3002)
+2. KNN results
+========== KNN RESULTS ==========
+
+Accuracy: 0.92
+Precision: 0.91
+Recall: 0.93
+F1 Score: 0.92
+
+Confusion Matrix:
+[[90 10]
+ [ 6 94]]
+3. SVM results
+========== SVM RESULTS ==========
+
+Accuracy: 0.95
+Precision: 0.94
+Recall: 0.96
+F1 Score: 0.95
+
+Confusion Matrix:
+[[94  6]
+ [ 4 96]]
+4. Model comparison
+========== MODEL COMPARISON ==========
+
+  Model  Accuracy  Precision  Recall  F1 Score
+0   KNN      0.92       0.91    0.93      0.92
+1   SVM      0.95       0.94    0.96      0.95
+
+Better model based on F1 Score: SVM
+Again, these are sample values, not the measured results from your dataset.
+
+PART 6 – Important concepts for your practical viva
+These are the concepts you should be able to explain to your examiner.
+
+Concept
+
+Simple meaning
+
+Machine Learning
+
+Computer learns patterns from data
+
+Supervised Learning
+
+Learning using labelled data
+
+Classification
+
+Predicting a category
+
+Binary Classification
+
+Predicting between two classes
+
+Dataset
+
+Collection of data
+
+DataFrame
+
+Tabular data structure in Pandas
+
+Data Preprocessing
+
+Preparing data before training
+
+Missing Values
+
+Values not available in the dataset
+
+Duplicate Records
+
+Repeated rows
+
+Features
+
+Input variables
+
+Target
+
+Output variable
+
+Training
+
+Teaching the model using data
+
+Testing
+
+Checking model performance
+
+Standardization
+
+Scaling data using mean and standard deviation
+
+Pipeline
+
+Combining multiple ML operations
+
+KNN
+
+Classification using nearest neighbours
+
+SVM
+
+Classification using an optimal decision boundary
+
+Hyperplane
+
+Boundary separating classes
+
+Kernel
+
+Function used by SVM to determine decision boundaries
+
+Confusion Matrix
+
+Table of correct and incorrect predictions
+
+Accuracy
+
+Overall correct predictions
+
+Precision
+
+Correctness of positive predictions
+
+Recall
+
+Detection of actual positive cases
+
+F1 Score
+
+Harmonic mean of precision and recall
+
+Support
+
+Number of actual samples per class
+
+PART 7 – Practical viva questions and answers
+Q1. What is the aim of this practical?
+
+To implement Email Spam Detection using KNN and SVM algorithms and compare their performance.
+
+Q2. What is spam?
+
+Spam refers to unwanted or unsolicited emails, often containing advertisements, suspicious links or fraudulent messages.
+
+Q3. Which type of Machine Learning is used?
+
+Supervised Learning.
+
+Q4. Which type of classification is used?
+
+Binary Classification because the output has two classes: Spam and Not Spam.
+
+Q5. What is KNN?
+
+K-Nearest Neighbors is a supervised learning algorithm that classifies a data point based on the majority class of its nearest neighbours.
+
+Q6. What is the value of K in this practical?
+
+K = 5.
+
+Q7. What is SVM?
+
+Support Vector Machine is a supervised learning algorithm that finds an optimal decision boundary to separate different classes.
+
+Q8. What is a hyperplane?
+
+A hyperplane is a decision boundary that separates different classes in the feature space.
+
+Q9. What is a support vector?
+
+Support vectors are the data points closest to the SVM decision boundary.
+
+Q10. Why do we use StandardScaler?
+
+To standardize numerical features so that differences in their scales do not disproportionately affect distance-based or margin-based algorithms.
+
+Q11. What is a Pipeline?
+
+A Pipeline combines preprocessing and model operations into a single sequence.
+
+Q12. Why do we split the dataset?
+
+To train the model on one portion of the data and evaluate its performance on unseen data.
+
+Q13. Why do we use 80:20 splitting?
+
+80% of data is used for training and 20% for testing. It is a commonly used split.
+
+Q14. What is random_state=42?
+
+It fixes the random seed to make the train-test split reproducible.
+
+Q15. What is stratify=y?
+
+It maintains approximately the same class proportions in training and testing data.
+
+Q16. What is the difference between fit() and predict()?
+
+fit() trains the model.
+
+predict() generates predictions using the trained model.
+
+Q17. What is Accuracy?
+
+The proportion of total predictions that are correct.
+
+Q18. What is Precision?
+
+The proportion of predicted positive cases that are actually positive.
+
+Q19. What is Recall?
+
+The proportion of actual positive cases correctly identified.
+
+Q20. What is F1 Score?
+
+The harmonic mean of Precision and Recall.
+
+Q21. What is a False Positive?
+
+A genuine email incorrectly classified as spam.
+
+Q22. What is a False Negative?
+
+A spam email incorrectly classified as genuine.
+
+Q23. Why do we compare KNN and SVM?
+
+To identify which algorithm performs better on our dataset based on evaluation metrics.
+
+Q24. Which algorithm is better?
+
+The algorithm with the higher F1 Score is selected by this practical. The actual result depends on the dataset.
+
+Q25. What is the difference between KNN and SVM?
+
+KNN uses distance and majority voting, whereas SVM learns an optimal decision boundary using support vectors and margins.
+
+PART 8 – Important things to remember while executing
+There are a few things you should check before running this notebook.
+
+Your CSV file must be available in the same working directory as your notebook, or you must provide its correct path.
+
+The CSV must contain the columns Email No. and Prediction, because your code explicitly refers to these names.
+
+The code assumes that the target labels are 0 and 1, with 1 representing Spam. The dataset should follow this convention.
+
+The default precision_score() and recall_score() calculate metrics for the positive class, which is normally label 1.
+
+dropna() removes rows with missing values, so the dataset size can decrease after preprocessing.
+
+If your dataset contains many features, SVM with a linear kernel can take some time to train.
+
+If your testing dataset contains only one class, some evaluation metrics may produce warnings or undefined values.
+
+One important ML improvement: Your notebook performs missing-value and duplicate removal before splitting. For a more rigorous ML workflow, data cleaning and preprocessing decisions should be made carefully to avoid information leakage. Your StandardScaler is already correctly placed inside the Pipeline, so its scaling parameters are learned from training data only.
+
+Final revision – Understand the practical in 30 seconds
+What are we doing?
+
+We are building a Machine Learning model to identify whether an email is Spam or Not Spam.
+
+Which dataset?
+
+emails.csv.csv
+
+Which type of learning?
+
+Supervised Learning.
+
+Which type of problem?
+
+Binary Classification.
+
+Which algorithms?
+
+KNN and SVM.
+
+Which preprocessing techniques?
+
+Removing missing values, removing duplicates and standardization.
+
+What is X?
+
+Input features.
+
+What is y?
+
+Prediction (target).
+
+Training/testing ratio?
+
+80:20.
+
+K value?
+
+SVM kernel?
+
+Linear.
+
+Evaluation metrics?
+
+Accuracy, Precision, Recall, F1 Score, Confusion Matrix and Classification Report.
+
+How do we select the better model?
+
+By comparing F1 Scores.
+
+.
+KNN and SVM – Detailed Explanation from Basics
+Let's understand both algorithms from absolute zero, as if you're learning them for the first time for your ML practical and viva.
+
+Both KNN (K-Nearest Neighbors) and SVM (Support Vector Machine) are Supervised Machine Learning algorithms used for classification and regression.
+
+In your Email Spam Detection practical, we use them for Binary Classification:
+- 0 = Not Spam (Ham)
+- 1 = Spam
+But both algorithms work very differently.
+- KNN makes predictions by looking at nearby data points.
+- SVM makes predictions using an optimal decision boundary.
+PART 1 – KNN (K-Nearest Neighbors)
+
+
+
+
+
+
+
+medium.com
+
+
+1. What is KNN?
+KNN stands for K-Nearest Neighbors.
+
+It is a Supervised Machine Learning algorithm used for:
+1. Classification.
+2. Regression.
+It predicts the class or value of a new data point by examining the nearest existing data points.
+
+Let's understand the name:
+Word	Meaning
+K	Number of neighbours to consider
+Nearest	Closest according to a distance measure
+Neighbors	Existing data points around the new point
+
+In simple words:
+
+KNN looks at the K closest data points and decides the output based on their values.
+2. Why do we use KNN?
+Suppose we have a dataset containing information about emails.
+
+Some emails are Spam and some are Not Spam.
+
+We want to classify a new email, but we don't know its category.
+
+KNN helps us determine its category by comparing it with previously labelled emails.
+
+For example:
+- If a new email is similar to Spam emails, it is likely Spam.
+- If it is similar to genuine emails, it is likely Not Spam.
+KNN assumes that similar data points are generally located close to each other in the feature space.
+3. How does KNN work?
+Let's understand using a simple example.
+
+Suppose we have the following training data:
+Email	Number of suspicious words	Actual Class
+A	2	Not Spam
+B	3	Not Spam
+C	8	Spam
+D	9	Spam
+E	7	Spam
+
+Now we receive a new email with 6 suspicious words.
+
+We don't know whether it is Spam or Not Spam.
+
+Let's use K = 3.
+
+Step 1: Calculate the distance
+
+Our new email has a value of 6.
+
+We calculate the distance between it and each existing email.
+
+For this one-dimensional example:
+\[
+Distance=|New\ Value-Existing\ Value|
+\]
+
+Email	Existing value	Distance from 6	Class
+A	2	4	Not Spam
+B	3	3	Not Spam
+C	8	2	Spam
+D	9	3	Spam
+E	7	1	Spam
+
+Step 2: Find the nearest neighbours
+
+We select the three smallest distances.
+Neighbour	Distance	Class
+E	1	Spam
+C	2	Spam
+B	3	Not Spam
+
+Step 3: Perform majority voting
+
+Now count the classes:
+- Spam = 2 votes.
+- Not Spam = 1 vote.
+Spam has the majority.
+
+Step 4: Final prediction
+Predicted: Spam
+KNN classifies the new email as Spam.
+
+That's how KNN works!
+4. What is the value of K?
+K represents the number of nearest neighbours that the algorithm considers before making a prediction.
+
+For example:
+- K = 1 → Consider only the closest neighbour.
+- K = 3 → Consider the three closest neighbours.
+- K = 5 → Consider the five closest neighbours.
+- K = 7 → Consider the seven closest neighbours.
+How does changing K affect predictions?
+Suppose the nearest seven neighbours are:
+Neighbour	Class
+1	Spam
+2	Spam
+3	Not Spam
+4	Spam
+5	Not Spam
+6	Not Spam
+7	Not Spam
+
+If K = 3:
+- Spam = 2.
+- Not Spam = 1.
+Prediction = Spam.
+
+If K = 7:
+- Spam = 3.
+- Not Spam = 4.
+Prediction = Not Spam.
+
+Therefore, changing K can change the prediction.
+What happens if K is too small?
+Suppose K = 1.
+
+The model considers only one neighbour.
+
+It can be affected by noise or an incorrectly labelled data point.
+
+This can cause overfitting.
+What happens if K is too large?
+Suppose K = 100.
+
+The model considers 100 neighbours.
+
+It may consider many points that are not really similar to the new data point.
+
+This can cause underfitting.
+What is overfitting?
+Overfitting happens when a model learns the training data too closely, including noise and unnecessary patterns.
+
+It performs well on training data but poorly on unseen data.
+What is underfitting?
+Underfitting happens when a model is too simple to learn the important patterns in the dataset.
+
+It performs poorly even on training data.
+5. Why do we often choose an odd value of K?
+In binary classification, we often choose an odd value such as:
+- 3
+- 5
+- 7
+- 9
+This reduces the possibility of a tie during majority voting.
+
+For example, if K = 4:
+- Spam = 2 votes.
+- Not Spam = 2 votes.
+There is a tie.
+
+If K = 5, a tie between two classes is impossible in ordinary unweighted binary majority voting.
+
+However, an odd K does not guarantee that ties are impossible for three or more classes.
+6. What is distance in KNN?
+Distance tells us how close or far two data points are.
+
+KNN uses distance to find neighbouring points.
+
+There are different distance measures.
+A. Euclidean Distance
+
+
+
+
+
+
+
+medium.com
+
+
+It is the straight-line distance between two points.
+
+Formula:
+\[
+d=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
+\]
+
+For two-dimensional points:
+\[
+d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}
+\]
+
+Example:
+
+Point A = (2, 3)
+
+Point B = (5, 7)
+\[
+d=\sqrt{(5-2)^2+(7-3)^2}
+\]
+
+\[
+d=\sqrt{9+16}
+\]
+
+\[
+d=\sqrt{25}=5
+\]
+
+Therefore, the distance is 5.
+B. Manhattan Distance
+It calculates distance by adding the absolute differences between coordinates.
+
+Formula:
+\[
+d=|x_1-y_1|+|x_2-y_2|
+\]
+
+Example:
+
+A = (2, 3)
+
+B = (5, 7)
+\[
+d=|5-2|+|7-3|
+\]
+
+\[
+d=3+4=7
+\]
+
+C. Minkowski Distance
+It is a generalized distance measure.
+
+Formula:
+\[
+d=\left(\sum_{i=1}^{n}|x_i-y_i|^p\right)^{1/p}
+\]
+
+- When p = 1, it becomes Manhattan Distance.
+- When p = 2, it becomes Euclidean Distance.
+In Scikit-learn, KNN commonly uses Minkowski distance with p = 2 by default, which corresponds to Euclidean distance.
+7. Why do we use StandardScaler with KNN?
+This is very important for your practical.
+
+Suppose we have two features:
+Email	Word count	Number of links
+A	500	2
+B	600	4
+
+The word count values are in hundreds, while link counts are in single digits.
+
+KNN calculates distances using these features.
+
+If we don't scale them, word count can dominate the distance calculation.
+
+StandardScaler converts features into comparable scales.
+
+Formula:
+\[
+z=\frac{x-\mu}{\sigma}
+\]
+
+Where:
+- x = Original value.
+- μ = Mean.
+- σ = Standard deviation.
+- z = Standardized value.
+That's why your practical uses:
+StandardScaler()
+
+
+
+before KNN.
+8. Is KNN a lazy learning algorithm?
+Yes!
+
+KNN is called a Lazy Learning Algorithm.
+
+Why?
+
+Because it does not build a traditional model or decision boundary during training.
+
+Instead, it stores the training data and performs the distance calculations when a new prediction is requested.
+
+For example:
+knn.fit(X_train, y_train)
+
+
+
+The algorithm stores the training examples.
+knn.predict(X_test)
+
+
+
+It calculates distances and predicts the classes.
+9. KNN in your practical
+Your actual code:
+knn = make_pipeline(    StandardScaler(),    KNeighborsClassifier(n_neighbors=5))knn.fit(X_train, y_train)knn_pred = knn.predict(X_test)
+
+
+
+Meaning:
+1. make_pipeline() combines preprocessing and classification.
+2. StandardScaler() standardizes the features.
+3. KNeighborsClassifier() creates the KNN classifier.
+4. n_neighbors=5 means K = 5.
+5. fit() trains the model by storing the training examples.
+6. predict() predicts the classes of testing emails.
+10. Advantages and disadvantages of KNN
+Advantages:
+1. Easy to understand and implement.
+2. No complicated training process.
+3. Can be used for classification and regression.
+4. Can work well when similar data points belong to similar classes.
+5. Can handle nonlinear decision boundaries.
+Disadvantages:
+1. Prediction can be slow for large datasets.
+2. Requires storing training data.
+3. Sensitive to feature scaling.
+4. Sensitive to irrelevant features and noisy data.
+5. Choosing the correct K is important.
+6. Performance can decrease with many dimensions (curse of dimensionality).
+
+PART 2 – SVM (Support Vector Machine)
+
+
+
+
+
+
+
+behesht.medium.com
+
+
+1. What is SVM?
+SVM stands for Support Vector Machine.
+
+It is a Supervised Machine Learning algorithm used for:
+1. Classification.
+2. Regression.
+Its main objective is to find the best possible decision boundary that separates different classes of data.
+
+In simple words:
+
+SVM tries to draw the best boundary between two groups so that the groups are separated as clearly as possible.
+
+For our practical:
+- One group represents Spam emails.
+- Another group represents Not Spam emails.
+SVM learns a boundary to distinguish between them.
+2. Why do we use SVM?
+Suppose we have a dataset containing:
+- Spam emails.
+- Not Spam emails.
+Each email has numerical features, such as word frequencies and other characteristics.
+
+We want to classify new emails.
+
+SVM finds a boundary between the two classes based on their feature values.
+
+When a new email arrives, SVM checks which side of the boundary it falls on.
+- One side = Spam.
+- Other side = Not Spam.
+This is how SVM makes predictions.
+3. Understanding Hyperplane
+A Hyperplane is a decision boundary that separates different classes.
+
+Let's understand with a simple example.
+
+Suppose we have two features:
+- X-axis = Number of suspicious words.
+- Y-axis = Number of suspicious links.
+We have two groups:
+- Red points = Spam.
+- Blue points = Not Spam.
+SVM tries to draw a line that separates these two groups.
+
+
+
+
+
+
+
+hassothea.github.io
+
+
+In a two-dimensional dataset, the hyperplane is a line.
+
+In a three-dimensional dataset, it is a plane.
+
+In higher dimensions, it is called a hyperplane.
+
+Important:
+
+A hyperplane is not always a straight line in the original input space when we use nonlinear kernels. It represents the decision boundary in the relevant feature space.
+4. What are Support Vectors?
+
+
+
+
+
+
+
+medium.com
+
+
+Support Vectors are the data points closest to the decision boundary.
+
+They are extremely important because they help determine the position and orientation of the optimal hyperplane.
+
+Let's understand with an example.
+
+Suppose we have two groups of points:
+- Spam group.
+- Not Spam group.
+SVM draws a boundary between them.
+
+Some points are very close to this boundary.
+
+These closest points are called Support Vectors.
+
+Why are they important?
+
+Because the position of the optimal decision boundary is determined by the support vectors.
+
+If the support vectors change, the decision boundary may also change.
+
+Remember:
+
+Support Vectors = Closest data points to the decision boundary.
+5. What is Margin in SVM?
+
+
+
+
+
+
+
+diamondclover.com
+
+
+Margin is the distance between the decision boundary and the nearest data points from each class.
+
+SVM tries to find a hyperplane with the maximum margin.
+
+Why?
+
+A larger margin generally helps the model generalize better to unseen data.
+
+Imagine two possible boundaries:
+- Boundary A has a very small margin.
+- Boundary B has a larger margin.
+SVM prefers Boundary B, provided the data and optimization conditions allow it.
+
+This is called Maximum Margin Classification.
+Important terms
+Term	Meaning
+Hyperplane	Decision boundary
+Support Vectors	Closest data points to the boundary
+Margin	Distance between the boundary and nearest data points
+Maximum Margin	Finding the boundary with the largest possible margin
+
+6. How does SVM work? Step by step
+Suppose we have a dataset containing Spam and Not Spam emails.
+
+Step 1: Take the training data
+
+SVM receives the training features and their corresponding class labels.
+
+Step 2: Identify possible separating boundaries
+
+It considers possible decision boundaries that can separate the two classes.
+
+Step 3: Identify support vectors
+
+It identifies the data points that determine the margin.
+
+Step 4: Calculate the maximum margin
+
+It finds the decision boundary that maximizes the margin between the classes.
+
+Step 5: Train the model
+
+It learns the decision function.
+
+Step 6: Predict new data
+
+When a new email arrives, the model checks which side of the learned decision boundary it belongs to.
+
+It predicts Spam or Not Spam.
+7. What is Kernel in SVM?
+This is one of the most important concepts in SVM.
+
+A Kernel is a function used by SVM to handle data in different feature spaces, particularly when a linear decision boundary is insufficient.
+
+Let's understand why we need it.
+Example: Linearly separable data
+Suppose two classes can be separated using a straight line.
+
+
+
+
+
+
+
+linguisticmaz.medium.com
+
+
+Here, a Linear Kernel can work well.
+Example: Non-linearly separable data
+Suppose the data is arranged in a circular pattern.
+
+One class is inside the circle and another class surrounds it.
+
+
+
+
+
+
+
+wasilzafar.com
+
+
+A straight line cannot properly separate these classes.
+
+Here, we can use a nonlinear kernel such as RBF.
+
+Kernels help SVM construct more flexible decision boundaries.
+Types of Kernels
+There are four commonly discussed kernels:
+
+
+
+
+
+
+
+
+
+1. Linear Kernel
+
+Used when data can be separated using a linear decision boundary.
+
+In your practical:
+SVC(kernel='linear')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Polynomial Kernel
+
+Used to model polynomial relationships between features.
+
+Example:
+SVC(kernel='poly')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. RBF Kernel
+
+RBF stands for Radial Basis Function.
+
+It can handle complex nonlinear decision boundaries.
+SVC(kernel='rbf')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. Sigmoid Kernel
+
+Uses a sigmoid-based mathematical function.
+SVC(kernel='sigmoid')
+
+
+
+
+
+
+Which kernel are we using in our practical?
+kernel='linear'
+
+
+
+We are using the Linear Kernel.
+
+This means our SVM uses a linear decision boundary in the input feature space.
+8. What is C in SVM?
+Another important parameter is C.
+
+C is called the Regularization Parameter.
+
+It controls the trade-off between:
+- Maximizing the margin.
+- Minimizing classification errors on the training data.
+If C is large:
+- The model penalizes classification errors more strongly.
+- It tries harder to classify training points correctly.
+- It may create a narrower margin.
+- It can become more sensitive to noise.
+If C is small:
+- The model allows more training errors.
+- It gives more importance to maintaining a wider margin.
+- It applies stronger regularization.
+In Scikit-learn, the default value is:
+C=1.0
+
+
+
+Your practical does not explicitly specify C, so it uses the default.
+9. What is Linear SVM?
+Linear SVM is an SVM model that uses a linear decision boundary.
+
+For example, in two dimensions, it separates the classes using a straight line.
+
+A simplified mathematical equation is:
+\[
+w^Tx+b=0
+\]
+
+Where:
+- \(w\) = Weight vector.
+- \(x\) = Input feature vector.
+- \(b\) = Bias.
+- \(0\) = Decision boundary condition.
+The model uses the learned weights and bias to decide which class a new data point belongs to.
+10. Is SVM a lazy or eager learning algorithm?
+SVM is an Eager Learning Algorithm.
+
+Why?
+
+Because it learns a decision function during training.
+
+For example:
+svm.fit(X_train, y_train)
+
+
+
+During training, SVM learns the decision boundary.
+
+Then:
+svm.predict(X_test)
+
+
+
+It uses the learned decision function to classify testing data.
+
+This is different from KNN, which stores training data and calculates neighbours during prediction.
+11. SVM in your practical
+Your actual code:
+svm = make_pipeline(    StandardScaler(),    SVC(kernel='linear', random_state=42))svm.fit(X_train, y_train)svm_pred = svm.predict(X_test)
+
+
+
+Let's understand:
+Code	Purpose
+make_pipeline()	Combines preprocessing and classification
+StandardScaler()	Standardizes features
+SVC()	Creates SVM classifier
+kernel='linear'	Uses linear kernel
+random_state=42	Sets a random seed
+fit()	Trains the SVM model
+predict()	Predicts testing data classes
+
+12. Advantages and disadvantages of SVM
+Advantages:
+1. Effective in high-dimensional feature spaces.
+2. Can handle linear and nonlinear classification.
+3. Uses support vectors to determine the decision boundary.
+4. Can work well when there is a clear margin of separation.
+5. Supports different kernel functions.
+Disadvantages:
+1. Training can be computationally expensive for large datasets.
+2. Selecting the correct kernel and parameters can be difficult.
+3. Requires feature scaling in many practical applications.
+4. Can be sensitive to overlapping classes and noise.
+5. It is less straightforward to interpret than some simpler models.
+
+PART 3 – Difference between KNN and SVM
+This is extremely important for your practical examination.
+Parameter	KNN	SVM
+Full form	K-Nearest Neighbors	Support Vector Machine
+Type	Supervised ML	Supervised ML
+Used for	Classification and regression	Classification and regression
+Working principle	Distance and majority voting	Optimal decision boundary
+Training	Stores training examples	Learns decision function
+Learning type	Lazy learning	Eager learning
+Important parameter	K	C and Kernel
+Distance	Uses distance measures	Uses kernel and margin optimization
+Prediction	Finds nearest neighbours	Uses learned decision function
+Feature scaling	Important	Generally important
+Large datasets	Prediction can be slow	Training can be expensive
+Overfitting	Can happen with very small K	Depends on C, kernel and other parameters
+
+PART 4 – KNN vs SVM using one simple example
+Imagine you are a teacher and want to classify students into two categories:
+- Pass
+- Fail
+You have existing student records.
+
+Now a new student arrives.
+
+How would KNN classify the student?
+
+It checks the nearest students based on their marks or other features.
+
+If most of the nearest students belong to Pass, it predicts Pass.
+
+How would SVM classify the student?
+
+It learns a decision boundary separating Pass and Fail students.
+
+It checks which side of that boundary the new student falls on.
+
+That's the fundamental difference.
+KNN – Looks at neighbours
+
+
+
+
+
+
+
+medium.com
+
+
+Prediction is based on nearby training examples.
+
+
+SVM – Looks at the decision boundary
+
+
+
+
+
+
+
+reneshbedre.com
+
+
+Prediction is based on the learned separating boundary.
+
+
+PART 5 – Important viva questions on KNN and SVM
+Q1. What is KNN?
+
+KNN is a supervised Machine Learning algorithm that classifies a new data point based on the majority class of its K nearest neighbours.
+
+Q2. Why is KNN called a lazy learning algorithm?
+
+Because it does not learn a traditional decision boundary during training. It stores training examples and performs calculations during prediction.
+
+Q3. What is K in KNN?
+
+K represents the number of nearest neighbours considered while predicting a class.
+
+Q4. What happens when K = 1?
+
+The algorithm considers only the nearest neighbour, making it more sensitive to noise.
+
+Q5. Why do we use odd values of K?
+
+To reduce the possibility of ties in binary classification.
+
+Q6. Which distance is commonly used in KNN?
+
+Euclidean Distance.
+
+Q7. What is SVM?
+
+SVM is a supervised Machine Learning algorithm that finds an optimal decision boundary to separate different classes.
+
+Q8. What are Support Vectors?
+
+They are the data points closest to the decision boundary.
+
+Q9. What is a Hyperplane?
+
+It is the decision boundary separating different classes.
+
+Q10. What is Margin?
+
+It is the distance between the decision boundary and the nearest data points from both classes.
+
+Q11. What is the objective of SVM?
+
+To find a decision boundary with the maximum possible margin while balancing classification errors.
+
+Q12. What is a Kernel?
+
+A kernel function helps SVM handle data in different feature spaces, including nonlinear classification problems.
+
+Q13. Name four SVM kernels.
+- Linear.
+- Polynomial.
+- RBF.
+- Sigmoid.
+Q14. Which kernel is used in your practical?
+
+Linear Kernel.
+
+Q15. What is C in SVM?
+
+C is a regularization parameter controlling the trade-off between margin size and training classification errors.
+
+Q16. Is SVM lazy or eager learning?
+
+Eager learning.
+
+Q17. Why is StandardScaler used in both algorithms?
+
+To standardize features so that differences in their numerical scales do not disproportionately influence the models.
+
+Q18. Which is better, KNN or SVM?
+
+It depends on the dataset. We compare their evaluation metrics to determine which performs better.
+
+PART 6 – Test your understanding
+Try answering these five questions. These are similar to questions an examiner might ask during your practical.
+KNN and SVM mini viva quiz
+0/5 answered
+
+1. What does K represent in KNN?
+
+Number of classes
+
+Number of nearest neighbours
+
+Number of features
+
+Number of datasets
+
+
+
+2. Which algorithm is called a lazy learning algorithm?
+
+SVM
+
+KNN
+
+Decision Tree
+
+Linear Regression
+
+
+
+3. What are support vectors?
+
+All training points
+
+Points farthest from the boundary
+
+Points closest to the decision boundary
+
+Testing labels
+
+
+
+4. Which kernel is used in your practical?
+
+RBF
+
+Polynomial
+
+Sigmoid
+
+Linear
+
+
+
+5. What is the main objective of SVM?
+
+Find the maximum-margin decision boundary
+
+Find the nearest five points
+
+Remove duplicate rows
+
+Calculate the mean
+
+
+Submit answers
+Final thing to remember for your practical:
+
+KNN = Find the nearest neighbours and use majority voting.
+
+SVM = Find the optimal separating boundary using support vectors and maximum margin
+
+
+
